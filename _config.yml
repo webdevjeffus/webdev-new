@@ -1,0 +1,2 @@
+baseurl: /webdev-new
+exclude: ['README.md']
