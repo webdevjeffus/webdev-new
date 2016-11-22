@@ -57,7 +57,9 @@ header nav input[type="submit"] {
 
 /* Borders */
 
-header nav li     { border-left: 0.125rem solid; }
+header nav li,
+footer nav li     { border-left: 0.125rem solid; }
+
 main section      { border-bottom: 2px solid; }
 main table        { border: 2px solid; }
 main th, main td  { border: 1px solid; }
@@ -89,6 +91,8 @@ main {
   color: #222;              /* dark font color, eg: 85% gray */
 }
 
+footer { color: #888; }
+
 a:link,
 a:visited,
 header nav input[type="submit"] { color: #c00; }
@@ -100,7 +104,9 @@ header nav input[type="submit"]:hover,
 header nav input[type="submit"]:active { color: #f22; }
   /* brighter contrasting color; active links */
 
-header nav li { border-color: #888; }   /* this should match html background-color */
+header nav li,
+footer nav li { border-color: #888; }
+  /* this should match html background-color */
 
 main table,
 main th,
@@ -156,9 +162,9 @@ header nav li {
   padding: 0 0.875rem 0 1rem;
 }
 
-header nav li:nth-last-of-type(1) { padding-right: 0;}
+header nav li:last-of-type { padding-right: 0;}
 
-header nav li:nth-of-type(1) { border-left: none; }
+header nav li:first-of-type { border-left: none; }
 
 header nav input[type="submit"] {
   overflow: visible;
@@ -288,3 +294,14 @@ footer {
   font-size: 0.8rem;
   padding: 1rem;
 }
+
+footer p { margin: 0.5rem 0; }
+
+footer nav ul { list-style: none; }
+
+footer nav li {
+  display: inline-block;
+  padding: 0 0.875rem 0 1rem;
+}
+
+footer nav li:first-of-type { border: none; }

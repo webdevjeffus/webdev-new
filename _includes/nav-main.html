@@ -1,0 +1,12 @@
+<nav>
+  <ul>
+    <li><a href="{{site.baseurl}}/index.html"
+          class="{% if page.category == 'home' %}current-cat{% endif %}" >Home</a></li>
+    <li><a href="{{site.baseurl}}/work.html"
+          class="{% if page.category == 'work' %}current-cat{% endif %}" >Work</a></li>
+    <li><a href="{{site.baseurl}}/blog.html"
+          class="{% if page.category == 'blog' %}current-cat{% endif %}" >Blog</a></li>
+    <li><a href="{{site.baseurl}}/contact.html"
+          class="{% if page.category == 'contact' %}current-cat{% endif %}" >Contact</a></li>
+  </ul>
+</nav>

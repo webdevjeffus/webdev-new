@@ -9,25 +9,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="shortcut icon" type="image/ico" href="{{site.baseurl}}/favicon.ico" />
-  <link rel="stylesheet" href="css/drop-in.css">
+  <link rel="stylesheet" href="{{site.baseurl}}/css/drop-in.css">
+  <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
 </head>
 
 <body>
   <header>
-    <h1>webdevjeff</h1>
-    <nav>
-      <ul>
-        <li><a href="{{site.baseurl}}/index.html">Home</a></li>
-        <li><a href="{{site.baseurl}}/work.html">Work</a></li>
-        <li><a href="{{site.baseurl}}/blog.html">Blog</a></li>
-        <li><a href="{{site.baseurl}}/contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    <h1><a href="{{site.baseurl}}/">webdevjeff</a></h1>
+    {% include nav-main.html %}
   </header>
+
   <main>
 
       {{content}}
 
   </main>
+
+  <footer>
+    {% include nav-main.html %}
+    <p>Copyright &copy; 2016 by Jeff George</p>
+  </footer>
 </body>
 </html>
