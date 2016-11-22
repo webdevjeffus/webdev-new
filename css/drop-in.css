@@ -91,6 +91,8 @@ main {
   color: #222;              /* dark font color, eg: 85% gray */
 }
 
+footer { color: #888; }
+
 a:link,
 a:visited,
 header nav input[type="submit"] { color: #c00; }
@@ -293,15 +295,13 @@ footer {
   padding: 1rem;
 }
 
-footer nav ul {
-  list-style: none;
-}
+footer p { margin: 0.5rem 0; }
 
-footer nav ul li {
+footer nav ul { list-style: none; }
+
+footer nav li {
   display: inline-block;
   padding: 0 0.875rem 0 1rem;
 }
 
-footer nav li:first-of-type {
-  border: none;
-}
+footer nav li:first-of-type { border: none; }
