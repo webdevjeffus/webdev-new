@@ -1,5 +1,6 @@
 ---
 layout: default
+category: home
 ---
 
 # Jeff George, Web Developer
