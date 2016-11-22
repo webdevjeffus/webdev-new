@@ -1,0 +1,5 @@
+/* Nav styles */
+
+header .current-cat {
+  border-bottom: 4px solid #888;
+}
