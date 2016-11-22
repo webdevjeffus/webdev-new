@@ -35,8 +35,9 @@ h6 {
   font-style: italic;
 }
 
-h1, h2, h3, h4, p { margin: 0 0 0.5rem; }
+h1, h2, h3, h4 { margin: 0 0 0.5rem; }
 h5, h6 { margin: 0 0 0.2rem; }
+p { margin: 0 0 1rem; }
 
 li:last-child,
 p:last-child { margin-bottom: 0rem; }
@@ -204,6 +205,18 @@ main aside {
   float: right;
   padding: 1rem;
   font-size: 0.8rem;
+}
+
+main header { padding: 0; }
+
+main header h1,
+main header h2,
+main header h3,
+main header h4 { margin-bottom: 0.25rem; }
+
+main header p {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
 }
 
 /* Lists */
