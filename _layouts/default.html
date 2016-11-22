@@ -14,20 +14,18 @@
 
 <body>
   <header>
-    <h1>webdevjeff</h1>
-    <nav>
-      <ul>
-        <li><a href="{{site.baseurl}}/index.html">Home</a></li>
-        <li><a href="{{site.baseurl}}/work.html">Work</a></li>
-        <li><a href="{{site.baseurl}}/blog.html">Blog</a></li>
-        <li><a href="{{site.baseurl}}/contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    <h1><a href="{{site.baseurl}}/">webdevjeff</a></h1>
+    {% include nav-main.html %}
   </header>
+
   <main>
 
       {{content}}
 
   </main>
+
+  <footer>
+    {% include nav-main.html %}
+  </footer>
 </body>
 </html>
