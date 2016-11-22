@@ -1,6 +1,6 @@
 ---
 layout: default
-category: blog
+section: blog
 ---
 
 # Blog
