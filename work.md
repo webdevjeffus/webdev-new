@@ -1,6 +1,6 @@
 ---
 layout: default
-category: work
+section: work
 ---
 
 # Work

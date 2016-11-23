@@ -1,6 +1,6 @@
 ---
 layout: default
-category: contact
+section: contact
 ---
 
 # Contact

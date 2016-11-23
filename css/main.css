@@ -3,3 +3,20 @@
 header .current-cat {
   border-bottom: 4px solid #888;
 }
+
+
+/* Code sample formatting - apply to div wrapping sample */
+.code-block {
+  display: block;
+  background-color: #bbb;
+  padding: 1rem 0 0.25rem;
+  font-family: Courier, monospace;
+  margin-bottom: 1rem;
+  white-space: nowrap;
+  overflow: auto;
+}
+
+.code-comment {
+  font-style: italic;
+  color: #888;
+}
