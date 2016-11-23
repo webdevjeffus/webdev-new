@@ -14,15 +14,4 @@ section: blog
   {{ content }}
 </article>
 
-<aside>
-  {% if page.blogger-note %}
-    <h3>Blogger's note</h3>
-    <p>{{ page.blogger-note }}</p>
-  {% endif %}
-
-  <h3>Recent posts</h3>
-  <p><em>Insert list of 5 most recent blog posts</em></p>
-
-  <h3>Similar posts</h3>
-  <p><em>Insert list of posts in same category</em></p>
-</aside>
+{% include blog-side.html %}
