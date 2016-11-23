@@ -2,7 +2,7 @@
 layout: blog-post
 title: Stay Classy!
 subtitle: Defining a class in Ruby
-category: development
+category: Development
 posted: Oct. 18, 2015
 blogger-note: I wrote this post as an assignment while I was enrolled at <a href="https://devbootcamp.com/">Dev Bootcamp</a> in the winter of 2015-2016.
 ---
