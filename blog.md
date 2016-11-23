@@ -9,7 +9,7 @@ section: blog
   {% for post in site.posts limit:5 %}
   <br>
   <li>
-    <h4><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></h4>
+    <h3><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></h3>
     <p><em>{{post.subtitle}}</em></p>
     <p>{{post.posted}}</p>
   </li>
