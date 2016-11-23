@@ -14,3 +14,8 @@ header .current-cat {
   white-space: nowrap;
   overflow: auto;
 }
+
+.code-comment {
+  font-style: italic;
+  color: #888;
+}
