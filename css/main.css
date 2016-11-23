@@ -6,7 +6,8 @@ header .current-cat {
 
 
 /* Code sample formatting - apply to div wrapping sample */
-.code {
+.code-block {
+  display: block;
   background-color: #bbb;
   padding: 1rem 0 0.25rem;
   font-family: Courier, monospace;
