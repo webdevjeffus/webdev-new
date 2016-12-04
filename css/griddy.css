@@ -9,20 +9,24 @@
 */
 
 
+/* IMPORT normalize.css from CDN */
+/*@import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css);*/
+
+
 /**** RESET CLASSES ****/
 
 /* Reset: from http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
-html {
+/*html {
   box-sizing: border-box;
 }
 *, *:before, *:after {
   box-sizing: inherit;
 }
-
+*/
 
 /* Reset: from HTML5Boilerplate */
 
-::-moz-selection {
+/*::-moz-selection {
   background: #b3d4fc;
   text-shadow: none;
 }
@@ -59,7 +63,7 @@ fieldset {
 textarea {
   resize: vertical;
 }
-
+*/
 
 /* Reset: Griddy resets */
 
