@@ -1,51 +1,124 @@
 /*! drop-in-wb.css | "Whiteboard" theme by Jeff George */
-/*! Based on drop-in.css v1.0 */
+/*! Based on drop-in.css v2.0 */
 /*! MIT License | github.com/webdevjeffus/drop-in-css */
 
-/* IMPORT COMMANDS ***********************************************************/
+/* IMPORT COMMANDS ***************************************************/
 
 /* normalize.css */
-@import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css);
+ @import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css);
 
-/* Google Fonts */
+/* Google Fonts for WHITEBOARD theme */
 @import url(https://fonts.googleapis.com/css?family=Permanent+Marker|Walter+Turncoat|Open+Sans:400,700,400italic,700italic);
 
 
-/* UTILITY STYLES ************************************************************/
+/* RESET CLASSES *****************************************************\
+\* Do not edit when creating themes **********************************/
 
+/* Reset from http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
 html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
 
-*, *:before, *:after {
-  box-sizing: inherit;
+
+/* Resets from HTML5Boilerplate */
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video { vertical-align: middle; }
+
+fieldset {
+  border: 0;
   margin: 0;
   padding: 0;
 }
 
+textarea { resize: vertical; }
+
+
+/* Reset: drop-in resets */
+
+body,
+section,
+article,
+aside,
+header,
+main,
+footer,
+nav { padding: 0; }
+
+h1, h2, h3, h4, h5, h6, ol, ul {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
+
+ol, ul { -webkit-padding-start: 0; }
+
+/* END RESETS ********************************************************/
+
+
+/* DROP-IN.CSS UTILITY STYLES ****************************************\
+\* Do not edit when altering themes **********************************/
+
 body {
   margin: 0 auto;
-  min-width: 600px;
-  max-width: 800px;
+  min-width: 600px;   /* Disable if using with griddy.css */
+  max-width: 800px;   /* Disable if using with griddy.css */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0.6rem 0 0;
+}
+
+p,
+label {
   line-height: 1.4;
+  margin: 0;
+  padding: 0.6rem 0;
 }
 
-h1 { font-size: 2.25rem; }
-h2 { font-size: 1.75rem; }
-h3 { font-size: 1.4rem; }
-h4 { font-size: 1.2rem; }
-h5 { font-size: 1.2rem; }
-h6 {
-  font-size: 1rem;
-  font-style: italic;
+p:first-of-type { padding-top: 0;}
+
+li {
+  margin: 0;
+  padding: 0.6rem 0 0;
 }
 
-h1, h2, h3, h4 { margin: 0 0 0.5rem; }
-h5, h6 { margin: 0 0 0.2rem; }
-p { margin: 0 0 1rem; }
-li p { margin-bottom: 0.5rem;}
+li:last-of-type { margin-bottom: 0.6rem; }
 
-li:last-child,
-p:last-child { margin-bottom: 0rem; }
+ul { list-style: none; }
+ol { padding-left: 1.5em;}
+  /* Use of em instead of rem for left padding is deliberate,
+     so indent will scale with font */
 
+img {
+  width: 100%;
+  margin: 0;
+  padding: 0.6rem 0;
+}
+
+/* Clearfix - Clears floats at end of section */
 header:after,
 main:after,
 section:after {
@@ -54,6 +127,7 @@ section:after {
   clear: both;
 }
 
+/* Link styles */
 a,
 header nav input[type="submit"] {
   font-weight: bold;
@@ -61,17 +135,18 @@ header nav input[type="submit"] {
 }
 
 /* Borders */
-
 header nav li,
 footer nav li     { border-left: 0.125rem solid; }
-
 main section      { border-bottom: 2px solid; }
 main table        { border: 2px solid; }
 main th, main td  { border: 1px solid; }
 main input, main textarea, main button { border: 1px solid; }
 
+/* END UTILITY STYLES ************************************************/
 
-/* DESIGN STYLES *************************************************************/
+
+/* DESIGN STYLES - WHITEBOARD THEME **********************************/
+/* EDIT THIS SECTION when altering drop-in.css themes ****************/
 
 /* Fonts */
 
@@ -80,13 +155,53 @@ html { font-family: 'Open Sans', sans-serif; }
 h1, h2 {
   font-family: 'Permanent Marker', 'Comic Sans MS', sans-serif;
   letter-spacing: 0.1rem;
+  line-height: 0.9;
+  padding-bottom: 0.9rem;
 }
 
 h3, h4, h5, h6,
 header p { font-family: 'Walter Turncoat', 'Comic Sans MS', sans-serif; }
 
+/* Heading sizes revised for Whiteboard theme fonts */
+h1 { font-size: 2.7rem; }
+h2 { font-size: 2.4rem; }
+h3 { font-size: 1.8rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.5rem; }
+h6 {
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+aside h1 { font-size: 2.4rem; }
+aside h2 { font-size: 2.1rem; }
+aside h3 { font-size: 1.5rem; }
+aside h4 { font-size: 1.2rem; }
+aside h5 { font-size: 1.2rem; }
+aside h6 {
+  font-size: 1rem;
+  font-style: italic;
+}
 
 /* Colors */
+
+/* Color Palette for Whiteboard Theme ********\
+White   High: rgb(255,255,255); /* Hi Wht *
+        Med:  rgb(247,247,247); /* Md Wht *
+        Low:  rgb(204,204,204); /* Lo Wht *
+Black   High: rgb( 64, 64, 64); /* Hi Blk *
+        Med:  rgb( 18, 18, 18); /* Md Blk *
+        Low:  rgb(  0,  0,  0); /* Lo Blk *
+Red     High: rgb(255, 63, 71); /* Hi Red *
+        Med:  rgb(173, 43, 48); /* Md Red *
+        Low:  rgb(127, 32, 35); /* Lo Red *
+Blue    High: rgb( 81, 94,255); /* Hi Blu *
+        Med:  rgb( 52, 60,163); /* Md Blu *
+        Low:  rgb( 41, 47,127); /* Lo Blu *
+Green   High: rgb( 32,204,124); /* Hi Grn *
+        Med:  rgb( 18,115, 70); /* Md Grn *
+        Low:  rgb( 10, 64, 39); /* Lo Grn *
+\* End Whiteboard Color Palette **************/
 
 html {
   background-color: rgb(204,204,204); /* Lo Wht */
@@ -118,67 +233,77 @@ header nav li,
 footer nav li { border-color: rgb( 64, 64, 64); } /* Lo Wht */
 
 header h1 a:link,
-header h1 a:visited { color: rgb(173, 43, 48); } /* Md Red */
+header h1 a:visited { color: rgb(173, 43, 48); }   /* Md Red */
 
 header h1 a:hover,
-header h1 a:active { color: rgb(255, 63, 71); } /* Hi Red */
+header h1 a:active { color: rgb(255, 63, 71); }   /* Hi Red */
+
+main h1,
+main h2,
+main h3,
+main h4 { color: rgb( 52, 60,163); }   /* Md Blu */
+
+main aside h1,
+main aside h2,
+main aside h3,
+main aside h4 { color: rgb( 64, 64, 64); }   /* Hi Blk */
 
 main table,
 main th,
-main td { border-color: rgb( 64, 64, 64); }   /* Hi Blk | this should match main font color */
+main td { border-color: rgb( 64, 64, 64); }   /* Hi Blk */
 
 main tr:nth-of-type(odd)  { background-color: rgb(255,255,255); }  /* Hi Wht */
 main tr:nth-of-type(even) { background-color: rgb(204,204,204); }  /* Lo Wht */
 
 main section { border-color: rgb( 64, 64, 64); }   /* Hi Blk */
-  /* this should match html background-color */
 
-main aside { background-color: rgb(204,204,204); }  /* Lo Wht */
-  /* this should be slightly darker than main background-color, eg: 25% gray */
+main aside { background-color: rgb(204,204,204); }   /* Lo Wht */
 
 main input,
 main textarea,
 main button {
-  color: rgb( 64, 64, 64);   /* Hi Blk | matches main text color */
-  border-color: rgb( 64, 64, 64);   /* Hi Blk | matches main text color */
+  color: rgb( 64, 64, 64);   /* Hi Blk */
+  border-color: rgb( 64, 64, 64);   /* Hi Blk */
 }
 
 main input[type="submit"],
 main button {
-  background-color: rgb(204,204,204);  /* Lo Wht | matches aside bg-color */
-  color: rgb( 64, 64, 64);   /* Hi Blk | matches main text color */
+  background-color: rgb(204,204,204);   /* Lo Wht */
+  color: rgb( 64, 64, 64);   /* Hi Blk */
 }
 
+/* END DESIGN STYLES - WHITEBOARD THEME ******************************/
 
-/* HEADER STYLES *************************************************************/
 
-header { padding: 1rem; }
+/* HEADER STYLES *****************************************************\
+\* Do not edit when altering themes **********************************/
+
+header { padding: 0.6rem 1.2rem; }
 
 header>h1,
 header div { float: left; }
 
 header h1 {
-  line-height: 1;
-  font-size: 3rem;
+  font-size: 3.3rem;
+  line-height: .7;
 }
 
 header p {
-  font-size: 1.25rem;
-  margin-bottom: 0;
+  font-size: 1.5rem;
+  line-height: 1;
 }
 
 header nav { float: right; }
 
-header nav ul { list-style: none; }
+header nav ul { padding: 0.6rem 0; }
 
 header nav li {
   display: inline-block;
   padding: 0 0.875rem 0 1rem;
 }
 
-header nav li:last-of-type { padding-right: 0;}
-
 header nav li:first-of-type { border-left: none; }
+header nav li:last-of-type { padding-right: 0;}
 
 header nav input[type="submit"] {
   overflow: visible;
@@ -187,23 +312,19 @@ header nav input[type="submit"] {
   border: none;
 }
 
+/* END HEADER STYLES *************************************************/
 
-/* MAIN STYLES ***************************************************************/
 
-main {
-  padding: 1rem;
-}
+/* MAIN STYLES *******************************************************\
+\* Do not edit when altering themes **********************************/
 
-main section {
-  margin-top: 1rem;
-  padding-bottom: 1rem;
-}
+main { padding: 0.6rem 1.2rem; }
 
-main section:nth-of-type(1) {
-  margin-top: 0;
-}
+main section { padding: 0.6rem 0; }
 
-main section:last-child {
+main section:first-of-type { padding-top: 0; }
+
+main section:last-of-type {
   padding-bottom: 0;
   border: none;
 }
@@ -216,104 +337,66 @@ main article {
 main aside {
   width: 30%;
   float: right;
-  padding: 1rem;
+  padding: 0.6rem 1.2rem;
+  margin: 0.6rem 0;
   font-size: 0.8rem;
 }
 
-main header { padding: 0; }
 
-main header h1,
-main header h2,
-main header h3,
-main header h4 { margin-bottom: 0.25rem; }
-
-main header p {
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
-}
-
-/* Lists */
-
-main ul {
-  margin: 0 1rem 1rem;
-  list-style: none;
-}
-
-main ol { margin: 0 1rem 1rem 2rem; }
-
-main li { margin-bottom: 0.5rem; }
-
-
-/* Forms */
+/* Forms - use of em instead of rem is deliberate in this section */
 
 main label { font-weight: bold; }
 
 main input,
 main textarea {
-  margin-bottom: 0.75rem;
+  margin: 0.6rem 0;
   display: block;
   width: 100%;
+  padding: 0.3em 0.6em;
 }
 
-main input[type="date"],
-main input[type="datetime"],
-main input[type="datetime-local"],
-main input[type="email"],
-main input[type="month"],
-main input[type="number"],
-main input[type="password"],
-main input[type="search"],
-main input[type="tel"],
-main input[type="text"],
-main input[type="time"],
-main input[type="week"],
-main textarea { padding: 0 0.5rem; }
-
-main textarea { height: 4.5rem; }
+main textarea { height: 4.5em; }
 
 main input[type="checkbox"],
 main input[type="radio"] {
   display: inline;
-  width: 1.5rem;
-  margin-right: 1.5rem;
+  width: 1em;
+  margin-left: 1.2em;
 }
 
 main input[type="range"] {
   display: inline;
-  width: 16rem;
-  margin-left: 1rem;
+  width: 16em;
+  margin-left: 1.2em;
 }
 
 main button,
 main input[type="submit"] {
-  margin: 0.5rem auto;
+  margin: 0.6rem auto;
+  padding: 0.3em 0.6em;
   width: 12rem;
 }
-
-main button:last-child,
-main input[type="submit"]:last-child { margin-bottom: 0; }
 
 
 /* Tables */
 
 main table {
   width: 100%;
-  margin-bottom: 1rem;
+  margin: 0.6rem 0;
   border-collapse: collapse;
-}
-
-main table:last-child {
-  margin-bottom: 0;
 }
 
 main th,
 main td {
-  padding: 0.25rem 0;
+  padding: 0.3em 0;    /* em used deliberately */
   text-align: center;
 }
 
+/* END MAIN STYLES ***************************************************/
 
-/* FOOTER STYLES *************************************************************/
+
+/* FOOTER STYLES *****************************************************\
+\* Do not edit when altering themes **********************************/
 
 footer {
   text-align: center;
@@ -321,13 +404,23 @@ footer {
   padding: 1rem;
 }
 
-footer p { margin: 0.5rem 0; }
-
-footer nav ul { list-style: none; }
+footer nav ul {
+  list-style: none;
+  padding: 0.6rem 0;
+}
 
 footer nav li {
   display: inline-block;
   padding: 0 0.875rem 0 1rem;
 }
 
-footer nav li:first-of-type { border: none; }
+footer nav li:first-of-type { border-left: none; }
+
+footer nav input[type="submit"] {
+  overflow: visible;
+  text-align: center;
+  width: auto;
+  border: none;
+}
+
+/* END FOOTER STYLES *************************************************/
