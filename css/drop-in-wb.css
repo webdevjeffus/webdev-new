@@ -86,18 +86,6 @@ body {
   max-width: 800px;   /* Disable if using with griddy.css */
 }
 
-/* Default sizes for core drop-in.css; commented out for Whiteboard theme
-h1 { font-size: 2.25rem; }
-h2 { font-size: 1.75rem; }
-h3 { font-size: 1.4rem; }
-h4 { font-size: 1.2rem; }
-h5 { font-size: 1.2rem; }
-h6 {
-  font-size: 1rem;
-  font-style: italic;
-}
-*/
-
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0.6rem 0 0;
@@ -353,18 +341,6 @@ main aside {
   margin: 0.6rem 0;
   font-size: 0.8rem;
 }
-
-/* main header { padding: 0; }
-main header h1,
-main header h2,
-main header h3,
-main header h4 { padding-bottom: 0.25rem; }
-main header p {
-  font-size: 1.2rem;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-}
-main header p:last-child { padding-bottom: 0.6rem;} TEST */
 
 
 /* Forms - use of em instead of rem is deliberate in this section */
