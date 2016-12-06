@@ -3,14 +3,23 @@ layout: default
 section: blog
 ---
 
+<section>
 
-<article>
-  <header>
-    <h2>{{ page.title }}</h2>
-    <p><strong>{{ page.subtitle }}</strong></p>
-    <p>Posted {{ page.posted }}</p>
-  </header>
-  {{ content }}
-</article>
+  <div class="row gtr">
 
-{% include blog-side.html %}
+    <article class="ph-col-12 tab-col-8 cmp-col-9 gtr">
+      <header>
+        <h2>{{ page.title }}</h2>
+        <p><strong>{{ page.subtitle }}</strong></p>
+        <p>Posted {{ page.posted }}</p>
+      </header>
+
+      {{ content }}
+
+    </article>
+
+    {% include blog-side.html %}
+
+  </div>
+
+</section>

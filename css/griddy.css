@@ -1,128 +1,60 @@
-/*
-*   GRIDDY: a light, responsive CSS grid
-*   by Jeff George
-*   @webdevjeffus
-*   https://github.com/webdevjeffus
-*   version: 0.3
-*
-*   GRIDDY is available for use under the GNU General Public License, Version 3.
-*/
+/*! griddy.css v1.1 | MIT License | github.com/webdevjeffus/griddy */
 
+/* griddy.css v1.0+ is compatible with drop-in.css v2.0+ */
+/* drop-in.css instantly styles any web app MVP */
+/* github/webdevjeffus/drop-in-css */
 
-/* IMPORT normalize.css from CDN */
-/*@import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css);*/
-
-
-/**** RESET CLASSES ****/
-
-/* Reset: from http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
-/*html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-*/
-
-/* Reset: from HTML5Boilerplate */
-
-/*::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
-}
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-  vertical-align: middle;
-}
-
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-
-textarea {
-  resize: vertical;
-}
-*/
+/* RESET CLASSES *****************************************************\
+\* Restore commented styles if NOT using with drop-in.css ************/
 
 /* Reset: Griddy resets */
 
-body {
-  min-width: 320px;
-  margin: 0 auto;
-  padding: 0;
-}
-
+body,
 section,
 article,
 aside,
 header,
 main,
 footer,
-nav {
-  padding: 0;
-}
+nav { padding: 0; }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-img {
+h1, h2, h3, h4, h5, h6, p, img {
   margin: 0;
   padding: 0.6rem 0;
 }
 
 img { width: 100%; }
 
-/**** END RESETS ****/
+/* END RESETS ********************************************************/
 
 
 
-/**** GRID SYSTEM CLASSES (Mobile First) ****/
+/* GRID SYSTEM STYLING ***********************************************\
+\* Used on all devices ***********************************************/
 
-/* PHONE - fluid 320-400px */
-
-html {
-  font-size: 12px;
-}
-
-.container {
+body {
   min-width: 320px;
-  max-width: 400px;
   margin: 0 auto;
 }
 
-.row {
-  padding: 0.6rem;
-}
+.row { padding: 0.6rem; }
 
 .row:after {
   content: "";
   display: table;
   clear: both;
+}
+
+
+/* SMART PHONE STYLING ***********************************************\
+\* Devices under 680px; fluid container between 320 and 400px ********/
+
+html { font-size: 12px; }
+
+.container {
+  min-width: 320px;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 /* Column-width classes; specify columns to span at phone width */
@@ -152,7 +84,6 @@ html {
 .box.ph-col-11 { width:  89.667%; float: left; }
 .box.ph-col-12 { width:  98%; }
 
-
 /* Insert block element (e.g. image, quote) into text */
 .ph-ins-25,
 .ph-ins-33,
@@ -168,18 +99,15 @@ html {
 /* Hide element at phone width */
 .ph-hide-inl,
 .ph-hide-blk,
-.ph-hide-ib {
-  display: none;
-}
+.ph-hide-ib { display: none; }
 
 
-/* TABLET - 680px */
+/* TABLET STYLING ****************************************************\
+\* Devices of 680-959px; fixed container width of 680px **************/
 
 @media only screen and (min-width: 680px) {
 
-  html {
-    font-size: 14px;
-  }
+  html { font-size: 14px; }
 
   .container {
     width: 680px;
@@ -254,20 +182,17 @@ html {
   /* Hide element at tablet width */
   .tab-hide-inl,
   .tab-hide-blk,
-  .tab-hide-ib {
-    display: none;
-  }
+  .tab-hide-ib { display: none; }
 
-}
+}  /* END TABLET Media Query */
 
 
-/* COMPUTER (small monitor) - 960px */
+/* COMPUTER (small monitor) STYLING **********************************\
+\* Devices 960-1120px; fixed container width of 960px ****************/
 
 @media only screen and (min-width: 960px) {
 
-  html {
-    font-size: 16px;
-  }
+  html { font-size: 16px; }
 
   .container {
     width: 960px;
@@ -348,57 +273,60 @@ html {
   /* Hide element at computer widths */
   .cmp-hide-inl,
   .cmp-hide-blk,
-  .cmp-hide-ib {
-    display: none;
-  }
+  .cmp-hide-ib { display: none; }
 
-}
+}  /* END COMPUTER (Small Monitor) Media Query */
 
 
-/* COMPUTER (desktop) - 1120px */
+/* COMPUTER (large monitor) STYLING **********************************\
+\* Devices over 1120px; fixed container width of 1120px **************/
 
 @media only screen and (min-width: 1200px) {
 
-  html {
-    font-size: 19px;
-    color: red; /* Test value; reset */
-  }
+  html { font-size: 19px; }
 
   .container {
     width: 1200px;
     max-width: 1200px;
   }
-}
 
-/**** END GRID SYSTEM CLASSES ****/
-
+} /* END COMPUTER (Desktop) Media Querie */
 
 
-/**** HELPER CLASSES ****/
 
+/* HELPER CLASSES ****************************************************\
+\* Apply to elements to fine-tune layout *****************************/
 
 /* Gutters */
-/* Under normal circumstances, apply .gtr to parent.row and all child.col elements */
-.gtr-l {padding-left: 0.6rem; }
-.gtr-r {padding-right: 0.6rem; }
 
+/* Normal Gutters - .gtr
+    Generally, apply .gtr to parent.row and all child.col elements;
+    Use .gtr-2x when parent element does not have .row class */
 .gtr {
   padding-left: 0.6rem;
   padding-right: 0.6rem;
 }
-
-.gtr-l-2x {padding-left: 1.2rem; }
-.gtr-r-2x {padding-right: 1.2rem; }
 
 .gtr-2x {
   padding-left: 1.2rem;
   padding-right: 1.2rem;
 }
 
+/* Single-side Gutters - .gtr-l and .gtr-r
+    Applies gutter spacing only to indicated side of element */
+.gtr-l {padding-left: 0.6rem; }
+.gtr-r {padding-right: 0.6rem; }
 
-/* Boxed Element - Automatically handles gutters and padding */
-/* for boxed elements, such as sidebars. */
-/* Use in place of .gtr on child elements within row. */
+.gtr-l-2x {padding-left: 1.2rem; }
+.gtr-r-2x {padding-right: 1.2rem; }
+
+
+/* Boxes */
+
+/* Boxed Element - .box
+    Automatically handles gutters and padding for boxed elements,
+    such as sidebars.
+    Use .box in place of .gtr on child elements within row. */
 .box {
   padding-left: 1.2rem;
   padding-right: 1.2rem;
@@ -418,21 +346,17 @@ html {
 .box h3,
 .box h4,
 .box h5,
-.box h6 {
-  display: inline-block;
-}
+.box h6 { display: inline-block; }
 
-.box img {
-  padding-top: 0.6rem;
-}
+.box img { padding-top: 0.6rem; }
 
-.box img:first-child {
-  padding-top: 1.2rem;
-}
+.box img:first-child { padding-top: 1.2rem; }
 
 
 /* Vertical Whitespace */
-/* Add or remove space above element - usually <h_> or <p> */
+
+/* Headroom - .hdrm
+    Add or remove space above element - usually <h_> or <p> */
 .hdrm-2x    { padding-top: 2.4rem; }
 .hdrm-more  { padding-top: 1.8rem; }
 .hdrm       { padding-top: 1.2rem; }
@@ -442,7 +366,8 @@ html {
   margin-top: 0;
 }
 
-/* Add or remove space below element - usually <h_> or <p> */
+/* Footroom - .ftrm
+    Add or remove space below element - usually <h_> or <p> */
 .ftrm-2x    { padding-bottom: 2.4rem; }
 .ftrm-more  { padding-bottom: 1.8rem; }
 .ftrm       { padding-bottom: 1.2rem; }
@@ -452,42 +377,64 @@ html {
   margin-bottom: 0;
 }
 
-/* Increase or decrease MARGIN space above element - usually a .box-item */
-.hdrm-bx-2x   { margin-top: 2.4rem; }
-.hdrm-bx-more { margin-top: 1.8rem; }
-.hdrm-bx      { margin-top: 1.2rem;}
-.hdrm-bx-less { margin-top: 0.5rem; }
-.hdrm-bx-none { margin-top: 0; }
+/* Headroom and Footroom Margins - .hdrm-mar and .ftrm-mar
+    Increase or decrease MARGIN space above or below element.
+    Does not affect padding.
+    Most commonly used on items with the .box class. */
+.hdrm-mar-2x   { margin-top: 2.4rem; }
+.hdrm-mar-more { margin-top: 1.8rem; }
+.hdrm-mar      { margin-top: 1.2rem;}
+.hdrm-mar-half { margin-top: 0.5rem; }
+.hdrm-mar-none { margin-top: 0; }
+
+.ftrm-mar-2x   { margin-bottom: 2.4rem; }
+.ftrm-mar-more { margin-bottom: 1.8rem; }
+.ftrm-mar      { margin-bottom: 1.2rem;}
+.ftrm-mar-half { margin-bottom: 0.5rem; }
+.ftrm-mar-none { margin-bottom: 0; }
 
 
 /* Miscellaneous Helpers */
-/* Bleed - For elements with no margin, such as full-panel images */
+
+/* Bleed - .bleed
+    Apply to elements with no margin, such as full-width images. */
 .bleed {
   margin: 0;
   padding: 0;
 }
 
-/* Reference Point - Makes parent element reference point for child with position: absolute; */
-.ref-pt { position: relative; }
-
-.hidden { display: none; }
-
-.txt-ctr { text-align: center; }
-
-/* Clearfix is included in .row class, above; */
-/* it's included here for use on elements other than rows */
-/* From: https://css-tricks.com/snippets/css/clear-fix/ */
+/* Clearfix - .clearfix
+    From https://css-tricks.com/snippets/css/clear-fix/
+    Note: Clearfix is included in .row class, above.
+    Included here for use on elements without .row. */
 .clearfix:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* From H5BP; used in 'Outdated Browser Warning' in index.html */
-.browserupgrade {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+/* No Border - .no-border
+    Remove borders from element - usually a section element. */
+.no-border { border: none; }
+section.no-border {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
+/* Reference Point - .ref-pt
+    Makes parent element reference point for
+    child element with position: absolute; */
+.ref-pt { position: relative; }
+
+.hidden { display: none; }
+
+.txt-ctr { text-align: center; }
+
+/* Browser Upgrade - .browserupgrade
+    From H5BP; used in 'Outdated Browser Warning' in index.html */
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}

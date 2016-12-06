@@ -9,12 +9,17 @@ header .current-cat {
 .code-block {
   display: block;
   background-color: #bbb;
-  padding: 1rem 0 0.25rem;
   font-family: Courier, monospace;
-  margin-bottom: 1rem;
   white-space: nowrap;
   overflow: auto;
+  padding: 0.6rem 1.2rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
 }
+
+.code-tab    { padding-left: 1.8rem; }
+.code-tab-2x { padding-left: 3rem; }
+.code-tab-3x { padding-left: 4.2rem; }
 
 .code-comment {
   font-style: italic;
