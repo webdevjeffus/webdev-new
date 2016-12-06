@@ -25,3 +25,8 @@ header .current-cat {
   font-style: italic;
   color: #888;
 }
+
+
+/* Helper Styles */
+
+.no-break { white-space: nowrap }
