@@ -1,0 +1,98 @@
+---
+layout: blog-post
+title: Iteration Nation
+subtitle: Using arrays and hashes in Ruby
+category: Development
+posted: Oct. 3, 2015
+blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a href="https://devbootcamp.com/">Dev Bootcamp</a> in the winter of 2015-2016.</p>
+---
+
+<p>I began my discussion of collections in Ruby&mdash;specifically, arrays and hashes&mdash;in my last post, <a href="{{site.baseurl}}{{page.previous.url}}">Taking up collections</a>. In this post, I'll look at how we can put arrays and hashes to work.
+
+<p>One of the main reasons we use collections like arrays and hashes to store related data is so that we can work with the entire collection...collectively. We often want to search through a collection for specific bits of information, or perform the same action on every single item of the set. Because we've organized our collections into arrays and hashes, Ruby lets us accomplish these things easily, using iteration.</p>
+
+<h4>Thrown for a loop</h4>
+<p>When we iterate over an array or hash, we systematically apply the same bit of code to each item in the collection, exactly one time each. Because arrays are accessed by numeric indexes, we have more flexibility in how we iterate over them than we do with hashes. For starters, we can use simple loops, limited by counters based on the<code> array.size</code>, to do something to every item in an array. (Did you notice I slipped a new method,<code> size</code>, in there? It returns an integer value equal to the number of items in the array.) Here, we'll use an<code> until </code>loop to print out all the members of a new array,<code> beatles</code>:
+
+<ul class="code-block">
+  <li>$ beatles = [ "John", "Paul", "George", "Ringo" ]</li>
+  <li class="code-comment">=> ["John", "Paul", "George", "Ringo"]</li>
+  <li class="hdrm-more">$ counter = 0</li>
+  <li class="code-comment">=> 0</li>
+  <li class="hdrm-more">$ until counter >= beatles.size do</li>
+  <li>$&emsp;&emsp;&emsp;puts beatles[counter]</li>
+  <li>$&emsp;&emsp;&emsp;counter += 1</li>
+  <li>$ end</li>
+  <li>John</li>
+  <li>Paul</li>
+  <li>George</li>
+  <li>Ringo</li>
+  <li class="code-comment">=> nil</li>
+</ul>
+
+<p>In this example, our counter started at zero, and went up by 1 with each iteration of the loop. By the time the program had printed "Ringo," the counter had counted up to four. Since the counter was no longer less than the size of the array, the "until" condition was fulfilled, and the loop terminated, having printed the name of each member of the Beatles to the terminal. Note also that when it finishes its work, <code> until </code>returns <em>nil.</em></p>
+
+<h4>To each, his own</h4>
+<p>Because we don't use numeric indexes to access the values in hashes, we can't use counters to loop through them with simple control expressions like<code> while </code>and<code> until</code>. Fortunately, we have the<code> each </code>method, an iterator that does much the same thing, and doesn't need us to provide a counter for it to work. Let's convert our Beatles into a hash, so we can store more informatiom about them. Then we'll use<code> each </code>to print it back out.</p>
+
+<ul class="code-block">
+  <li>$ beatles = {</li>
+  <li>$&emsp;&emsp;&emsp;:lead_vocals => "John",</li>
+  <li>$&emsp;&emsp;&emsp;:bass => "Paul",</li>
+  <li>$&emsp;&emsp;&emsp;:lead_guitar => "George",</li>
+  <li>$&emsp;&emsp;&emsp;:drums => "Ringo"</li>
+  <li>$ }</li>
+  <li class="code-comment">=> {:lead_vocals=>"John", :bass=>"Paul", :lead_guitar=>"George", :drums=>"Ringo"}</li>
+  <li class="hdrm-more">$ beatles.each do |key, value|</li>
+  <li>$&emsp;&emsp;&emsp;puts value + " played " + key.to_s + "."</li>
+  <li>$ end</li>
+  <li>John played lead_vocals.</li>
+  <li>Paul played bass.</li>
+  <li>George played lead_guitar.</li>
+  <li>Ringo played drums.</li>
+  <li class="code-comment">=> {:lead_vocals=>"John", :bass=>"Paul", :lead_guitar=>"George", :drums=>"Ringo"}</li>
+</ul>
+
+<p>Sure, the sentences are clunky, but you get the idea. Conveniently, arrays have an<code> each </code>method as well. Though what's going on under the hood for the array version of<code> each </code>is a bit different than it is for hash version, the syntax is just about the same. Since Ruby lets us put our<code> each </code>block on a single line if it's simple enough, we'll try that here:</p>
+
+<ul class="code-block">
+  <li>$ beatles = [ "John", "Paul", "George", "Ringo" ]</li>
+  <li class="code-comment">=> ["John", "Paul", "George", "Ringo"]</li>
+  <li class="hdrm-more">$ beatles.each { |member| puts beatle + " was a Beatle." }</li>
+  <li>John was a Beatle.</li>
+  <li>Paul was a Beatle.</li>
+  <li>George was a Beatle.</li>
+  <li>Ringo was a Beatle.</li>
+  <li class="code-comment">=> ["John", "Paul", "George", "Ringo"]</li>
+</ul>
+
+<p>Unlike simple control expressions like<code> until,</code> methods like<code> each </code>usually return a value which may be of use to us in a more sophisticated program than these simplistic examples. In the case of<code> each,</code> the value returned is the original array or hash. If you need to capture the value produced by<code> each </code>method, you'll need to create another array or hash to capture the new values:
+
+<ul class="code-block">
+  <li>$ numbers = [ 3, 5, 8 ]</li>
+  <li class="code-comment">=> [3, 5, 8]</li>
+  <li>$ bigger_numbers = []
+  <li class="code-comment">=> []</li>
+  <li class="hdrm-more">$ numbers.each do |number|</li>
+  <li>$&emsp;&emsp;&emsp;bigger_numbers.push number*5</li>
+  <li>$ end</li>
+  <li class="code-comment">=> [3, 5, 8]</li>
+  <li class="hdrm-more">$ print "The numbers are " + numbers.to_s + ".\n"</li>
+  <li>The numbers are [3, 5, 8].</li>
+  <li class="code-comment">=>nil</li>
+  <li>$ print "The bigger numbers are " + bigger_numbers.to_s + ".\n"</li>
+  <li>The bigger numbers are [15, 25, 40].</li>
+  <li class="code-comment">=>nil</li>
+</ul>
+
+<p>If you want to learn more about Ruby loops and iterators, read Alan Skorkin's short-but-sweet introduction to the topic, <a href="http://www.skorks.com/2009/09/a-wealth-of-ruby-loops-and-iterators/">A Wealth of Ruby Loops and Interators</a>.
+
+<h4>The right tool for the job</h4>
+
+<p>You've got two different kinds of collections in Ruby&mspace;arrays and hashes&mspace;each with its own strengths. So how do you choose which one to use in any given situation? You have to think about what kind of data you're planning to store, and what you plan to do with it.</p>
+
+<p>If you've got a list made up of lots of examples of the same kind of thing, such as moves on a chessboard, flavors of ice cream, or your weight recorded every morning for a month, you'll probably want an array. Storing this sort of data in an array makes it easy to put in alphanumeric order, use in statistical calculations (such as finding the min, max, median, average, etc.), eliminate duplications, and add more values to. If the order of the items in your collection matters, and especially if you anticipate reorganizing that order, then an array is definitely your best bet.</p>
+
+<p>On the other hand, if your data includes many different kinds of information about a single topic, you probably want a hash. A hash is well-suited to storing customer data collected from a form, for example, which might include strings (first and last name, address), customer number and order number (integers), and products ordered (array). Storing this information in a hash will allow you to attach a label, in the form of a hash key, to each piece of information, such as<code> :first_name</code>,<code> :last_name</code>,<code> :street_address</code>, etc. You can then use the hash keys to retrieve the exact value you need, such as the customer's zip code, instead of having to iterate through the collection searching for it, as you would have to do if your customer information were stored in an array.</p>
+
+<p>Arrays and hashes become even more powerful, however, when you remember that they can both hold arrays and hashes as values, along with other types of objects. For example, you might store the information about each<code> customer </code>in a hash, and then store all of those hashes in an array of<code> customers</code>! Working together in this way, there's almost no collection of data collection that you can't store with Ruby's arrays and hashes.</p>

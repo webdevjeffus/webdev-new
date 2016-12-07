@@ -98,7 +98,7 @@ h1, h2, h3, h4, h5, h6, p, label, li, img {
 p:first-of-type { padding-top: 0;}
   /* Improves spacing because header fonts in WB lack descenders */
 
-p,
+p:last-of-type,   /* TEST change from simple p tag before merging into drop-in repo */
 li:last-of-type { margin-bottom: 0.6rem; }
 
 p,
@@ -338,7 +338,9 @@ main aside {
   font-size: 0.8rem;
 }
 
-main header p:last-child { padding-bottom: 0.6rem;}
+/* TEST before carrying change back to drop-in repo */
+/*main header p:last-child { padding-bottom: 0.6rem;}*/
+main header { padding-bottom: 0.6rem;}
 
 
 /* Forms - use of em instead of rem is deliberate in this section */

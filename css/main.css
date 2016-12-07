@@ -1,8 +1,43 @@
+aside p { padding: 0.45rem 0; }
+
 /* Nav styles */
 
-header .current-cat {
-  border-bottom: 4px solid #888;
+header .current-cat { border-bottom: 4px solid #888; }
+
+/* Blog styles */
+
+.blog-listing p {
+  line-height: 1.2;
+  padding-top: 0;
 }
+
+li.blog-listing { padding-top: 1.2rem; }
+
+.blog-listing p:first-of-type {
+  font-family: 'Walter Turncoat', 'Comic Sans MS', sans-serif;
+  font-size: 1.5rem;
+  color: rgb( 52, 60,163);
+}
+
+.blog-prev-next {
+  display: block;
+  width: auto;
+  overflow: hidden;
+}
+
+.blog-prev,
+.blog-next {
+  display: block;
+  width: 50%;
+  font-weight: normal;
+}
+
+.blog-prev { float: left; }
+.blog-next {
+  float: right;
+  text-align: right;
+}
+
 
 
 /* Code sample formatting - apply to div wrapping sample */

@@ -8,10 +8,9 @@ section: blog
     <h1>Blog Archive</h1>
     <ul>
       {% for post in site.posts limit:5 %}
-      <br>
-      <li>
+      <li class="blog-listing">
         <h2><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></h2>
-        <h4><a href="{{site.baseurl}}{{post.url}}">{{post.subtitle}}</a></h4>
+        <p>{{post.subtitle}}</p>
         <p>{{post.posted}}</p>
       </li>
       {% endfor %}
