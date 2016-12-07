@@ -1,6 +1,6 @@
 ---
 layout: blog-post
-title: Similar != same
+title: Similar != Same
 subtitle: A look at Ruby hashes and Javascript objects
 category: Development
 posted: Oct. 26, 2015
