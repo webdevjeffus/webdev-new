@@ -1,0 +1,164 @@
+---
+layout: blog-post
+title: Taking up collections
+subtitle: Introducing arrays and hashes in Ruby
+category: Development
+posted: Oct. 3, 2015
+blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a href="https://devbootcamp.com/">Dev Bootcamp</a> in the winter of 2015-2016.</p>
+---
+
+<p>In the Ruby programming language, two main data types carry the bulk of the load when it comes to handling collections: <em>arrays</em> and <em>hashes</em>. Understanding how arrays and hashes are alike, and how they are different, is critical to programming successfully in Ruby.</p>
+
+<h4>Demanding arrays</h4>
+<p>An array is a list of values arranged in a sequential order. The easiest way to create an array is to declare a variable, and set it equal to the contents of the list we intend to save. It is common convention to give arrays variable names that are plural, to suggest that the variable represents a collection of items. Here, we make an array of our favorite pies:</p>
+
+<ul class="code-block">
+  <li>pies = [ "pumpkin", "apple", "pecan" ]</li>
+</ul>
+
+<p>There are other ways to create an array, such as by calling<code> Array.new </code>or by using the<code> Array() </code>method, but those techniques are beyond the scope of this post.</p>
+
+<p>Since arrays store values in a specific sequence, each value is identified by an integer index number which records it's place in the sequence. In typical computer-science fashion, array indexes begin counting at 0, so the first value in the array has the index 0, the second value has the index 1, and so on. To access a value in an array, we use the name of the array, followed by the value's index in square brackets. Here, we want the second value in our<code> pies </code>array, so we use the index<code> [1]</code>.</p>
+
+<ul class="code-block">
+  <li>$ pies[1]</li>
+  <li class="code-comment">=> "apple"</li>
+</ul>
+
+<p>Calling <code>puts</code> with an array as its argument will print each member of the array on a separate line, like this:</p>
+
+<ul class="code-block">
+  <li>$ puts pies</li>
+  <li>pumpkin</li>
+  <li>apple</li>
+  <li>pecan</li>
+  <li class="code-comment">=> nil</li>
+</ul>
+
+<p>(Recall that puts always returns the value<code> nil</code>.)</p>
+
+<p>We can add another value to our array using the<code> push </code>method. The value will be added to the end of the array, and is included as the argument to the<code> push </code>method. Parentheses around the argument are optional. Continuing with our<code> pies </code>array:</p>
+
+<ul class="code-block">
+  <li>$ pies.push( "cherry" )</li>
+  <li class="code-comment">=> ["pumpkin", "apple", "pecan", "cherry"]</li>
+  <li>$ pies.push "mud"</li>
+  <li class="code-comment">=> ["pumpkin", "apple", "pecan", "cherry", "mud"]</li>
+</ul>
+
+<p>You can also append values to an array with the "shovel" operator,<code> &lt;&lt;</code>. The shovel operator can be chained to add several values on a single line, as well. We'll start a new array of integers for this example.</p>
+
+<ul class="code-block">
+  <li>$ numbers = [1, 2, 3]</li>
+  <li class="code-comment">=> [1, 2, 3]</li>
+  <li>$ numbers &lt;&lt; 4</li>
+  <li class="code-comment">=> [1, 2, 3, 4]</li>
+  <li>$ numbers &lt;&lt; 5 &lt;&lt; 6 &lt;&lt; 7</li>
+  <li class="code-comment">=> [1, 2, 3, 4, 5, 6, 7]</li>
+</ul>
+
+<p>To remove the last value from an array, you use the opposite of<code> push</code>, which is<code> pop</code>. This method permanently removes the last value, and returns its value.</p>
+
+<ul class="code-block">
+  <li>$ new_numbers = [10, 20, 30]</li>
+  <li class="code-comment">=> [10, 20, 30]</li>
+  <li>$ numbers.pop</li>
+  <li class="code-comment">=> 30</li>
+  <li>$ numbers</li>
+  <li class="code-comment">=> [10, 20]&emsp;&emsp;<span class="code-comment"># array contents after pop</span></li>
+</ul>
+
+<p>If you want to remove the first value in the array instead, you can use<code> shift</code>, so named because it removes the first value from the array, and <em>shifts</em> all the remaining values down one index. The opposite of<code> shift </code>is<code> unshift</code>, which takes a value as an argument (again, parentheses optional), and inserts that value into the first position of the array, while "unshifting" the remaining elements up one index.<code> shift </code>returns the value removed from the array, while<code> unshift </code>returns the entire array, including the newly-added value in the first position.</p>
+
+<ul class="code-block">
+  <li>$ other_numbers = [25, 50, 75]</li>
+  <li class="code-comment">=> [25, 50, 75]</li>
+  <li>$ numbers.shift</li>
+  <li class="code-comment">=> 25</li>
+  <li>$ numbers</li>
+  <li class="code-comment">=> [50, 75]&emsp;&emsp;<span class="code-comment"># array contents after shift</span></li>
+  <li>$ numbers.unshift(45)</li>
+  <li class="code-comment">=> [45, 50, 75]&emsp;&emsp;<span class="code-comment"># array contents after unshift</span></li>
+</ul>
+
+<p>There are literally dozens of other methods that can be used to manipulate arrays, adding values to them, taking values away, sorting them, re-ordering them, finding specific values or ranges within them, etc. You can find a complete listing of <a href="http://ruby-doc.org/core-2.2.0/Array.html">array methods in the official Ruby documentation</a>, and a <a href="http://www.sitepoint.com/guide-ruby-collections-part-arrays/">tutorial covering Ruby arrays at sitepoint.com</a>.</p>
+
+<p>You may have noticed that in all my example arrays so far, every item in each array has been of the same data type. Our<code> pies </code>array consisted entirely of strings, while<code> numbers </code> was all integers. In fact, there is no restriction in Ruby that arrays be of the same data type. You can mix and match as many data types in a single array as you please. The following is a perfectly legal array in Ruby:</p>
+
+<ul class="code-block">
+  <li>$ peyton_manning = [18, "QB", 65.4, ["Colts", "Broncos"]]</li>
+  <li class="code-comment">=> [18, "QB", 65.4, ["Colts", "Broncos"]]</li>
+</ul>
+
+<p>This array contains an integer, a string, a float, and even another array, and it's all perfectly legal. But just because you <em>can</em> do something, doesn't mean you necessarily <em>should</em> do it. The values in this array all describe NFL quarterback Peyton Manning, but in order for them to be useful, we have to memorize which index in the array points to which piece of information. For example, to find out what Manning's pass-completion percentage is, we have to know to ask for peyton_manning[2]. You'd think there'd be a better way to store collections of related data of differing types, and there is. Ruby calls it a <em>hash</em>.</p>
+
+
+<h4>Making a hash of things</h4>
+
+<p>Like arrays, a Ruby hash is a data type storing a collection of values, and like arrays, hashes can contain data of any and all types, in any combination. The difference between an array and a hash is in how you access that data.</p>
+
+<p>Remember that an array is an <em>ordered</em> set of values, and you access the values you want using a numeric index. In recent versions of Ruby, a hash also happens to be an ordered set of values (in early Ruby versions, hashes weren't ordered), but you don't access their values using indexes. Instead, data in a hash is stored as key-value pairs. That is, for every value in the hash, there is a key that lets you access it. For example, if I created a hash to keep track of my pets, I might store within it the key<code> :dogs</code>, accessing the value<code> "Moose"</code>. Hashes are commonly created in a manner very similar to how we set up arrays, using a structure called a "hash literal". A hash literal creating my full<code> pets </code>hash might look something like this:</p>
+
+<ul class="code-block">
+  <li>$ jeffs_pets = {</li>
+  <li>$&emsp;&emsp;&emsp;:dogs => "Moose",</li>
+  <li>$&emsp;&emsp;&emsp;:turtles => "Max",</li>
+  <li>$&emsp;&emsp;&emsp;:fishes => ["Larry", "Curly", "Moesha"]</li>
+  <li>$ }</li>
+  <li class="code-comment">=> {:dogs=>"Moose", :turtles=>"Max", :fishes=>["Larry", "Curly", "Moesha"]}</li>
+</ul>
+
+<p>For readability, I typed each key-value pair in the hash on its own line, but I could have legally crammed them all onto a single line. Note that while we used square brackets to contain our array, hashes are held in curly brackets. For each key-value pair in the hash, the key is listed first, followed by the "hash rocket" operator consisting of an equals sign and a greater-than sign, and then the value. Values can be of any type; in this hash, the first two values are strings, but the third value is an array, which is how we assign more than one value to a single key.</p>
+
+<p>Technically, keys can be any value type as well, but hashes are usually constructed using symbols as keys. (<a href="http://ruby-doc.org/core-2.2.0/Symbol.html">Symbols are a special type of object</a>, similar to strings, but with some special properties we don't need to delve into here.) Symbols can be recognized because they always begin with a colon, as in<code> :turtle</code>.</p>
+
+<p>If you are using symbols as the keys to your hash, Ruby offers an even more friendly alternative syntax for the hash literal, which eliminates the hash rocket operator. Using this method, each key-value pair is entered key first, followed by a colon, then the value. Note that this alternative syntax <em>only</em> works when the hash keys are symbols. The following version produces the exact same hash of my pets as the one with the hash rockets, above:</p>
+
+<ul class="code-block">
+  <li>$ jeffs_pets = {</li>
+  <li>$&emsp;&emsp;&emsp;:dogs => "Moose",</li>
+  <li>$&emsp;&emsp;&emsp;:turtles => "Max",</li>
+  <li>$&emsp;&emsp;&emsp;:fishes => ["Larry", "Curly", "Moesha"]</li>
+  <li>$ }</li>
+  <li class="code-comment">=> {:dogs=>"Moose", :turtles=>"Max", :fishes=>["Larry", "Curly", "Moesha"]}</li>
+</ul>
+
+<p>The syntax to access the values within a hash is similar to that used to get to the values within an array, but in place of the array's numeric indexes, we use the hash's keys inside the square brackets. Lets check out the names of my pets:</p>
+
+<ul class="code code-block">
+  <li>$ jeffs_pets[:dogs]</li>
+  <li class="code-comment">=> "Moose"</li>
+  <li>$ jeffs_pets[:fishes]</li>
+  <li class="code-comment">=>["Larry", "Curly", "Moesha"]</li>
+  <li>$ jeffs_pets[:cats]</li>
+  <li class="code-comment">=> nil</li>
+</ul>
+
+<p>So, entering<code> jeffs_pets[:dogs] </code>returned my dog's name, Moose, and<code> jeffs_pets[:fishes] </code>returned the full array containing the names of all my fish. When we asked for my cat's name, with<code> jeffs_pets[:cat]</code>, Ruby shrugged and said "nil," which is perfect, since nil, zilch, nada, bupkis, is exactly how many cats I own. In fact, when you ask for the value of a key that is not included in the hash, Ruby will return nil every time. Incidentally, if we want to get to the name of my second fish, we'd just add another square-bracketed index behind the hash name&mdash;first the hash key, then the numeric index within the array, like this:</p>
+
+<ul class="code code-block">
+  <li>$ jeffs_pets[:fish][1]</li>
+  <li class="code-comment">=> "Curly"</li>
+</ul>
+
+<p>Although Ruby does remember the order of the key-value pairs in a hash, programmers for the most part don't care. Because of this, we don't need a bunch of different methods for accessing, inserting, or removing items in the hash according to their position in the sequence. Adding a new key value pair is a lot like declaring and setting the value of a variable&mdash;you name it, then set it equal to the value.</p>
+
+<ul class="code code-block">
+  <li>$ jeffs_pets[:chickens] = "Colonel"</li>
+  <li class="code-comment">=> "Colonel"</li>
+  <li>$ jeffs_pets</li>
+  <li class="code-comment">=> {:dogs=>"Moose", :turtles=>"Max", :fishes=>["Larry", "Curly", "Moesha"], :chickens=>"Colonel"}
+</ul>
+
+<p>To remove a key-value pair from a hash, you use the<code> delete </code>method, with the name of the key as the argument. This will return the value of the deleted key. Poor Max...</p>
+
+<ul class="code code-block">
+  <li>$ jeffs_pets.delete(:turtles)</li>
+  <li class="code-comment">=> "Max"</li>
+  <li>$ jeffs_pets</li>
+  <li class="code-comment">=> {:dog=>"Moose", :fish=>["Larry", "Curly", "Moesha"], :chicken=>"Colonel"}</li>
+</ul>
+
+<p>As is the case for arrays, Ruby offers dozens of methods for manipulating hashes. You can read about <a href="http://ruby-doc.org/core-2.2.2/Hash.html">hash methods in the Ruby docs</a>, or get a more newb-friendly <a href="http://www.sitepoint.com/guide-ruby-collections-ii-hashes-sets-ranges/">tutorial on hashes at sitepoint.com</a>.</p>
+
+I'll continue my discussion of Ruby arrays and hashes in my next post, <a href="{{site.baseurl}}{{page.next.url}}">Iteration Nation</a>.
