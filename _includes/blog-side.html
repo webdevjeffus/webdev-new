@@ -1,14 +1,16 @@
 <aside class="ph-col-12 tab-col-4 cmp-col-3 row box hdrm-mar-half">
+  <div>
   {% if page.blogger-note %}
     <h3>Blogger's note</h3>
-    <p>{{ page.blogger-note }}</p>
+    {{ page.blogger-note }}
   {% endif %}
+</div>
 
   <h3>Recent posts</h3>
   <ul>
     {% for post in site.posts limit:10 %}
       <li>
-        <p><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></p>
+        <a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
       </li>
     {% endfor %}
   </ul>
@@ -19,7 +21,7 @@
       {% for post in site.posts %}
         {% if post.title != page.title and post.category == page.category %}
           <li>
-            <p><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></p>
+            <a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
           </li>
         {% endif %}
       {% endfor %}
