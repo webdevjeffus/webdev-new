@@ -1,17 +1,17 @@
 ---
 layout: blog-post
-title: Similar != same
+title: Similar != Same
 subtitle: A look at Ruby hashes and Javascript objects
 category: Development
 posted: Oct. 26, 2015
-blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a href="https://devbootcamp.com/">Dev Bootcamp</a> in the winter of 2015-2016.</p>
+blogger-note: dbc-blog-note
 ---
 
 <p>The web development immersive at Dev Bootcamp focuses on Ruby as its primary back-end language. Because of this, DBC students spend a lot of time switching between Ruby and JavaScript, the front-end language that's built in to all modern web browsers. We can ignore the essentially religious debate about which langauge is "better," but we can't avoid the fact that they're different. One of the most important differences between Ruby and JavaScript is in how they handle the composite data structures. Ruby does this with its <em>hash</em>, while JS calls its version an <em>object</em>.</p>
 
 <p>Ruby's hash and JavaScript's object do roughly the same thing&mdash;they both represent a collection of values accessed using keys. Their usage is similar, as is their syntax, but they have some important differences under the hood. In this blog post, I'll look first at the similarities between the two, and then their differences.</p>
 
-<h4 class="blog--section-head">Somewhat alike...</h4>
+<h4>Somewhat alike...</h4>
 
 <p>Ruby's hash and JavaScript's object <em>look</em> alike. Their syntax is very similar. Let's look at how you might create a hash and an object with literal notation:</p>
 
@@ -50,7 +50,7 @@ blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a h
   <li class="code-comment">=> "possum"</li>
 </ul>
 
-<h4 class="blog--section-head">...but different somehow</h4>
+<h4>...but different somehow</h4>
 
 <p>One important advantage JavaScript objects have over Ruby hashes is that a JS object can take a function as a value. Since methods in Ruby aren't objects, you can't assign a method as a hash value. In order to make our tim object greet us in JavaScript, we add a property that has a function as its value:</p>
 
