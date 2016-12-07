@@ -1,5 +1,7 @@
 aside p { padding: 0.45rem 0; }
 
+code { color: rgb(  0,  0,  0); }/* Md Blk */
+
 /* Nav styles */
 
 header .current-cat { border-bottom: 4px solid #888; }
