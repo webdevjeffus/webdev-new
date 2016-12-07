@@ -19,6 +19,25 @@ li.blog-listing { padding-top: 1.2rem; }
   color: rgb( 52, 60,163);
 }
 
+.blog-prev-next {
+  display: block;
+  width: auto;
+  overflow: hidden;
+}
+
+.blog-prev,
+.blog-next {
+  display: block;
+  width: 50%;
+  font-weight: normal;
+}
+
+.blog-prev { float: left; }
+.blog-next {
+  float: right;
+  text-align: right;
+}
+
 
 
 /* Code sample formatting - apply to div wrapping sample */
