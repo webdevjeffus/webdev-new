@@ -4,15 +4,15 @@ title: Iteration Nation
 subtitle: Using arrays and hashes in Ruby
 category: Development
 posted: Oct. 3, 2015
-blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a href="https://devbootcamp.com/">Dev Bootcamp</a> in the winter of 2015-2016.</p>
+blogger-note: dbc-blog-note
 ---
 
-<p>I began my discussion of collections in Ruby&mdash;specifically, arrays and hashes&mdash;in my last post, <a href="{{site.baseurl}}{{page.previous.url}}">Taking up collections</a>. In this post, I'll look at how we can put arrays and hashes to work.
+<p>I began my discussion of collections in Ruby&mdash;specifically, arrays and hashes&mdash;in my last post, <a href="{{site.baseurl}}{{page.previous.url}}">Taking up collections</a>. In this post, I'll look at how we can put arrays and hashes to work.</p>
 
 <p>One of the main reasons we use collections like arrays and hashes to store related data is so that we can work with the entire collection...collectively. We often want to search through a collection for specific bits of information, or perform the same action on every single item of the set. Because we've organized our collections into arrays and hashes, Ruby lets us accomplish these things easily, using iteration.</p>
 
 <h4>Thrown for a loop</h4>
-<p>When we iterate over an array or hash, we systematically apply the same bit of code to each item in the collection, exactly one time each. Because arrays are accessed by numeric indexes, we have more flexibility in how we iterate over them than we do with hashes. For starters, we can use simple loops, limited by counters based on the<code> array.size</code>, to do something to every item in an array. (Did you notice I slipped a new method,<code> size</code>, in there? It returns an integer value equal to the number of items in the array.) Here, we'll use an<code> until </code>loop to print out all the members of a new array,<code> beatles</code>:
+<p>When we iterate over an array or hash, we systematically apply the same bit of code to each item in the collection, exactly one time each. Because arrays are accessed by numeric indexes, we have more flexibility in how we iterate over them than we do with hashes. For starters, we can use simple loops, limited by counters based on the<code> array.size</code>, to do something to every item in an array. (Did you notice I slipped a new method,<code> size</code>, in there? It returns an integer value equal to the number of items in the array.) Here, we'll use an<code> until </code>loop to print out all the members of a new array,<code> beatles</code>:</p>
 
 <ul class="code-block">
   <li>$ beatles = [ "John", "Paul", "George", "Ringo" ]</li>
@@ -30,7 +30,7 @@ blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a h
   <li class="code-comment">=> nil</li>
 </ul>
 
-<p>In this example, our counter started at zero, and went up by 1 with each iteration of the loop. By the time the program had printed "Ringo," the counter had counted up to four. Since the counter was no longer less than the size of the array, the "until" condition was fulfilled, and the loop terminated, having printed the name of each member of the Beatles to the terminal. Note also that when it finishes its work, <code> until </code>returns <em>nil.</em></p>
+<p>In this example, our counter started at zero, and went up by 1 with each iteration of the loop. By the time the program had printed "Ringo," the counter had counted up to four. Since the counter was no longer less than the size of the array, the "until" condition was fulfilled, and the loop terminated, having printed the name of each member of the Beatles to the terminal. Note also that when it finishes its work,<code> until </code>returns <em>nil.</em></p>
 
 <h4>To each, his own</h4>
 <p>Because we don't use numeric indexes to access the values in hashes, we can't use counters to loop through them with simple control expressions like<code> while </code>and<code> until</code>. Fortunately, we have the<code> each </code>method, an iterator that does much the same thing, and doesn't need us to provide a counter for it to work. Let's convert our Beatles into a hash, so we can store more informatiom about them. Then we'll use<code> each </code>to print it back out.</p>
@@ -66,12 +66,12 @@ blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a h
   <li class="code-comment">=> ["John", "Paul", "George", "Ringo"]</li>
 </ul>
 
-<p>Unlike simple control expressions like<code> until,</code> methods like<code> each </code>usually return a value which may be of use to us in a more sophisticated program than these simplistic examples. In the case of<code> each,</code> the value returned is the original array or hash. If you need to capture the value produced by<code> each </code>method, you'll need to create another array or hash to capture the new values:
+<p>Unlike simple control expressions like<code> until,</code> methods like<code> each </code>usually return a value which may be of use to us in a more sophisticated program than these simplistic examples. In the case of<code> each,</code> the value returned is the original array or hash. If you need to capture the value produced by<code> each </code>method, you'll need to create another array or hash to capture the new values:</p>
 
 <ul class="code-block">
   <li>$ numbers = [ 3, 5, 8 ]</li>
   <li class="code-comment">=> [3, 5, 8]</li>
-  <li>$ bigger_numbers = []
+  <li>$ bigger_numbers = []</li>
   <li class="code-comment">=> []</li>
   <li class="hdrm-more">$ numbers.each do |number|</li>
   <li>$&emsp;&emsp;&emsp;bigger_numbers.push number*5</li>
@@ -85,7 +85,7 @@ blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a h
   <li class="code-comment">=>nil</li>
 </ul>
 
-<p>If you want to learn more about Ruby loops and iterators, read Alan Skorkin's short-but-sweet introduction to the topic, <a href="http://www.skorks.com/2009/09/a-wealth-of-ruby-loops-and-iterators/">A Wealth of Ruby Loops and Interators</a>.
+<p>If you want to learn more about Ruby loops and iterators, read Alan Skorkin's short-but-sweet introduction to the topic, <a href="http://www.skorks.com/2009/09/a-wealth-of-ruby-loops-and-iterators/">A Wealth of Ruby Loops and Interators</a>.</p>
 
 <h4>The right tool for the job</h4>
 

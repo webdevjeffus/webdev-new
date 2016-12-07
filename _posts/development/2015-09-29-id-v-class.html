@@ -4,12 +4,12 @@ title: Relax! Don&rsquo;t Do It!
 subtitle: Never use IDs as selectors in CSS. Ever. Really.
 category: Development
 posted: Sept. 29, 2015
-blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a href="https://devbootcamp.com/">Dev Bootcamp</a> in the winter of 2015-2016.</p>
+blogger-note: dbc-blog-note
 ---
 
 <p>When we&rsquo;re first learning CSS, we&rsquo;re taught three basic selectors to use to name our styling rules: elements, classes, and IDs. We&rsquo;re told that using elements as selectors (like <code>&lt;p&gt;</code> or <code>&lt;h1&gt;</code>) will apply a style rule to every instance of that element in our document, which has some utility. We&rsquo;re told that we can create classes as selectors that will apply a style rule only to the elements we choose, which is even more useful. And we&rsquo;re told that we can create IDs to style an element that occurs only once on the page, which <em>sounds</em> handy.</p>
 
-<p>What we&rsquo;re not told is that just because we <em>can</em> create and use IDs for CSS styling, doesn&rsquo;t mean that we <em>should</em> do it. In fact, we should <em>not</em> do it. Ever. And here&rsquo;s why&hellip;
+<p>What we&rsquo;re not told is that just because we <em>can</em> create and use IDs for CSS styling, doesn&rsquo;t mean that we <em>should</em> do it. In fact, we should <em>not</em> do it. Ever. And here&rsquo;s why&hellip;</p>
 
 <h4>Bad reasons to use IDs as selectors</h4>
 
@@ -38,7 +38,7 @@ blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a h
 
 <h4>Anything ID can do, class can do better</h4>
 
-<p>There&rsquo;s literally nothing good that CSS can do with an ID that it can&rsquo;t do better with a class. If you use only classes as your selectors, and never use IDs, you&rsquo;ll keep your CSS &ldquo;flat,&rdquo; meaning that your rules will have more uniform specifity, and you&rsquo;ll be able to expect the later rules in your style cascade to overwrite earlier ones. You don&rsquo;t &ldquo;save&rdquo; anything by multi-purposing an ID as a CSS selector; modern CSS can handle a virtually unlimited classes on every page. But ID selectors do make your site more prone to bugs and errors, and more difficult to maintain. Because you can apply classes to more than one element, and more than one class to any single element, classes are infinitely re-usable and combinable, making your code more flexible, extensible, and compact.<p>
+<p>There&rsquo;s literally nothing good that CSS can do with an ID that it can&rsquo;t do better with a class. If you use only classes as your selectors, and never use IDs, you&rsquo;ll keep your CSS &ldquo;flat,&rdquo; meaning that your rules will have more uniform specifity, and you&rsquo;ll be able to expect the later rules in your style cascade to overwrite earlier ones. You don&rsquo;t &ldquo;save&rdquo; anything by multi-purposing an ID as a CSS selector; modern CSS can handle a virtually unlimited classes on every page. But ID selectors do make your site more prone to bugs and errors, and more difficult to maintain. Because you can apply classes to more than one element, and more than one class to any single element, classes are infinitely re-usable and combinable, making your code more flexible, extensible, and compact.</p>
 
 <p>If you really need a unique selector, you can just create a single-use class. You can even give it the exact string for both its ID and class names! That is, you can have an element like:</p>
 
@@ -46,6 +46,6 @@ blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a h
   <li>&lt;button id="submit-btn" class="submit-btn"&gt;</li>
 </ul>
 
-<p>When you see<code> #submit-btn </code>in your JavaScript and<code> .submit-btn </code>in your CSS, you won&rsquo;t have any trouble remembering that you&rsquo;re talking about the same button. But if you are careful to attach your styling to the class (<code> .submit-btn </code>), you won&rsquo;t break your page if you later need to change the ID of that button. Perhaps you&rsquo;ll later add a second submit button to a form on another part of the page. For clarity, you might change the ID of the original button to<code> #submit-btn-1 </code>, and ID the second one<code> #submit-btn-2 </code>. You could then style <em>both</em> buttons by applying the single class<code> .submit-btn </code>to each of them, instead of having to add a separate set of identical style rules for<code> #submit-btn-2 </code>(which is the exact opposite of DRY coding, btw!).
+<p>When you see<code> #submit-btn </code>in your JavaScript and<code> .submit-btn </code>in your CSS, you won&rsquo;t have any trouble remembering that you&rsquo;re talking about the same button. But if you are careful to attach your styling to the class (<code> .submit-btn </code>), you won&rsquo;t break your page if you later need to change the ID of that button. Perhaps you&rsquo;ll later add a second submit button to a form on another part of the page. For clarity, you might change the ID of the original button to<code> #submit-btn-1 </code>, and ID the second one<code> #submit-btn-2 </code>. You could then style <em>both</em> buttons by applying the single class<code> .submit-btn </code>to each of them, instead of having to add a separate set of identical style rules for<code> #submit-btn-2 </code>(which is the exact opposite of DRY coding, btw!).</p>
 
 <p>The bottom line is this: Save IDs for your JavaScript and link targets. Use classes to style your page. You&rsquo;ll get more sleep that way.</p>
