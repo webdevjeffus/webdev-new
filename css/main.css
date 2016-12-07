@@ -1,3 +1,5 @@
+aside p { padding: 0.45rem 0; }
+
 /* Nav styles */
 
 header .current-cat { border-bottom: 4px solid #888; }
@@ -16,6 +18,8 @@ li.blog-listing { padding-top: 1.2rem; }
   font-size: 1.5rem;
   color: rgb( 52, 60,163);
 }
+
+
 
 /* Code sample formatting - apply to div wrapping sample */
 .code-block {
