@@ -11,7 +11,7 @@ blogger-note: dbc-blog-note
 
 <p>Ruby's hash and JavaScript's object do roughly the same thing&mdash;they both represent a collection of values accessed using keys. Their usage is similar, as is their syntax, but they have some important differences under the hood. In this blog post, I'll look first at the similarities between the two, and then their differences.</p>
 
-<h4 class="blog--section-head">Somewhat alike...</h4>
+<h4>Somewhat alike...</h4>
 
 <p>Ruby's hash and JavaScript's object <em>look</em> alike. Their syntax is very similar. Let's look at how you might create a hash and an object with literal notation:</p>
 
@@ -50,7 +50,7 @@ blogger-note: dbc-blog-note
   <li class="code-comment">=> "possum"</li>
 </ul>
 
-<h4 class="blog--section-head">...but different somehow</h4>
+<h4>...but different somehow</h4>
 
 <p>One important advantage JavaScript objects have over Ruby hashes is that a JS object can take a function as a value. Since methods in Ruby aren't objects, you can't assign a method as a hash value. In order to make our tim object greet us in JavaScript, we add a property that has a function as its value:</p>
 
