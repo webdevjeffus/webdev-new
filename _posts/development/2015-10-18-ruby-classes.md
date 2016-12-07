@@ -4,7 +4,7 @@ title: Stay Classy!
 subtitle: Defining a class in Ruby
 category: Development
 posted: Oct. 18, 2015
-blogger-note: I wrote this post as an assignment while I was enrolled at <a href="https://devbootcamp.com/">Dev Bootcamp</a> in the winter of 2015-2016.
+blogger-note: <p>I wrote this post as an assignment while I was enrolled at <a href="https://devbootcamp.com/">Dev Bootcamp</a> in the winter of 2015-2016.</p>
 ---
 
 As programming languages go, Ruby is object-oriented in a big way. Everything in Ruby is an object, and everything you do to anything is a method called on an object. Tying these objects and methods together are special object categories, called <strong>classes</strong>. Every object belongs to some class. Even a plain old string, like<code> "Hello, World!"</code>, is an example (or more properly, an <em>instance</em>) of the String class. And because that string is an instance of the String class, there are literally dozens of String-class methods that you can call on it, like<code> String#length:</code>
