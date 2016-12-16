@@ -2,11 +2,30 @@
 layout: default
 section: home
 ---
+<main class="bleed">
+  <section class="splash">
+    <h1 class="splash--head txt-ctr">I'm Jeff George</h1>
+    <p class="splash--text txt-ctr">
+      <span class="no-break">I've been a teacher,&#10;</span>
+      <br>
+      <span class="no-break">a photographer, a writer,</span>
+      <br>
+      <span class="no-break">an editor, and even</span>
+      <br>
+      <span class="no-break">a game designer.</span>
+    </p>
+    <p class="splash--text txt-ctr">
+      <span class="no-break">Now I make interesting things</span>
+      <br>
+      <span class="no-break">for people to do on the web.</span>
+    </p>
+  </section>
 
-<section class="row gtr">
-  <article class="ph-col-12 gtr">
-    <h1>Jeff George, <span class="no-break">Web Developer</span></h1>
-    <p>Welcome to the portfolio and blog of Jeff George, an independent full-stack web developer working out of New York City, NY.</p>
-    <p>This page is a work in progress. It is being developed using the Jekyll web server format, along with my own <strong>drop-in.css</strong> stylesheet and <strong>griddy</strong> responsive grid system. When complete, it will replace my existing, vanilla HTML/CSS website at <a href="www.webdevjeff.us">webdevjeff.us</a>.</p>
-  </article>
-</section>
+  <section class="row gtr">
+    <article class="ph-col-12 gtr">
+      <h1>Jeff George, <span class="no-break">Web Developer</span></h1>
+      <p>Welcome to the portfolio and blog of Jeff George, an independent full-stack web developer working out of New York City, NY.</p>
+      <p>This page is a work in progress. It is being developed using the Jekyll static site generator, along with my own <strong>drop-in.css</strong> stylesheet and <strong>griddy</strong> responsive grid system. When complete, it will replace my existing, vanilla HTML/CSS website at <a href="www.webdevjeff.us">webdevjeff.us</a>.</p>
+    </article>
+  </section>
+</main>
