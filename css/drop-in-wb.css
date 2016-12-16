@@ -154,7 +154,8 @@ h1, h2 {
 }
 
 h3, h4, h5, h6,
-body>header p { font-family: 'Walter Turncoat', 'Comic Sans MS', sans-serif; }
+body>header p,
+body>header li { font-family: 'Walter Turncoat', 'Comic Sans MS', sans-serif; }
 
 /* Heading sizes revised for Whiteboard theme fonts */
 h1 { font-size: 2.7rem; }
@@ -268,6 +269,21 @@ main button {
   color: rgb( 64, 64, 64);   /* Hi Blk */
 }
 
+body>footer {
+  background-color: rgb( 52, 60,163); /* Md Blu */
+  color: rgb(204,204,204);     /* Md Wht */
+}
+
+body>footer a:link,
+body>footer a:visited {
+  color: rgb( 32,204,124);     /* Hi Grn */
+}
+
+body>footer a:hover,
+body>footer a:active {
+  color: rgb(247,247,247);     /* Hi Wht */
+}
+
 /* END DESIGN STYLES - WHITEBOARD THEME ******************************/
 
 
@@ -295,6 +311,7 @@ body>header nav ul { padding: 0.6rem 0; }
 
 body>header nav li {
   display: inline-block;
+  font-size: 1.2rem;
   padding: 0 0.875rem 0 1rem;
 }
 
@@ -415,6 +432,7 @@ body>footer nav li {
 }
 
 body>footer nav li:first-of-type { border-left: none; }
+body>footer nav li:last-of-type { margin-bottom: 0;}
 
 body>footer nav input[type="submit"] {
   overflow: visible;

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{{site.baseurl}}/css/drop-in-wb.css">
   <link rel="stylesheet" href="{{site.baseurl}}/css/griddy.css">
   <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
   <!-- HTML5SHIV script borrowed from HTML5Boilerplate -->
   <!--[if lt IE 9]>
@@ -34,15 +35,25 @@
     {% include nav-main.html %}
   </header>
 
-  <main>
-
-      {{content | smartify }}
-
-  </main>
+  {{content | smartify }}
 
   <footer>
     {% include nav-main.html %}
-    <p>Copyright &copy; 2016 by Jeff George</p>
+    <div class="row gtr">
+      <a class="gtr" href="mailto:webdevjeffus@gmail.com" title="Email Jeff George at webdevjeffus@gmail.com">
+        <i class="fa fa-envelope-square fa-3x"></i>
+      </a>
+      <a class="gtr" href="https://twitter.com/webdevjeffus" target="_blank" title="Follow Jeff George on Twitter">
+        <i class="fa fa-twitter-square fa-3x"></i>
+      </a>
+      <a class="gtr" href="https://www.linkedin.com/in/webdevjeffus" target="_blank" title="Jeff George at LinkedIn">
+        <i class="fa fa-linkedin-square fa-3x"></i>
+      </a>
+      <a class="gtr" href="https://github.com/webdevjeffus" target="_blank" title="Jeff George on GitHub">
+        <i class="fa fa-github-square fa-3x"></i>
+      </a>
+    </div>
+    <p class="ftrm-none">Copyright &copy; 2016 by Jeff George</p>
   </footer>
 </body>
 </html>
