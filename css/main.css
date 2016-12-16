@@ -6,6 +6,49 @@ code { color: rgb(  0,  0,  0); }/* Md Blk */
 
 header .current-cat { border-bottom: 4px solid #888; }
 
+
+/* Splash Panel Styles */
+
+.splash {
+  background-color: rgb(255,255,255);
+  background-image: url("../img/ph-hero.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100%;
+  height: 525px;
+}
+
+.splash--head {
+  font-size: 2.6rem;
+  padding-top: 2.5rem;
+  color: rgb(173, 43, 48); /* Md Red */
+  text-shadow: -3px -3px 2px rgb(255,255,255), 3px 3px 2px rgb(255,255,255);
+  margin-top: 0;
+}
+
+.splash--text {
+  font-family: 'Walter Turncoat', 'Comic Sans MS', sans-serif;
+  font-size: 1.5rem;
+  color: rgb( 52, 60,163); /* Md Blu */
+  text-shadow: -2px -2px 1px rgb(255,255,255), -2px 2px 1px rgb(255,255,255);
+}
+
+@media only screen and (min-width: 680px) {   /* Tablet */
+  .splash {
+    background-image: url("../img/tab-hero.png");
+    height: 420px;
+  }
+}
+
+@media only screen and (min-width: 960px) {   /* Laptop */
+  .splash { height: 450px; }
+}
+
+@media only screen and (min-width: 1120px) {    /* Desktop */
+  .splash { height: 525px; }
+}
+
+
 /* Blog styles */
 
 .blog-listing p {
