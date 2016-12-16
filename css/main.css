@@ -42,6 +42,11 @@ header .current-cat { border-bottom: 4px solid #888; }
 
 @media only screen and (min-width: 960px) {   /* Laptop */
   .splash { height: 450px; }
+  .splash--head {
+    font-size: 3rem;
+    padding-bottom: 0;
+  }
+  .splash p { padding-top: 0; }
 }
 
 @media only screen and (min-width: 1120px) {    /* Desktop */

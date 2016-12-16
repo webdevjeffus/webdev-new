@@ -5,7 +5,7 @@ section: home
 <main class="bleed">
   <section class="splash">
     <h1 class="splash--head txt-ctr">I'm Jeff George</h1>
-    <p class="splash--text txt-ctr">
+    <p class="splash--text txt-ctr hdrm-mar">
       <span class="no-break">I've been a teacher,&#10;</span>
       <br>
       <span class="no-break">a photographer, a writer,</span>
@@ -14,7 +14,7 @@ section: home
       <br>
       <span class="no-break">a game designer.</span>
     </p>
-    <p class="splash--text txt-ctr">
+    <p class="splash--text txt-ctr hdrm-half">
       <span class="no-break">Now I make interesting things</span>
       <br>
       <span class="no-break">for people to do on the web.</span>
