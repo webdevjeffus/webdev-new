@@ -432,6 +432,7 @@ body>footer nav li {
 }
 
 body>footer nav li:first-of-type { border-left: none; }
+body>footer nav li:last-of-type { margin-bottom: 0;}
 
 body>footer nav input[type="submit"] {
   overflow: visible;
