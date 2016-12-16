@@ -3,7 +3,7 @@ layout: default
 section: blog
 ---
 
-<section class="row gtr">
+<main class="row gtr">
   <article class="ph-col-12 tab-col-8 cmp-col-9 gtr">
     <h1>Blog Archive</h1>
     <ul>
@@ -19,4 +19,4 @@ section: blog
 
   {% include blog-side.html %}
 
-</section>
+</main>
