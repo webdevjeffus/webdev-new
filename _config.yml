@@ -1,2 +1,7 @@
 baseurl: /webdev-new
+
 exclude: ['README.md']
+
+collections:
+  work:
+    output: true
