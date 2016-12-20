@@ -1,0 +1,42 @@
+---
+layout: default
+section: work
+title: X or Better!
+css: /work/xorbetter/css/xorbetter.css
+js: /work/xorbetter/js/xorbetter.js
+---
+
+<main class="row gtr">
+  <header class="row gtr">
+    <h1>X or better!</h1>
+    <p>Die roll percentage calculator</p>
+  </header>
+
+  <div class="row gtr">
+    <p>This web app will calculate the chance of rolling equal to or better than every possible result, when rolling from one to five dice with a given number of sides per die.</p>
+
+    <form>
+
+      <div class="div-input">
+        <label for="dice">Select a number of dice to roll:</label>
+        <input id="dice" class="input-number" type="number" min="1" max="5" value="2">
+      </div>
+
+      <div class="div-input">
+        <label for="sides">Set the number of sides each die:</label>
+        <input id="sides" class="input-number" type="number" value="6">
+      </div>
+
+      <div class="div-btn">
+        <button id="calcBtn" class="calc-btn">Calculate percentages</button>
+      </div>
+
+      <div id="textDisplay" class="text-display"></div>
+
+      <table id="resultsTable">
+        <tbody id="resultsTableBody" class="results-table"></tbody>
+      </table>
+
+    </form>
+  </div>
+</main>
