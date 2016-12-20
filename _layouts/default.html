@@ -3,7 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Jeff George | Web Developer</title>
+  <title>
+    {% if page.title %}
+      {{ page.title }} | webdevjeff
+    {% else %}
+      Jeff George | Web Developer
+    {% endif %}
+  </title>
   <meta name="description" content="Portfolio, blog, and contact information for Jeff George, a full-stack web developer based in New York, NY.">
   <meta name="author" content="Jeff George">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +19,11 @@
   <link rel="stylesheet" href="{{site.baseurl}}/css/griddy.css">
   <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  {% if page.css %}
+    <link rel="stylesheet" href="{{site.baseurl}}{{page.css}}">
+  {% endif %}
+
 
   <!-- HTML5SHIV script borrowed from HTML5Boilerplate -->
   <!--[if lt IE 9]>
@@ -55,5 +66,10 @@
     </div>
     <p class="ftrm-none">Copyright &copy; 2016 by Jeff George</p>
   </footer>
+
+  {% if page.js %}
+    <script type="text/javascript" src="{{site.baseurl}}{{page.js}}"></script>
+  {% endif %}
+
 </body>
 </html>
