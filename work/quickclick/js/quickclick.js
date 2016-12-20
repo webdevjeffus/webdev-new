@@ -1,5 +1,3 @@
-console.log("Script loaded");
-
 const GAME_LENGTH = 20,
       BONUS_GOAL = 7,
       BONUS_TIME = 5;
@@ -16,10 +14,15 @@ var scoreDisplay =  document.getElementById("scoreDisplay"),
     gameOverMsg =   document.getElementById("gameOverMsg"),
     startGameBtn =  document.getElementById("startGameBtn"),
     quitGameBtn =   document.getElementById("quitGameBtn"),
-    target =        document.getElementById("target");
+    target =        document.getElementById("target"),
+    gameField =     document.getElementById("gameField");
 
 var randomNumber = function(min, max) {
   return Math.floor(Math.random() * (max - (min-1) )) + min;
+}
+
+var fieldWidth = function(gameField) {
+  return gameField.offsetWidth;
 }
 
 var displayScore = function() {
@@ -79,13 +82,22 @@ var targetColors = function() {
 
 
 var newTarget = function() {
-  var size = randomNumber(75,150),
+  var size,
       colors = targetColors();
+
+  if (fieldWidth(gameField) > 300) {
+    size = randomNumber(75,150);
+  } else {
+    size = randomNumber(60,90);
+  }
+
+  targetTop = randomNumber(10, 385-size);
+  targetLeft = randomNumber(10, fieldWidth(gameField) - (15 + size));
 
   target.style.width=size + "px";
   target.style.height=size + "px";
-  target.style.top=randomNumber(10, 390-size) + "px";
-  target.style.left=randomNumber(10, 590-size) + "px";
+  target.style.top=targetTop + "px";
+  target.style.left=targetLeft + "px";
   target.style.backgroundColor = colors[0];
   target.style.borderColor = colors[1];
 
@@ -120,12 +132,6 @@ var newGame = function() {
 
   displayScore();
 }
-
-// Test Button
-// document.getElementById("testBtn").onclick = function() {
-//   console.log(randomNumber(10,15));
-//   newSecond();
-// }
 
 // Start Game
 startGameBtn.onclick = function() {
