@@ -7,6 +7,14 @@ code { color: rgb(  0,  0,  0); }/* Md Blk */
 header .current-cat { border-bottom: 4px solid #888; }
 
 
+/* Main Styles */
+main header p {
+  font-family: "Walter Turncoat", "Comic Sans", sans-serif;
+  font-size: 1.5rem;
+  color: rgb( 52, 60,163);
+}
+
+
 /* Splash Panel Styles */
 
 .splash {
