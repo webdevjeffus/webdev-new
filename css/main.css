@@ -19,8 +19,13 @@ main header p:last-of-type {
   padding-bottom: 0;
 }
 
+.box {
+  background-color: rgb(204,204,204);   /* Lo Wht */
+  border: 1px solid rgb( 64, 64, 64);   /* Hi Blk */
+}
 
-/* Splash Panel Styles */
+
+/* Landing Page Styles */
 
 .splash {
   background-color: rgb(255,255,255);
@@ -65,6 +70,12 @@ main header p:last-of-type {
 @media only screen and (min-width: 1120px) {    /* Desktop */
   .splash { height: 525px; }
 }
+
+.more-of {
+  font-family: "Walter Turncoat", "Comic Sans", sans-serif;
+  font-size: 1.5rem;
+}
+
 
 
 /* Blog styles */
