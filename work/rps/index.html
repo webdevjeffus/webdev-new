@@ -1,0 +1,77 @@
+---
+layout: default
+section: work
+title: Rock Paper Scissors
+css: /work/rps/css/rps.css
+js: /work/rps/js/rps.js
+---
+
+<main class="row gtr">
+
+  <header class="gtr">
+    <h1>Rock Paper Scissors</h1>
+    <p>A simple JavaScript game <span class="no-break">with an HTML5/CSS3 interface</span></p>
+  </header>
+
+  <!-- GAME APP -->
+  <div class="rps">
+
+    <div id="gameOverBox" class="game-over">
+      <h2 id="gameOverHead">Congratulations!</h2>
+      <p id="gameOverMsg">You&rsquo;ve won this game!</p>
+      <div class="btn" onclick="playAgain()">Play Again</div>
+    </div>
+
+    <h1 class="game--title">Rock Paper Scissors</h1>
+
+    <div class="opponent">
+      <h3>Opponent</h3>
+      <div class="move">
+        <p id="oppoMove"><i class="fa fa-question"></i></p>
+      </div>
+
+      <div class="score-box">
+        <div class="oppoPt score-box--pt"></div>
+        <div class="oppoPt score-box--pt"></div>
+        <div class="oppoPt score-box--pt"></div>
+      </div>
+
+    </div>
+
+    <div class="player">
+      <h3>You</h3>
+      <div class="move">
+        <p id="playerMove"><i class="fa fa-question"></i></p>
+      </div>
+
+      <div class="score-box">
+        <div class="playerPt score-box--pt"></div>
+        <div class="playerPt score-box--pt"></div>
+        <div class="playerPt score-box--pt"></div>
+      </div>
+
+    </div>
+
+    <div class="game--report">
+      <h3 id="playByPlay">Choose a move.</h3>
+    </div>
+
+    <div class="game--report">
+      <h3 id="turnScore">Good luck!</h3>
+    </div>
+
+    <div class="game--moves">
+      <div onclick="getPlayerMove('rock')" class="game--moves_btn btn">
+        <i class='fa fa-hand-rock-o'></i>
+      </div>
+      <div onclick="getPlayerMove('paper')" class="game--moves_btn btn">
+        <i class='fa fa-hand-paper-o'></i>
+      </div>
+      <div onclick="getPlayerMove('scissors')" class="game--moves_btn btn">
+        <i class='fa fa-hand-scissors-o'></i>
+      </div>
+    </div>
+
+  </div>
+
+</main>
