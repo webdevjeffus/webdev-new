@@ -1,6 +1,6 @@
 baseurl: /webdev-new
 
-exclude: ['README.md']
+exclude: ['README.md', 'dev-resources']
 
 collections:
   work:
