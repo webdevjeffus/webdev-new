@@ -10,10 +10,25 @@ section: work
   </header>
 
   {% for project in site.work %}
-    <div class="gtr">
-      <h2><a href="{{site.url}}{{project.url}}">{{ project.title }}</a></h2>
-      <p>{{ project.subtitle }}</p>
-    </div>
+      {% if project.thumb %}
+        <div class="row">
+          <div class=" ph-col-8 tab-col-3">
+            <a href="{{site.url}}{{project.url}}" title="{{project.alt}}">
+              <img class="img-border img-link" src="{{site.url}}{{project.thumb}}" alt="{{project.alt}}" title="{{project.alt}}">
+            </a>
+          </div>
+          <div class="gtr-l-2x ph-col-12 tab-col-9">
+            <h2><a href="{{site.url}}{{project.url}}" title="{{project.alt}}">{{ project.title }}</a></h2>
+            <p class="ftrm-qtr">{{ project.subtitle }}</p>
+            <p class="hdrm-none"><em>{{ project.created }}</em></p>
+          </div>
+        </div>
+      {% else %}
+        <div class="row gtr">
+          <h2><a href="{{site.url}}{{project.url}}">{{ project.title }}</a></h2>
+          <p>{{ project.subtitle }}</p>
+        </div>
+      {% endif %}
   {% endfor %}
 
 </main>

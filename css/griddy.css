@@ -363,6 +363,7 @@ html { font-size: 12px; }
 .hdrm-more  { padding-top: 1.8rem; }
 .hdrm       { padding-top: 1.2rem; }
 .hdrm-half  { padding-top: 0.6rem; }
+.hdrm-qtr   { padding-top: 0.3rem; }
 .hdrm-none  {
   padding-top: 0;
   margin-top: 0;
@@ -374,6 +375,7 @@ html { font-size: 12px; }
 .ftrm-more  { padding-bottom: 1.8rem; }
 .ftrm       { padding-bottom: 1.2rem; }
 .ftrm-half  { padding-bottom: 0.6rem; }
+.ftrm-qtr   { padding-bottom: 0.3rem; }
 .ftrm-none  {
   padding-bottom: 0;
   margin-bottom: 0;
