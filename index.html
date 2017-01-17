@@ -27,6 +27,18 @@ section: home
     <header class="row txt-ctr">
       <h2>Here are some <a class="no-break" href="{{site.baseurl}}/work/" title="webdevjeff's work samples">things I've made</a>&hellip;</h2>
     </header>
+
+    <div class="row">
+      {% for project in site.work %}
+        {% if project.featured %}
+          <article class="gtr ph-col-12 cmp-col-6">
+            <img class="img-border img-link" src="{{site.baseurl}}{{project.image}}">
+            <h2>{{project.title}}</h2>
+            <p>{{project.subtitle}}</p>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
   </section>
 
   <section class="row gtr">
