@@ -25,8 +25,28 @@ section: home
 
   <section class="row gtr">
     <header class="row txt-ctr">
-      <h2>Here are some <a class="no-break" href="{{site.baseurl}}/work/" title="webdevjeff's work samples">things I've made</a>&hellip;</h2>
+      <h2>Here are some <a class="no-break" href="{{site.baseurl}}/work/" title="Go to webdevjeff's work samples">things I've made</a>&hellip;</h2>
     </header>
+
+    <div class="row">
+      {% for project in site.work %}
+        {% if project.featured %}
+          <article class="gtr ph-col-12 cmp-col-6">
+            <a href="{{site.baseurl}}{{project.url}}" title="{{project.alt}}">
+              <img class="img-border img-link" src="{{site.baseurl}}{{project.image}}" title="{{project.alt}}" alt="{{project.alt}}">
+            </a>
+            <h2>
+              <a href="{{site.baseurl}}{{project.url}}" title="{{project.alt}}">{{project.title}}</a>
+            </h2>
+            <p>{{project.subtitle}}</p>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <footer class="row gtr">
+      <p class="more-of txt-ctr gtr">You'll find more of my web development work <span class="no-break">in my <a href="{{site.baseurl}}/work/" title="Go to webdevjeff's work samples">web dev portfolio</a>.</span></p>
+    </footer>
   </section>
 
   <section class="row gtr">
