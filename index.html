@@ -32,8 +32,12 @@ section: home
       {% for project in site.work %}
         {% if project.featured %}
           <article class="gtr ph-col-12 cmp-col-6">
-            <img class="img-border img-link" src="{{site.baseurl}}{{project.image}}">
-            <h2>{{project.title}}</h2>
+            <a href="{{site.baseurl}}{{project.url}}" title="{{project.alt}}">
+              <img class="img-border img-link" src="{{site.baseurl}}{{project.image}}" title="{{project.alt}}" alt="{{project.alt}}">
+            </a>
+            <h2>
+              <a href="{{site.baseurl}}{{project.url}}" title="{{project.alt}}">{{project.title}}</a>
+            </h2>
             <p>{{project.subtitle}}</p>
           </article>
         {% endif %}
