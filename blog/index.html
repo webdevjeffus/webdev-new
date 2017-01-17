@@ -9,7 +9,7 @@ section: blog
     <ul>
       {% for post in site.posts %}
       <li class="blog-listing">
-        <h2><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></h2>
+        <h2><a href="{{site.baseurl}}{{post.url}}" title="{{post.alt}}">{{post.title}}</a></h2>
         <p>{{post.subtitle}}</p>
         <p>{{post.posted}}</p>
       </li>

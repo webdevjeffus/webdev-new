@@ -55,23 +55,17 @@ section: home
     </header>
 
     <div class="row">
-      <article class="ph-col-12 tab-col-12 tab-hide-blk cmp-col-4 box">
-        <h3><a href="{{site.baseurl}}{% post_url /development/2015-11-02-big-o %}" title="Big O basics">Big-O Basics</a></h3>
-        <p>Nov. 2, 2015</p>
-        <p>Now that every computer user has accounts with dozens of online services, and each account has many files with megabytes of data, it's hard not to be overwhelmed by the amount of data developers have to deal with. We need a way to think about it that our brains can comprehend. That way is big-O notation&hellip;</p>
-      </article>
-
-      <article class="ph-col-12 tab-col-6 cmp-col-4 box">
-        <h3><a href="{{site.baseurl}}{% post_url /development/2015-10-18-ruby-classes %}" title="Ruby classes">Stay Classy!</a></h3>
-        <p>Oct. 18, 2015</p>
-        <p>As programming languages go, Ruby is object-oriented in a big way. Everything in Ruby is an object, and everything you do to anything is a method called on an object. Tying these objects and methods together are special object categories, called classes. Every object belongs to some class&hellip;</p>
-      </article>
-
-      <article class="ph-col-12 tab-col-6 cmp-col-4 box">
-        <h3><a href="{{site.baseurl}}{% post_url /development/2015-10-11-ruby-sort %}" title="Sorting Ruby arrays and hashes">Sorting It All Out</a></h3>
-        <p>Oct. 11, 2015</p>
-        <p>Like all collection classes in Ruby, the Array and Hash classes include the Enumerable module. Enumerable bestows upon classes that include it a wide selection of methods which iterate over collections in many useful ways. In order to include the Enumerable module and use its methods&hellip;</p>
-      </article>
+      {% for post in site.posts %}
+        {% if post.featured %}
+          <article class="ph-col-12 tab-col-12 cmp-col-4 box">
+            <h3>
+              <a href="{{site.baseurl}}{{post.url}}" title="{{post.alt}}">{{post.title}}</a>
+            </h3>
+            <p>{{post.posted}}</p>
+            <p>{{post.tease}}</p>
+          </article>
+        {% endif %}
+      {% endfor %}
     </div>
 
     <footer class="row gtr">

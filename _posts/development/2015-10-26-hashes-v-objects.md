@@ -5,6 +5,7 @@ subtitle: A look at Ruby hashes and Javascript objects
 category: Development
 posted: Oct. 26, 2015
 blogger-note: dbc-blog-note
+alt: Learn the differences between a Ruby hash and a Javascript object
 ---
 
 <p>The web development immersive at Dev Bootcamp focuses on Ruby as its primary back-end language. Because of this, DBC students spend a lot of time switching between Ruby and JavaScript, the front-end language that's built in to all modern web browsers. We can ignore the essentially religious debate about which langauge is "better," but we can't avoid the fact that they're different. One of the most important differences between Ruby and JavaScript is in how they handle the composite data structures. Ruby does this with its <em>hash</em>, while JS calls its version an <em>object</em>.</p>
