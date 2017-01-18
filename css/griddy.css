@@ -91,7 +91,7 @@ html { font-size: 12px; }
 .ph-ins-33,
 .ph-ins-50 {
   float: right;
-  padding-left: 1.2rem;
+  margin-left: 1.2rem;
 }
 
 .ph-ins-25 { width: 25%; }
@@ -150,7 +150,7 @@ html { font-size: 12px; }
   .ph-ins-50 {
     width: 100%;
     float: none;
-    padding-left: 0;
+    margin-left: 0;
   }
 
   /* Insert block element (e.g. image, quote) into text */
@@ -163,7 +163,7 @@ html { font-size: 12px; }
   .tab-ins-67,
   .tab-ins-75 {
     float: right;
-    padding-left: 1.2rem;
+    margin-left: 1.2rem;
   }
 
   .tab-ins-12 { width: 12.5%; }
@@ -242,7 +242,7 @@ html { font-size: 12px; }
   .tab-ins-75 {
     width: 100%;
     float: none;
-    padding-left: 0;
+    margin-left: 0;
   }
 
   /* Insert block (e.g. image, quote) into text */
@@ -255,7 +255,7 @@ html { font-size: 12px; }
   .cmp-ins-67,
   .cmp-ins-75 {
     float: right;
-    padding-left: 1.2rem;
+    margin-left: 1.2rem;
   }
 
   .cmp-ins-12 { width: 12.5%; }
