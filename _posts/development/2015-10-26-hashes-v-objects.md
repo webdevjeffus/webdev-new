@@ -1,5 +1,6 @@
 ---
 layout: blog-post
+section: blog
 title: Similar != Same
 subtitle: A look at Ruby hashes and Javascript objects
 category: Development
