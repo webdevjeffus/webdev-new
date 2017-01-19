@@ -1,5 +1,6 @@
 ---
 layout: blog-post
+section: blog
 title: Stay Classy!
 subtitle: Defining a class in Ruby
 category: Development
