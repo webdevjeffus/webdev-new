@@ -1,5 +1,3 @@
-baseurl: /
-
 exclude: ['README.md', 'dev-resources']
 
 collections:
