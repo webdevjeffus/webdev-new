@@ -1,4 +1,4 @@
-baseurl: /webdev-new
+baseurl: /
 
 exclude: ['README.md', 'dev-resources']
 
