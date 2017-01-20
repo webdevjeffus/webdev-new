@@ -1,4 +1,4 @@
 # webdev-new
-Revised portfolio and blog website for Web Developer Jeff George.
+Current portfolio and blog website for Web Developer Jeff George.
 
-This site, which will be created using Jekyll, will ultimately replace the vanilla HTML/CSS website at github.io/webdevjeffus.
+This site, generated and maintained using [Jekyll](https://jekyllrb.com/), has ultimately replaced my former website at [webdevjeffus.github.io](http://webdevjeffus.github.io), which was hand-coded in vanilla HTML and CSS (yikes!).
