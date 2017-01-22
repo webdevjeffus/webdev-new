@@ -350,9 +350,9 @@ html { font-size: 12px; }
 .box h5,
 .box h6 { display: inline-block; }
 
-.box img { padding-top: 0.6rem; }
+.box img { margin-top: 0.6rem; }
 
-.box img:first-child { padding-top: 1.2rem; }
+.box img:first-child { margin-top: 1.2rem; }
 
 
 /* Vertical Whitespace */
