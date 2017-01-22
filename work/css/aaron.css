@@ -1,0 +1,133 @@
+html {
+  background-color: #0059b3;
+  font-size: 16px;
+}
+
+body {
+  width: 800px;
+  margin: 0 auto;
+  background-color: #b3d9ff;
+  color: #003366;
+}
+
+h1 {
+  font-size: 3rem;
+  font-family: 'Racing Sans One', Helvetica, Arial, sans-serif;
+  text-shadow: 2px 2px 3px #000, -2px -2px 3px #e6f2ff;
+}
+
+h2 { font-size: 2.4rem; }
+h3 { font-size: 2rem; }
+h4 { font-size: 1.75rem; }
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 auto;
+  text-align: center;
+  color: #39f;
+}
+
+p {
+  font-size: 1rem;
+}
+
+img {
+  display: block;
+  margin: 1rem auto 0.5rem;
+  border: 2px solid #036;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  font-weight: bold;
+  color: #04b;
+}
+
+a:hover,
+a:active {
+  color: #08d;
+}
+
+header {
+  background-color: #036;
+  color: #ddd;
+  padding: 1rem;
+  border-bottom: 0.5rem solid #e6f2ff;
+}
+
+main {
+  padding: 1.2rem;
+}
+
+.caption {
+  font-size: 0.75rem;
+  font-style: italic;
+  text-align: center;
+}
+
+.inset-right {
+  float: right;
+  width: 200px;
+  margin-left: 1rem;
+}
+
+.inset-left {
+  float: left;
+  width: 200px;
+  margin-right: 1rem;
+}
+
+blockquote {
+  background: #e6f2ff;
+  border: 2px solid #06c;
+  border-left: 1rem solid #06c;
+  margin: 1.5rem 0.625rem;
+  padding: 1rem 1rem 1.75rem;
+  line-height: 1.4;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #06c;
+  content: open-quote;
+  font-size: 4.5rem;
+  line-height: 0.1em;
+  /* margin-right: 0.25em; */
+  vertical-align: -0.35em;
+}
+blockquote p {
+  display: inline;
+  font-size: 1.25rem;
+}
+
+.quote-attrib {
+  float: right;
+  font-style: italic;
+  color: #06c;
+}
+
+.tribute {
+  text-align: center;
+  margin: 0.75rem auto;
+}
+
+footer {
+  background-color: #036;
+  padding: 1rem;
+  border-top: 0.5rem solid #e6f2ff;
+  margin: 0 auto;
+  text-align: center;
+  color: #39f;
+}
+
+footer a:link,
+footer a:visited {
+  color: #b3d9ff;
+}
+
+footer a:hover,
+footer a:active {
+  color: #e6f2ff;
+}
