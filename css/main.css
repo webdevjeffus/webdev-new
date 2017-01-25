@@ -20,6 +20,13 @@ body.fixed-page-header>header{
 
 body.fixed-page-header main { margin-top: 105px; }
 
+.nav-anchor {
+  display: block;
+  height: 105px;
+  margin-top: -105px;
+  visibility: hidden;
+}
+
 @media only screen and (min-width: 680px) {   /* Tablet */
 
   body.fixed-page-header>header {
@@ -29,6 +36,13 @@ body.fixed-page-header main { margin-top: 105px; }
   }
 
   body.fixed-page-header main { margin-top: 80px; }
+
+  .nav-anchor {
+    display: block;
+    height: 80px;
+    margin-top: -80px;
+    visibility: hidden;
+  }
 }
 
 @media only screen and (min-width: 960px) {   /* Laptop */
@@ -39,6 +53,13 @@ body.fixed-page-header main { margin-top: 105px; }
   }
 
   body.fixed-page-header main { margin-top: 92px; }
+
+  .nav-anchor {
+    display: block;
+    height: 92px;
+    margin-top: -92px;
+    visibility: hidden;
+  }
 }
 
 @media only screen and (min-width: 1200px) {    /* Desktop */
@@ -49,6 +70,13 @@ body.fixed-page-header main { margin-top: 105px; }
   }
 
   body.fixed-page-header main { margin-top: 105px; }
+
+  .nav-anchor {
+    display: block;
+    height: 105px;
+    margin-top: -105px;
+    visibility: hidden;
+  }
 }
 
 header .current-cat { border-bottom: 0.25rem solid #888; }
