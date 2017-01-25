@@ -137,7 +137,7 @@ main header p:last-of-type {
   .splash p { padding-top: 0; }
 }
 
-@media only screen and (min-width: 1120px) {    /* Desktop */
+@media only screen and (min-width: 1200px) {    /* Desktop */
   .splash { height: 525px; }
 }
 
