@@ -4,10 +4,58 @@ code { color: rgb(  0,  0,  0); }   /* Md Blk */
 
 /* Nav styles */
 
+body { position: relative;}
+
+body.fixed-page-header>header{
+  position: fixed;
+  top: 0;
+  left: auto;
+  right: auto;
+  z-index: 999;
+  height: 105px;
+  background-color: rgb( 18, 18, 18);   /* Lo Blk */
+  min-width: 320px;
+  max-width: 400px;
+}
+
+body.fixed-page-header main { margin-top: 105px; }
+
+@media only screen and (min-width: 680px) {   /* Tablet */
+
+  body.fixed-page-header>header {
+    width: 680px;
+    max-width: 680px;
+    height: 80px;
+  }
+
+  body.fixed-page-header main { margin-top: 80px; }
+}
+
+@media only screen and (min-width: 960px) {   /* Laptop */
+  body.fixed-page-header>header {
+    width: 960px;
+    max-width: 960px;
+    height: 92px;
+  }
+
+  body.fixed-page-header main { margin-top: 92px; }
+}
+
+@media only screen and (min-width: 1200px) {    /* Desktop */
+  body.fixed-page-header>header {
+    width: 1200px;
+    max-width: 1200px;
+    height: 105px;
+  }
+
+  body.fixed-page-header main { margin-top: 105px; }
+}
+
 header .current-cat { border-bottom: 0.25rem solid #888; }
 
 
 /* Main Styles */
+
 main header p {
   font-family: "Walter Turncoat", "Comic Sans", sans-serif;
   font-size: 1.5rem;
