@@ -1,12 +1,25 @@
 <nav>
-  <ul>
-    <li><a href="{{site.baseurl}}/index.html"
-          class="{% if page.section == 'home' %}current-cat{% endif %}" >Home</a></li>
-    <li><a href="{{site.baseurl}}/work/"
-          class="{% if page.section == 'work' %}current-cat{% endif %}" >Work</a></li>
-    <li><a href="{{site.baseurl}}/blog/"
-          class="{% if page.section == 'blog' %}current-cat{% endif %}" >Blog</a></li>
-    <li><a href="{{site.url}}#about"
-          class="{% if page.section == 'about' %}current-cat{% endif %}" >About</a></li>
-  </ul>
+  {% if page.section == "home" %}
+    <ul>
+      <li><a href="{{site.baseurl}}#splash"
+            class="{% if page.section == 'home' %}current-cat{% endif %}" >Home</a></li>
+      <li><a href="{{site.baseurl}}#work"
+            class="{% if page.section == 'work' %}current-cat{% endif %}" >Work</a></li>
+      <li><a href="{{site.baseurl}}#blog"
+            class="{% if page.section == 'blog' %}current-cat{% endif %}" >Blog</a></li>
+      <li><a href="{{site.url}}#about"
+            class="{% if page.section == 'about' %}current-cat{% endif %}" >About</a></li>
+    </ul>
+  {% else %}
+    <ul>
+      <li><a href="{{site.baseurl}}/index.html"
+            class="{% if page.section == 'home' %}current-cat{% endif %}" >Home</a></li>
+      <li><a href="{{site.baseurl}}/work/"
+            class="{% if page.section == 'work' %}current-cat{% endif %}" >Work</a></li>
+      <li><a href="{{site.baseurl}}/blog/"
+            class="{% if page.section == 'blog' %}current-cat{% endif %}" >Blog</a></li>
+      <li><a href="{{site.url}}#about"
+            class="{% if page.section == 'about' %}current-cat{% endif %}" >About</a></li>
+    </ul>
+  {% endif %}
 </nav>
