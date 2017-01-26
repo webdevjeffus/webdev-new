@@ -1,0 +1,48 @@
+.quote-box {
+  margin: 1.2rem auto 0.6rem;
+  width: 600px;
+  max-width: 80%;
+  background-color: white;
+  border: 2px solid #444;
+  border-radius: 10px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  box-shadow: 4px 4px 4px rgb( 64, 64, 64);
+}
+
+p.open-quote {
+  color: rgb(173, 43, 48);    /* Lo Red */
+  font-size: 8rem;
+  position: relative;
+  top: -1.2rem;
+  text-align: right;
+  margin-bottom: -6rem;
+  padding-right: 0.35rem;
+}
+
+p.quote {
+  font-size: 1.5rem;
+  font-style: bold;
+  margin-right: 1.8rem;
+  padding-top: 0.8rem;
+}
+
+p.author {
+  margin: 0 1.8rem;
+  font-style: italic;
+  text-align: right;
+}
+
+
+.quote-btns {
+  margin: 0 auto;
+  width: 550px;
+  max-width: 70%;
+}
+
+.tweet-btn {
+  float: left;
+}
+
+.quote-btn {
+  float: right;
+}
