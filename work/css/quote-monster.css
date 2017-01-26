@@ -1,0 +1,36 @@
+.quote-box {
+  position: relative;
+  margin: 0 auto;
+  width: 600px;
+  max-width: 80%;
+  background-color: white;
+  border: 4px solid #444;
+  border-radius: 10px;
+}
+
+p.quote {
+  margin: 0 1.2rem;
+  padding-top: 1.2rem;
+  font-size: 1.5rem;
+  font-style: bold;
+}
+
+p.author {
+  margin: 0 1.2rem;
+  font-style: italic;
+  text-align: right;
+}
+
+.quote-btns {
+  margin: 0 auto;
+  width: 550px;
+  max-width: 70%;
+}
+
+.tweet-btn {
+  float: left;
+}
+
+.quote-btn {
+  float: right;
+}
