@@ -1,0 +1,46 @@
+---
+layout: default
+section: work
+title: Coffee Shop
+subtitle: A simple CRUD app using jQuery and AJAX
+description: A simple CRUD app using jQuery and AJAX
+created: January 2017
+featured: false
+css: /work/css/coffee-shop.css
+js: /work/js/coffee-shop.js
+thumb: http://placehold.it/300x200?text=Work-in-progress
+image: http://placehold.it/600x400?text=Work-in-progress
+alt: Go to Coffee Shop
+---
+
+<main class="row gtr">
+  <header class="row gtr">
+    <h1>{{page.title}}</h1>
+    <p>{{page.subtitle}}</p>
+  </header>
+
+  <section class="row gtr">
+    <h3>Create a new order</h3>
+    <table>
+      <tr>
+        <th>Customer</th>
+        <th>Drink Order</th>
+        <th>Place Order</th>
+      </tr>
+      <tr>
+        <td><input type="text" id="name" autofocus></td>
+        <td><input type="text" id="drink"></td>
+        <td><button id="placeOrderBtn" class="btn">Place order</button></td>
+      </tr>
+    </table>
+
+    <h3>Orders in process</h3>
+    <table id='ordersList'>
+      <tr>
+        <th>Customer</th>
+        <th>Drink</th>
+        <th>Manage Order</th>
+      </tr>
+    </table>
+  </section>
+</main>
