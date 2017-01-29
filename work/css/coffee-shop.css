@@ -1,0 +1,53 @@
+main input {
+  margin: 0;
+}
+
+.btn {
+  width: 6rem;
+  height: 1.4rem;
+  margin: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  box-shadow: 4px 4px 4px rgb(64, 64, 64);
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  top: -0.05rem;
+  color: rgb(240,240,240);
+  background-color: rgb( 80, 80, 80);
+}
+
+.btn:hover {
+  color: white;
+  background-color: rgb( 112,112,112);
+}
+
+.btn:active {
+  top: 0.1rem;
+  left: 0.15rem;
+  box-shadow: 1px 1px 1px rgb( 64, 64, 64);
+  background-color: rgb(144,144,144);
+}
+
+main th,
+main td {
+  width: 33.33%;
+  height: 3rem;
+  padding: 0.3em 0.5em;
+}
+
+tr .edit-mode {
+  display: none;
+}
+
+tr.edit-mode .edit-mode {
+  display: initial;
+}
+
+tr.edit-mode .saved-mode {
+  display: none;
+}
+
+input.edit-mode {
+  text-align: center;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Coffee Shop | JSON & AJAX Tutorials</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A practice exercise using AJAX and JSON">
+  <meta name="author" content="Jeff George">
+
+  <link rel="stylesheet" href="css/drop-in_v2-0.css">
+  <link rel="stylesheet" href="css/coffee-shop.css">
+</head>
+
+<body>
+  <header>
+    <div>
+      <h1>Coffee Shop</h1>
+      <p>A JSON/AJAX Practice Project with jQuery</p>
+    <div>
+  </header>
+
+  <main>
+    <h1>Jeffbuck's Coffee</h1>
+
+    <h3>Create a new order</h3>
+    <table>
+      <tr>
+        <th>Customer</th>
+        <th>Drink Order</th>
+        <th>Place Order</th>
+      </tr>
+      <tr>
+        <td><input type="text" id="name" autofocus></td>
+        <td><input type="text" id="drink"></td>
+        <td><button id="placeOrderBtn" class="btn">Place order</button></td>
+      </tr>
+    </table>
+
+    <h3>Orders in process</h3>
+    <table id='ordersList'>
+      <tr>
+        <th>Customer</th>
+        <th>Drink</th>
+        <th>Manage Order</th>
+      </tr>
+    </table>
+
+  </main>
+
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous">
+  </script>
+  <script src="js/coffee-shop.js"></script>
+
+</body>
+</html>
