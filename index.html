@@ -29,7 +29,7 @@ js:
 
   <div id="work" class="nav-anchor"></div>
   <section class="row gtr">
-    <header class="row txt-ctr">
+    <header class="txt-ctr gtr">
       <h2>Here are some <a class="no-break" href="{{site.baseurl}}/work/" title="Go to webdevjeff's work samples">things I've made</a>&hellip;</h2>
     </header>
 
@@ -50,17 +50,17 @@ js:
     </div>
 
     <footer class="row gtr">
-      <p class="more-of txt-ctr gtr">You'll find more of my web development work <span class="no-break">in my <a href="{{site.baseurl}}/work/" title="Go to webdevjeff's work samples">web dev portfolio</a>.</span></p>
+      <p class="more-of txt-ctr">You'll find more of my web development work <span class="no-break">in my <a href="{{site.baseurl}}/work/" title="Go to webdevjeff's work samples">web dev portfolio</a>.</span></p>
     </footer>
   </section>
 
   <div id="blog" class="nav-anchor"></div>
-  <section class="row gtr">
-    <header class="row txt-ctr">
+  <section class="row">
+    <header class="txt-ctr gtr">
       <h2>Here are some <a href="{{site.baseurl}}/blog/" title="webdevjeff's blog">things <span class="no-break">I've been thinking</span></a>&hellip;</h2>
     </header>
 
-    <div class="row">
+    <div class="row hdrm-none gtr">
       {% for post in site.posts %}
         {% if post.featured %}
           <article class="ph-col-12 tab-col-12 cmp-col-4 box">
