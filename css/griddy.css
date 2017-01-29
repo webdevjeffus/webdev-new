@@ -39,7 +39,7 @@ body {
 
 main { padding: 0.6rem 0; }
 
-.row { padding: 0.6rem; }
+.row { padding: 0.6rem 0; }
 
 .row:after {
   content: "";
