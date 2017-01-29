@@ -14,33 +14,40 @@ alt: Go to Coffee Shop
 ---
 
 <main class="row gtr">
-  <header class="row gtr">
-    <h1>{{page.title}}</h1>
-    <p>{{page.subtitle}}</p>
-  </header>
+  <article class="ph-col-12 cmp-col-9 gtr">
+    <header>
+      <h1>{{page.title}}</h1>
+      <p>{{page.subtitle}}</p>
+    </header>
 
-  <section class="row gtr">
-    <h3>Create a new order</h3>
-    <table>
-      <tr>
-        <th>Customer</th>
-        <th>Drink Order</th>
-        <th>Place Order</th>
-      </tr>
-      <tr>
-        <td><input type="text" id="name" autofocus></td>
-        <td><input type="text" id="drink"></td>
-        <td><button id="placeOrderBtn" class="btn">Place order</button></td>
-      </tr>
-    </table>
+    <section>
+      <h3>Create a new order</h3>
+      <table>
+        <tr>
+          <th class="narrow-cell">Customer</th>
+          <th class="narrow-cell">Drink Order</th>
+          <th class="wide-cell">Place Order</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="name" autofocus></td>
+          <td><input type="text" id="drink"></td>
+          <td><button id="placeOrderBtn" class="btn">Place order</button></td>
+        </tr>
+      </table>
 
-    <h3>Orders in process</h3>
-    <table id='ordersList'>
-      <tr>
-        <th>Customer</th>
-        <th>Drink</th>
-        <th>Manage Order</th>
-      </tr>
-    </table>
-  </section>
+      <h3>Orders in process</h3>
+      <table id='ordersList'>
+        <tr>
+          <th class="narrow-cell">Customer</th>
+          <th class="narrow-cell">Drink</th>
+          <th class="wide-cell">Manage Order</th>
+        </tr>
+      </table>
+    </section>
+  </article>
+
+  <aside class="ph-col-12 cmp-col-3 row box hdrm-mar-half">
+    <h2>About this app</h2>
+    <p>a;ldskjf a;ldkfj as;kldfj asl;dkfj as;ldkfj asl;kdf jasl;dk jfal;skdjf als;kdjf als;kdfj as;ldkj fa;lskdfj asl;kd fjas;lkdfj al;skd jfals;kdjf as;lkd fasl;kdf as;ldkf as;ldkf as;lkdf j</p>
+  </aside>
 </main>
