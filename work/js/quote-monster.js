@@ -2,11 +2,21 @@ $("#quoteBtn").on("click", function(event) {
   event.preventDefault();
 
   $("#quote-btn").html("Get another quote");
-  $.getJSON("./js/quote-monster.json", function(json) {
-    var i = Math.floor( (Math.random() * json.length));
-    $("#quote").html(json[i].quote);
-    $("#author").html(json[i].author);
+
+  $.ajax({
+    type: "GET",
+    url: "http://quotes.stormconsultancy.co.uk/random.json",
+    success: function(json) {
+      console.log( json );
+      $("#quote").html(json.quote);
+      $("#author").html(json.author);
+    },
+    error: function(error) {
+      console.log( error );
+    }
   });
+
+
 });
 
 $("#tweetBtn").on("click", function( event ) {
