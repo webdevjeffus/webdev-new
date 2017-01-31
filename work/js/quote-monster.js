@@ -23,10 +23,7 @@ $("#quoteBtn").on("click", function(event) {
       return text.join("");
     }
 
-  $("#sorryBox").addClass("hidden");
-  $("#quoteBox").removeClass("hidden");
   $("#quote-btn").html("Get another quote");
-
 
   $.ajax({
     type: "GET",
@@ -49,12 +46,12 @@ $("#tweetBtn").on("click", function( event ) {
       author = $("#author");
 
   if( author.text() === "QuoteMonster" ) {
-    quote.text("You need to click \u2018Get a Quote\u2019 before you can \u2018Tweet it!\u2019");
+    quote.text("No one cares what QuoteMonster says. Click \u2018Get a Quote\u2019 to load something worth tweeting!");
   }
 
   else if( quote.text().length + author.text().length + 1 > 140 ) {
-    $("#quoteBox").addClass("hidden");
-    $("#sorryBox").removeClass("hidden");
+    quote.text("Sorry. That quote was too long to tweet. Please try another!");
+    author.text("QuoteMonster");
   }
 
   else {
