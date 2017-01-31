@@ -2,7 +2,7 @@
 layout: default
 section: work
 title: QuoteMonster
-subtitle: Work in Progress&mdash;A Javascript/jQuery app using APIs
+subtitle: A Javascript/jQuery app using APIs
 created: February 2017
 published: true
 featured: false
@@ -13,26 +13,35 @@ image: http://placehold.it/600x400?text=Work-in-Progress
 alt: Go to QuoteMonster
 ---
 
-<main class="gtr">
-  <header class="gtr">
-    <h1>{{page.title}}</h1>
-    <p>{{page.subtitle}}</p>
-  </header>
+<main class="row gtr">
+  <article class="ph-col-12 tab-col-8 gtr">
+    <header>
+      <h1>{{page.title}}</h1>
+      <p>{{page.subtitle}}</p>
+    </header>
 
-  <section class="gtr">
-    <div id="quoteBox" class="row quote-box btn">
-      <div class="ph-col-2">
-        <p class="open-quote">&ldquo;</p>
+    <section>
+      <div id="quoteBox" class="row quote-box btn">
+        <div class="ph-col-2">
+          <p class="open-quote">&ldquo;</p>
+        </div>
+        <div class="ph-col-10">
+          <p class="quote"><span id="quote">Click this box for a PERL of programming wisdom (get it?). Click &lsquo;Tweet it!&rsquo; to share it with the world.</span>&rdquo;</p>
+          <p class="author">&mdash;<span id="author">QuoteMonster</span></p>
+        </div>
       </div>
-      <div class="ph-col-10">
-        <p class="quote"><span id="quote">Click this box for a PERL of programming wisdom (get it?). Click &lsquo;Tweet it!&rsquo; to share it with the world.</span>&rdquo;</p>
-        <p class="author">&mdash;<span id="author">QuoteMonster</span></p>
-      </div>
-    </div>
 
-    <div id="quoteBtns" class="quote-btns">
-      <button id="tweetBtn" class="tweet-btn btn"><span class="fa fa-twitter" aria-hidden="true"></span> Tweet it!</button>
-    </div>
-  </section>
+      <div id="quoteBtns" class="quote-btns">
+        <button id="tweetBtn" class="tweet-btn btn"><span class="fa fa-twitter" aria-hidden="true"></span> Tweet</button>
+      </div>
+    </section>
+  </article>
+
+  <aside class="ph-col-12 tab-col-4 box">
+    <h3>About QuoteMonster</h3>
+    <p>The aim of this project was to produce a simple app that drew JSON data from a remote API, displayed it without a page refresh, and gave users the option to easily tweet the content. The app relies on jQuery, AJAX, a programming quotes API, and the Twitter Developers Documentation to achieve these objectives.</p>
+    <p>I used the free <a href="http://quotes.stormconsultancy.co.uk/api" title="Read the docs for the Programming Quotes API" target="_blank">Programming Quotes API by Storm Consultancy</a> to provide the quotations for this app. Although the API serves up the quotes in several different ways, I chose to take single quotes at random for this app. Before displaying the quotes, I converted all quotation marks into single opening and closing quotes, so they would be correct inside the double-quotes built into the quote box.</p>
+    <p>To build the Tweet window, I followed <a href="https://dev.twitter.com/web/tweet-button" title="Read the docs to make a Tweet button" target="_blank">Twitter's developer docs</a> to create a button that sends a request to Twitter.com to open a Tweet window pre-loaded with the quotation and its author. Due to Twitter's famous 140-character limit, the app checks the length of the quotation before attempting to tweet it. Also, because Twitter expects data to arrive in a query parameter, I had to replace certain special characters ("<strong>+</strong>" and "<strong>;</strong>", for example) with escape codes recognized by HTTP.</p>
+  </aside>
 
 </main>
