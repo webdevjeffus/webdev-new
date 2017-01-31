@@ -50,7 +50,6 @@ $("#tweetBtn").on("click", function( event ) {
 
   if( author.text() === "QuoteMonster" ) {
     quote.text("You need to click \u2018Get a Quote\u2019 before you can \u2018Tweet it!\u2019");
-    author.text("QuoteMonster");
   }
 
   else if( quote.text().length + author.text().length + 1 > 140 ) {
@@ -63,19 +62,14 @@ $("#tweetBtn").on("click", function( event ) {
       text = text.split("");
 
       for( var i = 0; i < text.length; i++) {
-        if ( text[i] === ";" ) { text[i] = "%3B"; }
+        if ( text[i] === " " ) { text[i] = "%20"; }
+        else if ( text[i] === ";" ) { text[i] = "%3B"; }
+        else if ( text[i] === "%" ) { text[i] = "%25"; }
         else if ( text[i] === "+" ) { text[i] = "%2B"; }
-        else if ( text[i] === " " ) { text[i] = "%20"; }
       }
       return text.join("");
     }
 
-    var queryQuote = queryText( $("#quote").text() ),
-        queryAuthor = queryText( $("#author").text() );
-
-    var tweetHref = "https://twitter.com/intent/tweet?text=" + queryQuote + "%E2%80%94" + queryAuthor;
-
-    window.open( tweetHref );
+    window.open( "https://twitter.com/intent/tweet?text=" + queryText( quote.text() ) + "%E2%80%94" + queryText( author.text() ) );
   }
-
 });
