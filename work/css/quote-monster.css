@@ -9,6 +9,8 @@
   box-shadow: 4px 4px 4px rgb( 64, 64, 64);
 }
 
+.hidden { display: none; }
+
 p.open-quote {
   color: rgb(173, 43, 48);    /* Lo Red */
   font-size: 8rem;
