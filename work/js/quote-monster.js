@@ -1,4 +1,4 @@
-$("#quoteBtn").on("click", function(event) {
+$("#quoteBox").on("click", function(event) {
   event.preventDefault();
 
   function prepText(text) {
