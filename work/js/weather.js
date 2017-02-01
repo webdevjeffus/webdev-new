@@ -4,7 +4,7 @@ function capitalize(str) {
 
 function currentTemp(weatherJSON) {
   return {
-    "f": Math.round( (1.8 * (weatherJSON.main.temp - 273.15)) + 32 ),
+    "f": Math.round( 1.8 * (weatherJSON.main.temp - 273.15 ) + 32 ),
     "c": Math.round( weatherJSON.main.temp - 273.15 ),
   };
 }
@@ -12,18 +12,19 @@ function currentTemp(weatherJSON) {
 function currentClouds(weatherJSON) {
   var clouds = weatherJSON.clouds.all;
 
-  if (clouds <= 10 ) { return "clear"; }
-  else if (clouds <= 30) {return "mostly clear"; }
-  else if (clouds <= 70) {return "partly cloudy"; }
-  else if (clouds <= 90) {return "mostly cloudy"; }
-  else { return "overcast"; }
+  if      ( clouds <= 10 ) { return "clear"; }
+  else if ( clouds <= 30 ) { return "mostly clear"; }
+  else if ( clouds <= 70 ) { return "partly cloudy"; }
+  else if ( clouds <= 90 ) { return "mostly cloudy"; }
+  else                     { return "overcast"; }
 }
 
 function currentWind(weatherJSON) {
   var wind = weatherJSON.wind,
       result = {};
 
-  if (wind.deg <= 25 || wind.deg > 335 ) { result.direction = "north"}
+  if      ( wind.deg >  335 ||
+            wind.deg <=  25 ) { result.direction = "north"}
   else if ( wind.deg <=  65 ) { result.direction = "northeast" }
   else if ( wind.deg <= 115 ) { result.direction = "east" }
   else if ( wind.deg <= 155 ) { result.direction = "southeast" }
@@ -32,8 +33,8 @@ function currentWind(weatherJSON) {
   else if ( wind.deg <= 295 ) { result.direction = "west" }
   else                        { result.direction = "northwest "}
 
-  result.speedMPS = Math.round( wind.speed );
-  result.speedMPH = Math.round( wind.speed * 2.23694 );
+  result.speedMPH = Math.round( wind.speed );
+  result.speedMPS = Math.round( wind.speed * 0.44704 );
 
   return result;
 }
@@ -43,7 +44,6 @@ function currentCond(weatherJSON) {
   if ( weatherJSON.weather.length > 1 ) {
     result += ( " and " + weatherJSON.weather[1].description );
   }
-  console.log( result );
   return result;
 }
 
@@ -54,11 +54,10 @@ var userIP,
 
 $.getJSON("http://jsonip.com/?callback=?").done( function (jsonIP) {
   userIP = jsonIP.ip;
-  console.log(userIP);
+
   $("#userIP").text( userIP );
 
   $.getJSON( "http://freegeoip.net/json/" + userIP ).done( function(jsonLoc) {
-    console.log( jsonLoc );
 
     userLoc = jsonLoc;
 
@@ -67,12 +66,7 @@ $.getJSON("http://jsonip.com/?callback=?").done( function (jsonIP) {
     $("#userLong").text( userLoc.longitude );
 
     var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
-
-    console.log( locationStr );
-
     var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
-
-    console.log( weatherAPICall );
 
     $.getJSON( weatherAPICall ).done( function(response) {
       console.log(response);
