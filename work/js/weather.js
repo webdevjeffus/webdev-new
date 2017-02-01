@@ -58,43 +58,43 @@ $.getJSON("http://jsonip.com/?callback=?", function (jsonIP, statusIP) {
   if ( statusIP == "success" ) {
     $("#userIP").text( userIP );
 
-    $.getJSON("http://freegeoip.net/json/" + userIP, function (jsonLoc, statusLoc) {
+    $.getJSON( "http://freegeoip.net/json/" + userIP ).done( function(jsonLoc) {
       console.log( jsonLoc );
 
       userLoc = jsonLoc;
-      if ( statusLoc = "success" ) {
-        $("#userTown").text( userLoc.city + ", " + userLoc.region_code + ", " + userLoc.country_code );
-        $("#userLat").text( userLoc.latitude );
-        $("#userLong").text( userLoc.longitude );
 
-        var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
+      $("#userTown").text( userLoc.city + ", " + userLoc.region_code + ", " + userLoc.country_code );
+      $("#userLat").text( userLoc.latitude );
+      $("#userLong").text( userLoc.longitude );
 
-        console.log( locationStr );
+      var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
 
-        var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
+      console.log( locationStr );
 
-        console.log( weatherAPICall );
+      var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
 
-        $.getJSON( weatherAPICall ).done( function(response) {
-          console.log(response);
-          var temp = currentTemp(response),
-              skies = currentClouds(response),
-              wind = currentWind(response),
-              conditions = currentCond(response);
+      console.log( weatherAPICall );
 
-          $("#tempSpan").text( temp.f + "\xB0 F, " + temp.c + "\xB0 C");
-          $("#condSpan").text( capitalize( conditions ) );
-          $("#skiesSpan").text( capitalize( skies ) );
-          $("#windSpan").text( wind.speedMPH + "mph/" + wind.speedMPS + "ms out of the " + wind.direction );
+      $.getJSON( weatherAPICall ).done( function(response) {
+        console.log(response);
+        var temp = currentTemp(response),
+            skies = currentClouds(response),
+            wind = currentWind(response),
+            conditions = currentCond(response);
 
-        }).fail( function(errors) {
-          console.log(errors);
-        })
+        $("#tempSpan").text( temp.f + "\xB0 F, " + temp.c + "\xB0 C");
+        $("#condSpan").text( capitalize( conditions ) );
+        $("#skiesSpan").text( capitalize( skies ) );
+        $("#windSpan").text( wind.speedMPH + "mph/" + wind.speedMPS + "ms out of the " + wind.direction );
 
-      }
-      else {
-        $("#userTown").text( "Unavailable");
-      }
+      }).fail( function(errors) {
+        console.log("OpenWeather Errors:");
+        console.log(errors);
+      });
+
+    }).fail( function( errors ) {
+      console.log("FreeGeoIP Errors:");
+      console.log(errors);
     });
 
   }
