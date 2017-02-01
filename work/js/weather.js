@@ -52,71 +52,51 @@ var userIP,
     userWeather,
     weatherKey = "0befa1dbfce1cc5b277b1fc36ecb3de1";
 
-$.getJSON("http://jsonip.com/?callback=?", function (jsonIP, statusIP) {
+$.getJSON("http://jsonip.com/?callback=?").done( function (jsonIP) {
   userIP = jsonIP.ip;
   console.log(userIP);
-  if ( statusIP == "success" ) {
-    $("#userIP").text( userIP );
+  $("#userIP").text( userIP );
 
-    $.getJSON( "http://freegeoip.net/json/" + userIP ).done( function(jsonLoc) {
-      console.log( jsonLoc );
+  $.getJSON( "http://freegeoip.net/json/" + userIP ).done( function(jsonLoc) {
+    console.log( jsonLoc );
 
-      userLoc = jsonLoc;
+    userLoc = jsonLoc;
 
-      $("#userTown").text( userLoc.city + ", " + userLoc.region_code + ", " + userLoc.country_code );
-      $("#userLat").text( userLoc.latitude );
-      $("#userLong").text( userLoc.longitude );
+    $("#userTown").text( userLoc.city + ", " + userLoc.region_code + ", " + userLoc.country_code );
+    $("#userLat").text( userLoc.latitude );
+    $("#userLong").text( userLoc.longitude );
 
-      var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
+    var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
 
-      console.log( locationStr );
+    console.log( locationStr );
 
-      var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
+    var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
 
-      console.log( weatherAPICall );
+    console.log( weatherAPICall );
 
-      $.getJSON( weatherAPICall ).done( function(response) {
-        console.log(response);
-        var temp = currentTemp(response),
-            skies = currentClouds(response),
-            wind = currentWind(response),
-            conditions = currentCond(response);
+    $.getJSON( weatherAPICall ).done( function(response) {
+      console.log(response);
+      var temp = currentTemp(response),
+          skies = currentClouds(response),
+          wind = currentWind(response),
+          conditions = currentCond(response);
 
-        $("#tempSpan").text( temp.f + "\xB0 F, " + temp.c + "\xB0 C");
-        $("#condSpan").text( capitalize( conditions ) );
-        $("#skiesSpan").text( capitalize( skies ) );
-        $("#windSpan").text( wind.speedMPH + "mph/" + wind.speedMPS + "ms out of the " + wind.direction );
+      $("#tempSpan").text( temp.f + "\xB0 F, " + temp.c + "\xB0 C");
+      $("#condSpan").text( capitalize( conditions ) );
+      $("#skiesSpan").text( capitalize( skies ) );
+      $("#windSpan").text( wind.speedMPH + "mph/" + wind.speedMPS + "ms out of the " + wind.direction );
 
-      }).fail( function(errors) {
-        console.log("OpenWeather Errors:");
-        console.log(errors);
-      });
-
-    }).fail( function( errors ) {
-      console.log("FreeGeoIP Errors:");
+    }).fail( function(errors) {
+      console.log("OpenWeather Errors:");
       console.log(errors);
     });
 
-  }
-  else {
-    $("#userIP").text( "Unavailable");
-  }
+  }).fail( function( errors ) {
+    console.log("FreeGeoIP Errors:");
+    console.log(errors);
+  });
+
+}).fail( function( errors ) {
+  console.log("jsonip.com API Errors:")
+  cosole.log(errors);
 });
-
-
-
-
-// var userLocation;
-
-// var coffeeShopAPI = "http://rest.learncode.academy/api/learncode/wdj-coffee-shop-orders";
-
-// var jsonip = "http://jsonip.com/?callback=?";
-
-// $.ajax({
-// type: "GET",
-// url: "http://jsonip.com/?callback=?",
-// success: function(json) {
-//   console.log( "Success!");
-//   // console.log( json.ip );
-//   },
-// });
