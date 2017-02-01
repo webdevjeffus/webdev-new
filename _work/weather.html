@@ -4,24 +4,28 @@ section: work
 title: Weather Report
 subtitle: A weather app using the OpenWeather API
 created: February 2017
-published: false
+published: true
 featured: false
 css: /work/css/weather.css
-js: /work/js/waether.js
+js: /work/js/weather.js
 thumb: http://placehold.it/300x200?text=Work+in+Progress
 image: http://placehold.it/600x400?text=Work+in+Progress
 alt: Go to Weather Report
 ---
 
-<main>
-  <header>
+<main class="row gtr">
+  <header class="gtr">
     <h1>{{page.title}}</h1>
     <p>Work in Progress: {{page.subtitle}}</p>
   </header>
 
-  <section>
-    <h2>Content goes here</h2>
-    <p>Pug messenger bag kinfolk, chartreuse truffaut deep v cred intelligentsia direct trade you probably haven't heard of them kale chips locavore selfies. Cray cornhole farm-to-table, prism plaid freegan banjo flexitarian chia viral etsy hoodie poke sriracha stumptown. Hammock fanny pack jianbing fap everyday carry echo park. Pickled butcher vape cold-pressed, iceland flannel cliche you probably haven't heard of them echo park YOLO biodiesel pitchfork.</p>
+  <section class="gtr">
+    <h2>User info</h2>
+
+    <p><strong>User's IP:</strong> <span id="userIP"></span></p>
+    <p><strong>User's Location:</strong> <span id="userTown"></span></p>
+    <p><strong>User's Latitude:</strong> <span id="userLat"></span></p>
+    <p><strong>User's Longitude:</strong> <span id="userLong"></span></p>
   </section>
 
 </main>
