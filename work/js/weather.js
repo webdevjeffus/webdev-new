@@ -23,18 +23,27 @@ function currentWind(weatherJSON) {
   var wind = weatherJSON.wind,
       result = {};
 
-  if (wind.deg <= 25 || wind.deg > 335 ) { result.direction = "North"}
-  else if ( wind.deg <=  65 ) { result.direction = "Northeast" }
-  else if ( wind.deg <= 115 ) { result.direction = "East" }
-  else if ( wind.deg <= 155 ) { result.direction = "Southeast" }
-  else if ( wind.deg <= 205 ) { result.direction = "South"}
-  else if ( wind.deg <= 245 ) { result.direction = "Southwest" }
-  else if ( wind.deg <= 295 ) { result.direction = "West" }
-  else                        { result.direction = "Northwest "}
+  if (wind.deg <= 25 || wind.deg > 335 ) { result.direction = "north"}
+  else if ( wind.deg <=  65 ) { result.direction = "northeast" }
+  else if ( wind.deg <= 115 ) { result.direction = "east" }
+  else if ( wind.deg <= 155 ) { result.direction = "southeast" }
+  else if ( wind.deg <= 205 ) { result.direction = "south"}
+  else if ( wind.deg <= 245 ) { result.direction = "southwest" }
+  else if ( wind.deg <= 295 ) { result.direction = "west" }
+  else                        { result.direction = "northwest "}
 
   result.speedMPS = Math.round( wind.speed );
   result.speedMPH = Math.round( wind.speed * 2.23694 );
 
+  return result;
+}
+
+function currentCond(weatherJSON) {
+  var result = weatherJSON.weather[0].description;
+  if ( weatherJSON.weather.length > 1 ) {
+    result += ( " and " + weatherJSON.weather[1].description );
+  }
+  console.log( result );
   return result;
 }
 
@@ -58,7 +67,7 @@ $.getJSON("http://jsonip.com/?callback=?", function (jsonIP, statusIP) {
         $("#userLat").text( userLoc.latitude );
         $("#userLong").text( userLoc.longitude );
 
-        var locationStr = "lat=" + Math.round(userLoc.latitude) + "&lon=" + Math.round(userLoc.longitude);
+        var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
 
         console.log( locationStr );
 
@@ -66,25 +75,17 @@ $.getJSON("http://jsonip.com/?callback=?", function (jsonIP, statusIP) {
 
         console.log( weatherAPICall );
 
-
-        // $.getJSON( weatherAPICall, function( jsonWeather, status ) {
-        //    userWeather = jsonWeather;
-        //    console.log( userWeather );
-        // });
-
-        $.ajax({
-          method: "GET",
-          url: weatherAPICall,
-        }).done( function(response) {
+        $.getJSON( weatherAPICall ).done( function(response) {
           console.log(response);
           var temp = currentTemp(response),
               skies = currentClouds(response),
-              wind = currentWind(response)
+              wind = currentWind(response),
+              conditions = currentCond(response);
 
           $("#tempSpan").text( temp.f + "\xB0 F, " + temp.c + "\xB0 C");
+          $("#condSpan").text( capitalize( conditions ) );
           $("#skiesSpan").text( capitalize( skies ) );
           $("#windSpan").text( wind.speedMPH + "mph/" + wind.speedMPS + "ms out of the " + wind.direction );
-
 
         }).fail( function(errors) {
           console.log(errors);
