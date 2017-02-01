@@ -33,8 +33,16 @@ function currentWind(weatherJSON) {
   else if ( wind.deg <= 295 ) { result.direction = "west" }
   else                        { result.direction = "northwest "}
 
-  result.speedMPH = Math.round( wind.speed );
-  result.speedMPS = Math.round( wind.speed * 0.44704 );
+  result.speedMPH = Math.round( wind.speed * 2.25 );
+  result.speedMPS = Math.round( wind.speed );
+  if( wind.gust ) {
+    result.gustMPH  = Math.round( wind.gust * 2.25 );
+    result.gustMPS  = Math.round( wind.gust );
+  }
+  result.string = "Out of the " + result.direction + " at " + result.speedMPH + "mph/" + result.speedMPS + "m/s";
+  if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
+    result.string += ( ", with gusts to " + result.gustMPH + "mph/" + result.gustMPS + "m/s" );
+  }
 
   return result;
 }
@@ -74,11 +82,13 @@ $.getJSON("http://jsonip.com/?callback=?").done( function (jsonIP) {
           skies = currentClouds(response),
           wind = currentWind(response),
           conditions = currentCond(response);
+          icon = response.weather[0].id;
 
       $("#tempSpan").text( temp.f + "\xB0 F, " + temp.c + "\xB0 C");
       $("#condSpan").text( capitalize( conditions ) );
       $("#skiesSpan").text( capitalize( skies ) );
-      $("#windSpan").text( wind.speedMPH + "mph/" + wind.speedMPS + "ms out of the " + wind.direction );
+      $("#windSpan").text( wind.string );
+      $("#iconSpan").addClass( "wi-owm-" + response.weather[0].id );
 
     }).fail( function(errors) {
       console.log("OpenWeather Errors:");
