@@ -17,16 +17,24 @@ alt: Go to Weather Report
 ---
 
 <main class="row gtr">
-  <header class="gtr">
-    <h1>{{page.title}}</h1>
-    <p>Work in Progress: {{page.subtitle}}</p>
-  </header>
+  <article class="ph-col-12 tab-col-8  gtr">
+    <header>
+      <h1>{{page.title}}</h1>
+      <p>Work in Progress:<br>{{page.subtitle}}</p>
+    </header>
 
-  <section class="gtr txt-ctr hdrm-mar-2x ftrm-mar-2x">
-    <p><span id="userTown"></span> <span id="timeSpan"></p>
-    <p><strong><span id="iconSpan" class="wi "></span> <span id="tempSpan"></span></strong></span></p>
-    <p><span id="condSpan"></span></p>
-    <p>Winds out of the <span id="windSpan"></span></p>
-  </section>
+    <div class="hdrm-mar-2x ftrm-mar-2x txt-ctr">
+      <p><span id="userTown"></span> <span id="timeSpan"></span></p>
+      <p><strong><span id="iconSpan" class="wi "></span> <span id="tempSpan"></span></strong></p>
+      <p><span id="condSpan"></span></p>
+      <p>Winds out of the <span id="windSpan"></span></p>
+    </div>
+  </article>
+
+  <aside class="ph-col-12 tab-col-4 box">
+    <h3>About this app</h3>
+    <p>This app shows the local time and weather conditions. It updates the time every minute, and the weather every 10 minutes. Weather information comes from the OpenWeatherMap.org API.</p>
+    <p>This is a work in progress. It is currently retrieving and displaying all necessary data, but it has not yet been styled for looks. Check back for an updated version soon.</p>
+  </aside>
 
 </main>
