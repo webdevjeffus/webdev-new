@@ -1,0 +1,42 @@
+.weather-box {
+  color: rgb(240,240,240);
+  width: 40%;
+  margin: 1.2rem auto;
+  border-radius: 0.9rem;
+}
+
+.weather-header {
+  background-color: rgb(144,180,255);
+  border-radius: 0.9rem 0.9rem 0 0;
+  padding: 0.3rem 0.6rem;
+  margin-bottom: 0.15rem;
+}
+
+.user-town {
+  float: left;
+}
+
+.timeSpan {
+  float: right;
+}
+
+.weather-body {
+  background-color: rgb(144,180,255);
+  font-size: 3.5rem;
+  font-weight: bold;
+  padding: 0.6rem;
+}
+
+.weather-detail {
+  background-color: rgb(144,180,255);
+  border-radius: 0 0 0.9rem 0.9rem;
+  padding: 0 0.6rem 0.6rem;
+}
+
+.weather-detail span {
+  display: block;
+}
+
+.cond-span {
+  padding-bottom: 0.3rem;
+}
