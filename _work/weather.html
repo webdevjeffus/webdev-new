@@ -2,11 +2,14 @@
 layout: default
 section: work
 title: Weather Report
-subtitle: A weather app using the OpenWeather API
+subtitle: A weather app using the OpenWeatherMap API
 created: February 2017
-published: false
+published: true
 featured: false
-css: /work/css/weather.css
+css:
+  - /work/css/weather.css
+  - /work/css/weather-icons.min.css
+  - /work/css/weather-icons-wind.min.css
 js: /work/js/weather.js
 thumb: http://placehold.it/300x200?text=Work+in+Progress
 image: http://placehold.it/600x400?text=Work+in+Progress
@@ -14,21 +17,24 @@ alt: Go to Weather Report
 ---
 
 <main class="row gtr">
-  <header class="gtr">
-    <h1>{{page.title}}</h1>
-    <p>Work in Progress: {{page.subtitle}}</p>
-  </header>
+  <article class="ph-col-12 tab-col-8  gtr">
+    <header>
+      <h1>{{page.title}}</h1>
+      <p>Work in Progress:<br>{{page.subtitle}}</p>
+    </header>
 
-  <section class="gtr">
-    <h2>User info</h2>
-    <p><strong>User's IP:</strong> <span id="userIP"></span></p>
-    <p><strong>User's Location:</strong> <span id="userTown"></span></p>
-    <p><strong>User's Latitude:</strong> <span id="userLat"></span></p>
-    <p><strong>User's Longitude:</strong> <span id="userLong"></span></p>
-    <h2>Weather Report</h2>
-    <p><strong>Temperature:</strong> <span id="tempSpan"></span></p>
-    <p><strong>Skies:</strong> <span id="skiesSpan"></span></p>
-    <p><strong>Wind:</strong> <span id="windSpan"></span></p>
-  </section>
+    <div class="hdrm-mar-2x ftrm-mar-2x txt-ctr">
+      <p><span id="userTown"></span> <span id="timeSpan"></span></p>
+      <p><strong><span id="iconSpan" class="wi "></span> <span id="tempSpan"></span></strong></p>
+      <p><span id="condSpan"></span></p>
+      <p>Winds out of the <span id="windSpan"></span></p>
+    </div>
+  </article>
+
+  <aside class="ph-col-12 tab-col-4 box">
+    <h3>About this app</h3>
+    <p>This app shows the local time and weather conditions. It updates the time every minute, and the weather every 10 minutes. Weather information comes from the OpenWeatherMap.org API.</p>
+    <p>This is a work in progress. It is currently retrieving and displaying all necessary data, but it has not yet been styled for looks. Check back for an updated version soon.</p>
+  </aside>
 
 </main>

@@ -28,9 +28,9 @@
   <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-  {% if page.css %}
-    <link rel="stylesheet" href="{{site.baseurl}}{{page.css}}">
-  {% endif %}
+  {% for file in page.css %}
+    <link rel="stylesheet" href="{{site.baseurl}}{{file}}">
+  {% endfor %}
 
   <script src="{{site.baseurl}}/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
