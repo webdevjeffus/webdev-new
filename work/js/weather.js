@@ -2,6 +2,20 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+function currentTime() {
+  var time = new Date(),
+      hours = time.getHours(),
+      mins = time.getMinutes(),
+      ampm = hours >= 12 ? 'pm' : 'am'
+      timeStr = "";
+
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    mins = mins < 10 ? "0"+mins : mins;
+
+    return hours + ":" + mins + ampm;
+}
+
 function currentTemp(weatherJSON) {
   return {
     "f": Math.round( 1.8 * (weatherJSON.main.temp - 273.15 ) + 32 ),
@@ -39,7 +53,7 @@ function currentWind(weatherJSON) {
     result.gustMPH  = Math.round( wind.gust * 2.25 );
     result.gustMPS  = Math.round( wind.gust );
   }
-  result.string = "Out of the " + result.direction + " at " + result.speedMPH + "mph/" + result.speedMPS + "m/s";
+  result.string = result.direction + " at " + result.speedMPH + "mph/" + result.speedMPS + "m/s";
   if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
     result.string += ( ", with gusts to " + result.gustMPH + "mph/" + result.gustMPS + "m/s" );
   }
@@ -55,52 +69,69 @@ function currentCond(weatherJSON) {
   return result;
 }
 
+
+
 var userIP,
     userLoc,
     userWeather,
     weatherKey = "0befa1dbfce1cc5b277b1fc36ecb3de1";
 
-$.getJSON("http://jsonip.com/?callback=?").done( function (jsonIP) {
-  userIP = jsonIP.ip;
+function updateWeather() {
+  $.getJSON("http://jsonip.com/?callback=?").done( function (jsonIP) {
+    userIP = jsonIP.ip;
 
-  $("#userIP").text( userIP );
+    $("#userIP").text( userIP );
 
-  $.getJSON( "http://freegeoip.net/json/" + userIP ).done( function(jsonLoc) {
+    $.getJSON( "http://freegeoip.net/json/" + userIP ).done( function(jsonLoc) {
 
-    userLoc = jsonLoc;
+      userLoc = jsonLoc;
 
-    $("#userTown").text( userLoc.city + ", " + userLoc.region_code + ", " + userLoc.country_code );
-    $("#userLat").text( userLoc.latitude );
-    $("#userLong").text( userLoc.longitude );
+      $("#userTown").text( userLoc.city );
+      // $("#userLat").text( userLoc.latitude );
+      // $("#userLong").text( userLoc.longitude );
 
-    var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
-    var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
+      var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
+      var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
 
-    $.getJSON( weatherAPICall ).done( function(response) {
-      console.log(response);
-      var temp = currentTemp(response),
-          skies = currentClouds(response),
-          wind = currentWind(response),
-          conditions = currentCond(response);
-          icon = response.weather[0].id;
+      $.getJSON( weatherAPICall ).done( function(response) {
+        console.log(response);
+        var temp = currentTemp(response),
+            // skies = currentClouds(response),
+            wind = currentWind(response),
+            conditions = currentCond(response);
+            icon = response.weather[0].id;
 
-      $("#tempSpan").text( temp.f + "\xB0 F, " + temp.c + "\xB0 C");
-      $("#condSpan").text( capitalize( conditions ) );
-      $("#skiesSpan").text( capitalize( skies ) );
-      $("#windSpan").text( wind.string );
-      $("#iconSpan").addClass( "wi-owm-" + response.weather[0].id );
+        $("#iconSpan").addClass( "wi-owm-" + response.weather[0].id );
+        $("#tempSpan").text( temp.f + "\xB0 F/ " + temp.c + "\xB0 C");
+        $("#timeSpan").text( currentTime() );
+        $("#condSpan").text( capitalize( conditions ) );
+        $("#windSpan").text( wind.string );
+        // $("#skiesSpan").text( capitalize( skies ) );
 
-    }).fail( function(errors) {
-      console.log("OpenWeather Errors:");
+      }).fail( function(errors) {
+        console.log("OpenWeather Errors:");
+        console.log(errors);
+      });
+
+    }).fail( function( errors ) {
+      console.log("FreeGeoIP Errors:");
       console.log(errors);
     });
 
   }).fail( function( errors ) {
-    console.log("FreeGeoIP Errors:");
-    console.log(errors);
+    console.log("jsonip.com API Errors:")
+    cosole.log(errors);
   });
+}
 
-}).fail( function( errors ) {
-  console.log("jsonip.com API Errors:")
-  cosole.log(errors);
-});
+
+
+window.setInterval( function() {
+  $("#timeSpan").text( currentTime() );
+}, 60000);
+
+window.setInterval( function() {
+  updateWeather();
+}, 600000 );
+
+updateWeather();
