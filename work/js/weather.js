@@ -13,7 +13,7 @@ function currentTime() {
     hours = hours ? hours : 12;
     mins = mins < 10 ? "0"+mins : mins;
 
-    return hours + ":" + mins + ampm;
+    return hours + ":" + mins + " " + ampm;
 }
 
 function currentTemp(weatherJSON) {
@@ -53,9 +53,9 @@ function currentWind(weatherJSON) {
     result.gustMPH  = Math.round( wind.gust * 2.25 );
     result.gustMPS  = Math.round( wind.gust );
   }
-  result.string = result.direction + " at " + result.speedMPH + "mph/" + result.speedMPS + "m/s";
+  result.string = capitalize( result.direction ) + " wind at " + result.speedMPH + "mph";
   if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
-    result.string += ( ", with gusts to " + result.gustMPH + "mph/" + result.gustMPS + "m/s" );
+    result.string += ( ",<br>gusting to " + result.gustMPH + "mph" );
   }
 
   return result;
@@ -74,7 +74,7 @@ function currentCond(weatherJSON) {
 var userIP,
     userLoc,
     userWeather,
-    weatherKey = "0befa1dbfce1cc5b277b1fc36ecb3de1";
+    weatherKey = "d5751e1428d98c3e715937a745922aa3";
 
 function updateWeather() {
   $.getJSON("http://jsonip.com/?callback=?").done( function (jsonIP) {
@@ -87,8 +87,6 @@ function updateWeather() {
       userLoc = jsonLoc;
 
       $("#userTown").text( userLoc.city );
-      // $("#userLat").text( userLoc.latitude );
-      // $("#userLong").text( userLoc.longitude );
 
       var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
       var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
@@ -96,17 +94,15 @@ function updateWeather() {
       $.getJSON( weatherAPICall ).done( function(response) {
         console.log(response);
         var temp = currentTemp(response),
-            // skies = currentClouds(response),
             wind = currentWind(response),
             conditions = currentCond(response);
             icon = response.weather[0].id;
 
         $("#iconSpan").addClass( "wi-owm-" + response.weather[0].id );
-        $("#tempSpan").text( temp.f + "\xB0 F/ " + temp.c + "\xB0 C");
+        $("#tempSpan").text( temp.f + "\xB0F" );
         $("#timeSpan").text( currentTime() );
         $("#condSpan").text( capitalize( conditions ) );
         $("#windSpan").text( wind.string );
-        // $("#skiesSpan").text( capitalize( skies ) );
 
       }).fail( function(errors) {
         console.log("OpenWeather Errors:");

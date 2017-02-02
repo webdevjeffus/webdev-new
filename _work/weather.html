@@ -23,11 +23,20 @@ alt: Go to Weather Report
       <p>Work in Progress:<br>{{page.subtitle}}</p>
     </header>
 
-    <div class="hdrm-mar-2x ftrm-mar-2x txt-ctr">
-      <p><span id="userTown"></span> <span id="timeSpan"></span></p>
-      <p><strong><span id="iconSpan" class="wi "></span> <span id="tempSpan"></span></strong></p>
-      <p><span id="condSpan"></span></p>
-      <p>Winds out of the <span id="windSpan"></span></p>
+    <div class="weather-box hdrm-mar-2x ftrm-mar-2x txt-ctr">
+      <div class="weather-header clearfix">
+        <span id="userTown" class="user-town"></span>
+        <span id="timeSpan" class="timeSpan"></span>
+      </div>
+      <div class="weather-body">
+        <span id="iconSpan" class="wi "></span>
+        <span> </span>
+        <span id="tempSpan"></span>
+      </div>
+      <div class="weather-detail">
+        <span id="condSpan" class="cond-span"></span>
+        <span id="windSpan" class="wind-span"></span>
+      </div>
     </div>
   </article>
 
