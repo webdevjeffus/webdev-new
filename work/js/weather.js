@@ -2,18 +2,21 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+function formatTime(time) {
+  hours = time.getHours(),
+  mins = time.getMinutes(),
+  ampm = hours >= 12 ? 'pm' : 'am'
+  timeStr = "";
+
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  mins = mins < 10 ? "0"+mins : mins;
+
+  return hours + ":" + mins + " " + ampm;
+}
+
 function currentTime() {
-  var time = new Date(),
-      hours = time.getHours(),
-      mins = time.getMinutes(),
-      ampm = hours >= 12 ? 'pm' : 'am'
-      timeStr = "";
-
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    mins = mins < 10 ? "0"+mins : mins;
-
-    return hours + ":" + mins + " " + ampm;
+  return formatTime( new Date() );
 }
 
 function currentTemp(weatherJSON) {
@@ -23,15 +26,16 @@ function currentTemp(weatherJSON) {
   };
 }
 
-function currentClouds(weatherJSON) {
-  var clouds = weatherJSON.clouds.all;
 
-  if      ( clouds <= 10 ) { return "clear"; }
-  else if ( clouds <= 30 ) { return "mostly clear"; }
-  else if ( clouds <= 70 ) { return "partly cloudy"; }
-  else if ( clouds <= 90 ) { return "mostly cloudy"; }
-  else                     { return "overcast"; }
-}
+// Not currently in use; consider deleting
+// function currentClouds(weatherJSON) {
+//   var clouds = weatherJSON.clouds.all;
+//   if      ( clouds <= 10 ) { return "clear"; }
+//   else if ( clouds <= 30 ) { return "mostly clear"; }
+//   else if ( clouds <= 70 ) { return "partly cloudy"; }
+//   else if ( clouds <= 90 ) { return "mostly cloudy"; }
+//   else                     { return "overcast"; }
+// }
 
 function currentWind(weatherJSON) {
   var wind = weatherJSON.wind,
@@ -69,6 +73,58 @@ function currentCond(weatherJSON) {
   return result;
 }
 
+function getSun(weatherJSON) {
+  return {
+    rise: formatTime( new Date(weatherJSON.sys.sunrise * 1000) ),
+    set: formatTime( new Date(weatherJSON.sys.sunset * 1000) ),
+  }
+}
+
+// Not currently in use
+// function isDaytime(weatherJSON) {
+//   if ( weatherJSON.dt >= weatherJSON.sys.sunrise && weatherJSON.dt < weatherJSON.sys.sunset) {
+//     return true;
+//   }
+//   else { return false; }
+// }
+
+function getMoonPhase() {
+  var lunarCycle = 2551443;
+  var now = new Date();
+  var new_moon = new Date(1970, 0, 7, 20, 35, 0);
+  var phase = ((now.getTime() - new_moon.getTime())/1000) % lunarCycle;
+  return Math.floor(phase /(24*3600)) + 1;
+}
+
+function getMoonIcon() {
+  var phase = getMoonPhase();
+
+  if      ( phase <= 1 ) { return "wi-moon-new"; }
+  else if ( phase <= 2 ) { return "wi-moon-waxing-crescent-1"; }
+  else if ( phase <= 3 ) { return "wi-moon-waxing-crescent-2"; }
+  else if ( phase <= 4 ) { return "wi-moon-waxing-crescent-3"; }
+  else if ( phase <= 5 ) { return "wi-moon-waxing-crescent-4"; }
+  else if ( phase <= 6 ) { return "wi-moon-waxing-crescent-5"; }
+  else if ( phase <= 8 ) { return "wi-moon-first-quarter"; }
+  else if ( phase <= 9 ) { return "wi-moon-waxing-gibbous-1"; }
+  else if ( phase <=10 ) { return "wi-moon-waxing-gibbous-2"; }
+  else if ( phase <=11 ) { return "wi-moon-waxing-gibbous-3"; }
+  else if ( phase <=12 ) { return "wi-moon-waxing-gibbous-4"; }
+  else if ( phase <=13 ) { return "wi-moon-waxing-gibbous-5"; }
+  else if ( phase <=16 ) { return "wi-moon-full"; }
+  else if ( phase <=17 ) { return "wi-moon-waning-crescent-1"; }
+  else if ( phase <=18 ) { return "wi-moon-waning-crescent-2"; }
+  else if ( phase <=19 ) { return "wi-moon-waning-crescent-3"; }
+  else if ( phase <=20 ) { return "wi-moon-waning-crescent-4"; }
+  else if ( phase <=21 ) { return "wi-moon-waning-crescent-5"; }
+  else if ( phase <=23 ) { return "wi-moon-first-quarter"; }
+  else if ( phase <=24 ) { return "wi-moon-waning-gibbous-1"; }
+  else if ( phase <=25 ) { return "wi-moon-waning-gibbous-2"; }
+  else if ( phase <=26 ) { return "wi-moon-waning-gibbous-3"; }
+  else if ( phase <=27 ) { return "wi-moon-waning-gibbous-4"; }
+  else if ( phase <=28 ) { return "wi-moon-waning-gibbous-5"; }
+  else                   { return "wi-moon"; }
+}
 
 
 var userIP,
@@ -95,14 +151,18 @@ function updateWeather() {
         console.log(response);
         var temp = currentTemp(response),
             wind = currentWind(response),
-            conditions = currentCond(response);
+            conditions = currentCond(response),
             icon = response.weather[0].id;
+            // isDay = isDaytime(response);   Not currently used
 
         $("#iconSpan").addClass( "wi-owm-" + response.weather[0].id );
         $("#tempSpan").text( temp.f + "\xB0F" );
         $("#timeSpan").text( currentTime() );
         $("#condSpan").text( capitalize( conditions ) );
         $("#windSpan").text( wind.string );
+        $("#sunriseSpan").text( " " + getSun(response).rise );
+        $("#sunsetSpan").text( " " + getSun(response).set );
+        $("#moonPhase").addClass( getMoonIcon() );
 
       }).fail( function(errors) {
         console.log("OpenWeather Errors:");
