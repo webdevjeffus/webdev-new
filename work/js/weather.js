@@ -206,7 +206,7 @@ function displayStartingWeatherData() {
 
 
 window.setInterval( function() {
-  $("#timeSpan").text( currentTime() );
+  updateTime();
 }, 60000);
 
 window.setInterval( function() {
