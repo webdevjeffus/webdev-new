@@ -21,8 +21,8 @@ function currentTime() {
 
 function currentTemp(weatherJSON) {
   return {
-    "f": Math.round( 1.8 * (weatherJSON.main.temp - 273.15 ) + 32 ),
-    "c": Math.round( weatherJSON.main.temp - 273.15 ),
+    "f": Math.round( 1.8 * (weatherJSON.main.temp - 273.15 ) + 32 ) + "\xB0F",
+    "c": Math.round( weatherJSON.main.temp - 273.15 ) + "\xB0C",
   };
 }
 
@@ -57,7 +57,7 @@ function currentWind(weatherJSON) {
     result.gustMPH  = Math.round( wind.gust * 2.25 );
     result.gustMPS  = Math.round( wind.gust );
   }
-  result.string = capitalize( result.direction ) + " wind at " + result.speedMPH + "mph";
+  result.string = result.direction + " wind at " + result.speedMPH + "mph";
   if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
     result.string += ( ",<br>gusting to " + result.gustMPH + "mph" );
   }
@@ -126,13 +126,59 @@ function getMoonIcon() {
   else                   { return "wi-moon"; }
 }
 
+function buildWeatherDataStrings(weatherJSON) {
+  var result = {};
+
+  result.icon =       "wi-owm-" + weatherJSON.weather[0].id;
+  result.temp =       currentTemp(weatherJSON)[tempScale];
+  result.time =       formatTime( new Date() );
+  result.conditions = capitalize( currentCond(weatherJSON) );
+  result.wind =       capitalize( currentWind( weatherJSON ) );
+  result.sunrise =    " " + getSun( weatherJSON ).rise;
+  result.sunset =     " " + getSun( weatherJSON ).set;
+  result.phase =      getMoonIcon();
+
+  return result;
+}
+
+function displayWeatherData( weatherJSON ) {
+  var weatherDataStrings = buildWeatherDataStrings( weatherJSON );
+
+  $("#iconSpan").addClass ( weatherDataStrings.icon );
+  $("#tempSpan").text     ( weatherDataStrings.temp );
+  $("#condSpan").text     ( weatherDataStrings.conditions );
+  $("#windSpan").text     ( weatherDataStrings.wind );
+  $("#sunriseSpan").text  ( weatherDataStrings.sunrise );
+  $("#sunsetSpan").text   ( weatherDataStrings.sunset );
+  $("#moonPhase").addClass( weatherDataStrings.phase );
+}
+
+function updateWeatherData() {
+  var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
+  var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
+
+  $.getJSON( weatherAPICall ).done( function(response) {
+    console.log(response); // remove for production
+    displayWeatherData( response );
+  }).fail( function(errors) {
+    console.log("OpenWeather Errors:");
+    console.log(errors);
+  });
+}
+
+function updateTime() {
+  $("#timeSpan").text( currentTime() );
+}
+
 
 var userIP,
     userLoc,
     userWeather,
-    weatherKey = "d5751e1428d98c3e715937a745922aa3";
+    weatherKey = "d5751e1428d98c3e715937a745922aa3",
+    tempScale = "f",
+    weatherDataStrings = {};
 
-function updateWeather() {
+function displayStartingWeatherData() {
   $.getJSON("http://jsonip.com/?callback=?").done( function (jsonIP) {
     userIP = jsonIP.ip;
 
@@ -144,30 +190,8 @@ function updateWeather() {
 
       $("#userTown").text( userLoc.city );
 
-      var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
-      var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
-
-      $.getJSON( weatherAPICall ).done( function(response) {
-        console.log(response);
-        var temp = currentTemp(response),
-            wind = currentWind(response),
-            conditions = currentCond(response),
-            icon = response.weather[0].id;
-            // isDay = isDaytime(response);   Not currently used
-
-        $("#iconSpan").addClass( "wi-owm-" + response.weather[0].id );
-        $("#tempSpan").text( temp.f + "\xB0F" );
-        $("#timeSpan").text( currentTime() );
-        $("#condSpan").text( capitalize( conditions ) );
-        $("#windSpan").text( wind );
-        $("#sunriseSpan").text( " " + getSun(response).rise );
-        $("#sunsetSpan").text( " " + getSun(response).set );
-        $("#moonPhase").addClass( getMoonIcon() );
-
-      }).fail( function(errors) {
-        console.log("OpenWeather Errors:");
-        console.log(errors);
-      });
+      updateWeatherData();
+      updateTime();
 
     }).fail( function( errors ) {
       console.log("FreeGeoIP Errors:");
@@ -181,13 +205,12 @@ function updateWeather() {
 }
 
 
-
 window.setInterval( function() {
-  $("#timeSpan").text( currentTime() );
+  updateTime();
 }, 60000);
 
 window.setInterval( function() {
-  updateWeather();
+  updateWeatherData();
 }, 600000 );
 
-updateWeather();
+displayStartingWeatherData();
