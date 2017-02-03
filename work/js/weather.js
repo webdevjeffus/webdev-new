@@ -57,7 +57,7 @@ function currentWind(weatherJSON) {
     result.gustMPH  = Math.round( wind.gust * 2.25 );
     result.gustMPS  = Math.round( wind.gust );
   }
-  result.string = capitalize( result.direction ) + " wind at " + result.speedMPH + "mph";
+  result.string = result.direction + " wind at " + result.speedMPH + "mph";
   if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
     result.string += ( ",<br>gusting to " + result.gustMPH + "mph" );
   }
@@ -133,8 +133,25 @@ function buildWeatherDataStrings(weatherJSON) {
   result.temp = currentTemp(weatherJSON)[tempScale];
   result.time = currentTime();
   result.conditions = capitalize( currentCond(weatherJSON) );
+  result.wind = capitalize( currentWind( weatherJSON ) );
+  result.sunrise = " " + getSun( weatherJSON ).rise;
+  result.sunset = " " + getSun( weatherJSON ).set;
+  result.phase = getMoonIcon();
 
   return result;
+}
+
+function displayWeatherData( weatherJSON ) {
+  var weatherDataStrings = buildWeatherDataStrings( weatherJSON );
+
+  $("#iconSpan").addClass( weatherDataStrings.icon );
+  $("#tempSpan").text( weatherDataStrings.temp );
+  $("#timeSpan").text( weatherDataStrings.time );
+  $("#condSpan").text( weatherDataStrings.conditions );
+  $("#windSpan").text( weatherDataStrings.wind );
+  $("#sunriseSpan").text( weatherDataStrings.sunrise );
+  $("#sunsetSpan").text( weatherDataStrings.sunset );
+  $("#moonPhase").addClass( weatherDataStrings.phase );
 }
 
 
@@ -161,25 +178,9 @@ function updateWeather() {
       var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
 
       $.getJSON( weatherAPICall ).done( function(response) {
-        console.log(response);
-        var temp = currentTemp(response),
-            wind = currentWind(response),
-            conditions = currentCond(response),
-            icon = response.weather[0].id;
-            // isDay = isDaytime(response);   Not currently used
+        console.log(response); // remove for production
 
-        weatherDataStrings = buildWeatherDataStrings( response );
-
-        // $("#iconSpan").addClass( "wi-owm-" + response.weather[0].id );
-        $("#iconSpan").addClass( weatherDataStrings.icon );
-        // $("#tempSpan").text( temp.f + "\xB0F" );
-        $("#tempSpan").text( weatherDataStrings.temp );
-        $("#timeSpan").text( weatherDataStrings.time );
-        $("#condSpan").text( weatherDataStrings.conditions );
-        $("#windSpan").text( wind );
-        $("#sunriseSpan").text( " " + getSun(response).rise );
-        $("#sunsetSpan").text( " " + getSun(response).set );
-        $("#moonPhase").addClass( getMoonIcon() );
+        displayWeatherData( response );
 
       }).fail( function(errors) {
         console.log("OpenWeather Errors:");
