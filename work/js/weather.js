@@ -130,7 +130,9 @@ function buildWeatherDataStrings(weatherJSON) {
   var result = {};
 
   result.icon = "wi-owm-" + weatherJSON.weather[0].id;
-  result.temp = currentTemp(weatherJSON)[tempScale]; // + "\xB0F";
+  result.temp = currentTemp(weatherJSON)[tempScale];
+  result.time = currentTime();
+  result.conditions = capitalize( currentCond(weatherJSON) );
 
   return result;
 }
@@ -172,8 +174,8 @@ function updateWeather() {
         $("#iconSpan").addClass( weatherDataStrings.icon );
         // $("#tempSpan").text( temp.f + "\xB0F" );
         $("#tempSpan").text( weatherDataStrings.temp );
-        $("#timeSpan").text( currentTime() );
-        $("#condSpan").text( capitalize( conditions ) );
+        $("#timeSpan").text( weatherDataStrings.time );
+        $("#condSpan").text( weatherDataStrings.conditions );
         $("#windSpan").text( wind );
         $("#sunriseSpan").text( " " + getSun(response).rise );
         $("#sunsetSpan").text( " " + getSun(response).set );
