@@ -21,8 +21,8 @@ function currentTime() {
 
 function currentTemp(weatherJSON) {
   return {
-    "f": Math.round( 1.8 * (weatherJSON.main.temp - 273.15 ) + 32 ),
-    "c": Math.round( weatherJSON.main.temp - 273.15 ),
+    "f": Math.round( 1.8 * (weatherJSON.main.temp - 273.15 ) + 32 ) + "\xB0F",
+    "c": Math.round( weatherJSON.main.temp - 273.15 ) + "\xB0C",
   };
 }
 
@@ -126,11 +126,22 @@ function getMoonIcon() {
   else                   { return "wi-moon"; }
 }
 
+function buildWeatherDataStrings(weatherJSON) {
+  var result = {};
+
+  result.icon = "wi-owm-" + weatherJSON.weather[0].id;
+  result.temp = currentTemp(weatherJSON)[tempScale]; // + "\xB0F";
+
+  return result;
+}
+
 
 var userIP,
     userLoc,
     userWeather,
-    weatherKey = "d5751e1428d98c3e715937a745922aa3";
+    weatherKey = "d5751e1428d98c3e715937a745922aa3",
+    tempScale = "c",
+    weatherDataStrings = {};
 
 function updateWeather() {
   $.getJSON("http://jsonip.com/?callback=?").done( function (jsonIP) {
@@ -155,8 +166,12 @@ function updateWeather() {
             icon = response.weather[0].id;
             // isDay = isDaytime(response);   Not currently used
 
-        $("#iconSpan").addClass( "wi-owm-" + response.weather[0].id );
-        $("#tempSpan").text( temp.f + "\xB0F" );
+        weatherDataStrings = buildWeatherDataStrings( response );
+
+        // $("#iconSpan").addClass( "wi-owm-" + response.weather[0].id );
+        $("#iconSpan").addClass( weatherDataStrings.icon );
+        // $("#tempSpan").text( temp.f + "\xB0F" );
+        $("#tempSpan").text( weatherDataStrings.temp );
         $("#timeSpan").text( currentTime() );
         $("#condSpan").text( capitalize( conditions ) );
         $("#windSpan").text( wind );
