@@ -129,14 +129,14 @@ function getMoonIcon() {
 function buildWeatherDataStrings(weatherJSON) {
   var result = {};
 
-  result.icon = "wi-owm-" + weatherJSON.weather[0].id;
-  result.temp = currentTemp(weatherJSON)[tempScale];
-  result.time = currentTime();
+  result.icon =       "wi-owm-" + weatherJSON.weather[0].id;
+  result.temp =       currentTemp(weatherJSON)[tempScale];
+  result.time =       formatTime( new Date() );
   result.conditions = capitalize( currentCond(weatherJSON) );
-  result.wind = capitalize( currentWind( weatherJSON ) );
-  result.sunrise = " " + getSun( weatherJSON ).rise;
-  result.sunset = " " + getSun( weatherJSON ).set;
-  result.phase = getMoonIcon();
+  result.wind =       capitalize( currentWind( weatherJSON ) );
+  result.sunrise =    " " + getSun( weatherJSON ).rise;
+  result.sunset =     " " + getSun( weatherJSON ).set;
+  result.phase =      getMoonIcon();
 
   return result;
 }
@@ -144,14 +144,27 @@ function buildWeatherDataStrings(weatherJSON) {
 function displayWeatherData( weatherJSON ) {
   var weatherDataStrings = buildWeatherDataStrings( weatherJSON );
 
-  $("#iconSpan").addClass( weatherDataStrings.icon );
-  $("#tempSpan").text( weatherDataStrings.temp );
-  $("#timeSpan").text( weatherDataStrings.time );
-  $("#condSpan").text( weatherDataStrings.conditions );
-  $("#windSpan").text( weatherDataStrings.wind );
-  $("#sunriseSpan").text( weatherDataStrings.sunrise );
-  $("#sunsetSpan").text( weatherDataStrings.sunset );
+  $("#iconSpan").addClass ( weatherDataStrings.icon );
+  $("#tempSpan").text     ( weatherDataStrings.temp );
+  $("#timeSpan").text     ( weatherDataStrings.time );
+  $("#condSpan").text     ( weatherDataStrings.conditions );
+  $("#windSpan").text     ( weatherDataStrings.wind );
+  $("#sunriseSpan").text  ( weatherDataStrings.sunrise );
+  $("#sunsetSpan").text   ( weatherDataStrings.sunset );
   $("#moonPhase").addClass( weatherDataStrings.phase );
+}
+
+function updateWeatherData() {
+  var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
+  var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
+
+  $.getJSON( weatherAPICall ).done( function(response) {
+    console.log(response); // remove for production
+    displayWeatherData( response );
+  }).fail( function(errors) {
+    console.log("OpenWeather Errors:");
+    console.log(errors);
+  });
 }
 
 
@@ -159,10 +172,10 @@ var userIP,
     userLoc,
     userWeather,
     weatherKey = "d5751e1428d98c3e715937a745922aa3",
-    tempScale = "c",
+    tempScale = "f",
     weatherDataStrings = {};
 
-function updateWeather() {
+function displayStartingWeatherData() {
   $.getJSON("http://jsonip.com/?callback=?").done( function (jsonIP) {
     userIP = jsonIP.ip;
 
@@ -174,18 +187,7 @@ function updateWeather() {
 
       $("#userTown").text( userLoc.city );
 
-      var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
-      var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
-
-      $.getJSON( weatherAPICall ).done( function(response) {
-        console.log(response); // remove for production
-
-        displayWeatherData( response );
-
-      }).fail( function(errors) {
-        console.log("OpenWeather Errors:");
-        console.log(errors);
-      });
+      updateWeatherData();
 
     }).fail( function( errors ) {
       console.log("FreeGeoIP Errors:");
@@ -205,7 +207,7 @@ window.setInterval( function() {
 }, 60000);
 
 window.setInterval( function() {
-  updateWeather();
+  updateWeatherData();
 }, 600000 );
 
-updateWeather();
+displayStartingWeatherData();
