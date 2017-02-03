@@ -62,7 +62,7 @@ function currentWind(weatherJSON) {
     result.string += ( ",<br>gusting to " + result.gustMPH + "mph" );
   }
 
-  return result;
+  return result.string;
 }
 
 function currentCond(weatherJSON) {
@@ -159,7 +159,7 @@ function updateWeather() {
         $("#tempSpan").text( temp.f + "\xB0F" );
         $("#timeSpan").text( currentTime() );
         $("#condSpan").text( capitalize( conditions ) );
-        $("#windSpan").text( wind.string );
+        $("#windSpan").text( wind );
         $("#sunriseSpan").text( " " + getSun(response).rise );
         $("#sunsetSpan").text( " " + getSun(response).set );
         $("#moonPhase").addClass( getMoonIcon() );
