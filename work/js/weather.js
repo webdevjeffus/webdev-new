@@ -146,7 +146,6 @@ function displayWeatherData( weatherJSON ) {
 
   $("#iconSpan").addClass ( weatherDataStrings.icon );
   $("#tempSpan").text     ( weatherDataStrings.temp );
-  $("#timeSpan").text     ( weatherDataStrings.time );
   $("#condSpan").text     ( weatherDataStrings.conditions );
   $("#windSpan").text     ( weatherDataStrings.wind );
   $("#sunriseSpan").text  ( weatherDataStrings.sunrise );
@@ -165,6 +164,10 @@ function updateWeatherData() {
     console.log("OpenWeather Errors:");
     console.log(errors);
   });
+}
+
+function updateTime() {
+  $("#timeSpan").text( currentTime() );
 }
 
 
@@ -188,6 +191,7 @@ function displayStartingWeatherData() {
       $("#userTown").text( userLoc.city );
 
       updateWeatherData();
+      updateTime();
 
     }).fail( function( errors ) {
       console.log("FreeGeoIP Errors:");
@@ -199,7 +203,6 @@ function displayStartingWeatherData() {
     cosole.log(errors);
   });
 }
-
 
 
 window.setInterval( function() {
