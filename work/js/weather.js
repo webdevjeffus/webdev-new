@@ -156,7 +156,7 @@ var Weather = ( function() {
     $("#iconSpan").addClass ( weatherDataStrings.icon );
     $("#tempSpan").text     ( weatherDataStrings.temp );
     $("#condSpan").text     ( weatherDataStrings.conditions );
-    $("#windSpan").text     ( weatherDataStrings.wind );
+    $("#windSpan").html     ( weatherDataStrings.wind );
     $("#sunriseSpan").text  ( weatherDataStrings.sunrise );
     $("#sunsetSpan").text   ( weatherDataStrings.sunset );
     $("#moonPhase").addClass( weatherDataStrings.phase );
