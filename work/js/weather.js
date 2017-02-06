@@ -135,13 +135,26 @@ var Weather = ( function() {
     else                   { return "wi-moon"; }
   }
 
-  function selectWeatherBG(weatherJSON) {
-    var clouds = weatherJSON.clouds.all,
+  function getDayNight(weatherJSON) {
+    var result = "",
         time = new Date(),
         sunrise = new Date(weatherJSON.sys.sunrise * 1000),
         sunset = new Date(weatherJSON.sys.sunset * 1000);
 
-    if (time > sunrise && time <= sunset) {
+    if (time > sunrise && time <= sunset) { return "day"; }
+    else { return "night"; }
+  }
+
+  function selectWeatherBG(weatherJSON) {
+    var clouds = weatherJSON.clouds.all || 0,
+        time = getDayNight(weatherJSON);
+
+    /*Test override settings
+        clouds = 95;
+        time = "night";
+    // */
+
+    if (time == "day") {
       console.log ("It's daytime")
       if (clouds <= 10) {
         $(".weather-header").addClass(" daytime-clear");
@@ -163,6 +176,29 @@ var Weather = ( function() {
         $(".weather-header").addClass(" daytime-overcast");
         $(".weather-body").addClass(" daytime-overcast");
       }
+    }
+    else {  /* night */
+      if (clouds <= 10) {
+        $(".weather-header").addClass(" night-clear");
+        $(".weather-body").addClass(" night-clear");
+      }
+      else if (clouds <= 30 ) {
+        $(".weather-header").addClass(" night-mostly-clear");
+        $(".weather-body").addClass(" night-mostly-clear");
+      }
+      else if (clouds <= 70 ) {
+        $(".weather-header").addClass(" night-partly-cloudy");
+        $(".weather-body").addClass(" night-partly-cloudy");
+      }
+      else if (clouds <= 90 ) {
+        $(".weather-header").addClass(" night-mostly-cloudy");
+        $(".weather-body").addClass(" night-mostly-cloudy");
+      }
+      else {
+        $(".weather-header").addClass(" night-overcast");
+        $(".weather-body").addClass(" night-overcast");
+      }
+
     }
 
   }
