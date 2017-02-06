@@ -27,6 +27,27 @@ var Weather = ( function() {
   }
 
 
+  function dragElement(event){
+    window.dragData = {};
+    dragData.pageX = event.pageX;
+    dragData.pageY = event.pageY;
+    dragData.element = this;
+    dragData.offset = $(this).offset();
+
+    function onMousemove(event){
+      var left = dragData.offset.left + (event.pageX - dragData.pageX);
+      var top = dragData.offset.top + (event.pageY - dragData.pageY);
+      $(dragData.element).offset({top: top, left: left});
+    }
+
+    function onMouseup(event){
+      $('body').off('mousemove', onMousemove).off('mouseup', onMouseup);
+    }
+
+    $('body').on('mouseup', onMouseup).on('mousemove', onMousemove);
+  }
+
+
   function currentTime() {
     return formatTime( new Date() );
   }
@@ -256,6 +277,11 @@ var Weather = ( function() {
   }
 
 
+  weatherObject.enableDraggableBox = function() {
+    $('#weatherBox').mousedown(dragElement);
+  }
+
+
   return weatherObject;
 
 })();
@@ -270,6 +296,5 @@ window.setInterval( function() {
 }, 600000 );
 
 Weather.displayStartingWeatherData();
-
 Weather.startTempScaleChanger();
-
+Weather.enableDraggableBox();
