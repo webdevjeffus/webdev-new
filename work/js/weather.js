@@ -155,7 +155,6 @@ var Weather = ( function() {
     // */
 
     if (time == "day") {
-      console.log ("It's daytime")
       if (clouds <= 10) {
         $(".weather-header").addClass(" daytime-clear");
         $(".weather-body").addClass(" daytime-clear");
