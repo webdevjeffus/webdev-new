@@ -177,14 +177,14 @@ var Weather = ( function() {
     }
   }
 
-/*
+
   function changeTempScale() {
     if ( tempScale == "f") { tempScale = "c"; }
     else { tempScale = "f"}
 
     Weather.updateWeatherData();
   }
-*/
+
 
   function buildWeatherDataStrings(weatherJSON) {
     var result = {};
@@ -260,7 +260,7 @@ var Weather = ( function() {
     });
   }
 
-/*
+
   weatherObject.startTempScaleChanger = function () {
     $("#tempSpan").on("click", function(event) {
       event.preventDefault();
@@ -268,7 +268,7 @@ var Weather = ( function() {
       changeTempScale();
     });
   }
-*/
+
 
   return weatherObject;
 
@@ -284,6 +284,6 @@ window.setInterval( function() {
 }, 600000 );
 
 Weather.displayStartingWeatherData();
-/*
+
 Weather.startTempScaleChanger();
-*/
+
