@@ -56,9 +56,18 @@ var Weather = ( function() {
       result.gustMPH  = Math.round( wind.gust * 2.25 );
       result.gustMPS  = Math.round( wind.gust );
     }
-    result.string = result.direction + " wind at " + result.speedMPH + "mph";
-    if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
-      result.string += ( ",<br>gusting to " + result.gustMPH + "mph" );
+
+    if ( tempScale == "f" ) {
+      result.string = result.direction + " wind at " + result.speedMPH + "mph";
+      if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
+        result.string += ( ",<br>gusting to " + result.gustMPH + "mph" );
+      }
+    }
+    else {
+      result.string = result.direction + " wind at " + result.speedMPS + "m/s";
+      if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
+        result.string += ( ",<br>gusting to " + result.gustMPS + "m/s" );
+      }
     }
 
     return result.string;
