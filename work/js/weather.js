@@ -36,16 +36,6 @@ var Weather = ( function() {
     };
   }
 
-  // Not currently in use; consider deleting
-  // function currentClouds(weatherJSON) {
-  //   var clouds = weatherJSON.clouds.all;
-  //   if      ( clouds <= 10 ) { return "clear"; }
-  //   else if ( clouds <= 30 ) { return "mostly clear"; }
-  //   else if ( clouds <= 70 ) { return "partly cloudy"; }
-  //   else if ( clouds <= 90 ) { return "mostly cloudy"; }
-  //   else                     { return "overcast"; }
-  // }
-
   function currentWind(weatherJSON) {
     var wind = weatherJSON.wind,
         result = {};
@@ -88,14 +78,6 @@ var Weather = ( function() {
       set: formatTime( new Date(weatherJSON.sys.sunset * 1000) ),
     }
   }
-
-  // Not currently in use
-  // function isDaytime(weatherJSON) {
-  //   if ( weatherJSON.dt >= weatherJSON.sys.sunrise && weatherJSON.dt < weatherJSON.sys.sunset) {
-  //     return true;
-  //   }
-  //   else { return false; }
-  // }
 
   function getMoonPhase() {
     var lunarCycle = 2551443;
@@ -149,11 +131,6 @@ var Weather = ( function() {
     var clouds = weatherJSON.clouds.all || 0,
         time = getDayNight(weatherJSON);
 
-    /*Test override settings
-        clouds = 95;
-        time = "night";
-    // */
-
     if (time == "day") {
       if (clouds <= 10) {
         $(".weather-header").addClass(" daytime-clear");
@@ -197,10 +174,17 @@ var Weather = ( function() {
         $(".weather-header").addClass(" night-overcast");
         $(".weather-body").addClass(" night-overcast");
       }
-
     }
-
   }
+
+/*
+  function changeTempScale() {
+    if ( tempScale == "f") { tempScale = "c"; }
+    else { tempScale = "f"}
+
+    Weather.updateWeatherData();
+  }
+*/
 
   function buildWeatherDataStrings(weatherJSON) {
     var result = {};
@@ -233,7 +217,8 @@ var Weather = ( function() {
 
   weatherObject.updateWeatherData = function() {
     var locationStr = "lat=" + userLoc.latitude + "&lon=" + userLoc.longitude;
-    var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" + locationStr + "&APPID=" + weatherKey;
+    var weatherAPICall = "http://api.openweathermap.org/data/2.5/weather?" +
+            locationStr + "&APPID=" + weatherKey;
 
     $.getJSON( weatherAPICall ).done( function(response) {
       console.log(response); // remove for production
@@ -275,6 +260,16 @@ var Weather = ( function() {
     });
   }
 
+/*
+  weatherObject.startTempScaleChanger = function () {
+    $("#tempSpan").on("click", function(event) {
+      event.preventDefault();
+
+      changeTempScale();
+    });
+  }
+*/
+
   return weatherObject;
 
 })();
@@ -289,3 +284,6 @@ window.setInterval( function() {
 }, 600000 );
 
 Weather.displayStartingWeatherData();
+/*
+Weather.startTempScaleChanger();
+*/
