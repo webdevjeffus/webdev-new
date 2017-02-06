@@ -5,9 +5,7 @@
   border-radius: 0.9rem;
 }
 
-.weather-box>div{
-  box-shadow: 1px 1px 2px black;
-}
+.weather-box>div{ box-shadow: 1px 1px 2px black; }
 
 .weather-header {
   border-radius: 0.9rem 0.9rem 0 0;
@@ -17,14 +15,10 @@
 }
 
 .user-town,
-.sunrise {
-  float: left;
-}
+.sunrise { float: left; }
 
 .time-span,
-.sunset {
-  float: right;
-}
+.sunset { float: right; }
 
 .temp-span { cursor: pointer; }
 
@@ -41,28 +35,18 @@
 }
 
 .weather-detail,
-.weather-sun-moon {
-  padding: 0 0.6rem 0.6rem;
-}
+.weather-sun-moon { padding: 0 0.6rem 0.6rem; }
 
-.weather-sun-moon {
-  font-size: 0.75rem;
-}
+.weather-sun-moon { font-size: 0.85rem; }
 
 .weather-detail span,
 .sunrise,
-.sunset {
-  display: block;
-}
+.sunset { display: block; }
 
-.cond-span {
-  padding-bottom: 0.3rem;
-}
+.cond-span { padding-bottom: 0.3rem; }
 
 .sunrise.wi,
-.sunset.wi {
-  padding-right: 0.25rem;
-}
+.sunset.wi { padding-right: 0.25rem; }
 
 .moon-phase {
   width: 2rem;
@@ -174,4 +158,3 @@
 .night-overcast.weather-header {
   background: linear-gradient(to bottom, rgb(110,110,110), rgb(112,112,112));
 }
-
