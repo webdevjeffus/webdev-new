@@ -21,10 +21,12 @@
   float: left;
 }
 
-.timeSpan,
+.time-span,
 .sunset {
   float: right;
 }
+
+.temp-span { cursor: pointer; }
 
 .weather-body {
   border-radius: 0 0 0.9rem 0.9rem;
@@ -83,12 +85,12 @@
 .daytime-mostly-clear {
   color: white;
   background: rgb(140,240,255);
-  background: linear-gradient(to bottom, rgb(240,255,255), rgb(140,240,255));
+  background: linear-gradient(to bottom, rgb(234,248,255), rgb(124,234,255));
 }
 .daytime-mostly-clear.weather-header {
-  color: rgb(140,240,255);
+  color: rgb(124,234,255);
   background: rgb(240,255,255);
-  background: linear-gradient(to bottom, rgb(244,255,255), rgb(240,255,255));
+  background: linear-gradient(to bottom, rgb(248,255,255), rgb(234,248,255));
 }
 .daytime-mostly-clear.weather-body { text-shadow: 0 0 2px rgb(112,220,255); }
 
