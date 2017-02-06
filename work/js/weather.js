@@ -56,9 +56,18 @@ var Weather = ( function() {
       result.gustMPH  = Math.round( wind.gust * 2.25 );
       result.gustMPS  = Math.round( wind.gust );
     }
-    result.string = result.direction + " wind at " + result.speedMPH + "mph";
-    if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
-      result.string += ( ",<br>gusting to " + result.gustMPH + "mph" );
+
+    if ( tempScale == "f" ) {
+      result.string = result.direction + " wind at " + result.speedMPH + "mph";
+      if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
+        result.string += ( ",<br>gusting to " + result.gustMPH + "mph" );
+      }
+    }
+    else {
+      result.string = result.direction + " wind at " + result.speedMPS + "m/s";
+      if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
+        result.string += ( ",<br>gusting to " + result.gustMPS + "m/s" );
+      }
     }
 
     return result.string;
@@ -177,14 +186,14 @@ var Weather = ( function() {
     }
   }
 
-/*
+
   function changeTempScale() {
     if ( tempScale == "f") { tempScale = "c"; }
     else { tempScale = "f"}
 
     Weather.updateWeatherData();
   }
-*/
+
 
   function buildWeatherDataStrings(weatherJSON) {
     var result = {};
@@ -260,7 +269,7 @@ var Weather = ( function() {
     });
   }
 
-/*
+
   weatherObject.startTempScaleChanger = function () {
     $("#tempSpan").on("click", function(event) {
       event.preventDefault();
@@ -268,7 +277,7 @@ var Weather = ( function() {
       changeTempScale();
     });
   }
-*/
+
 
   return weatherObject;
 
@@ -284,6 +293,6 @@ window.setInterval( function() {
 }, 600000 );
 
 Weather.displayStartingWeatherData();
-/*
+
 Weather.startTempScaleChanger();
-*/
+
