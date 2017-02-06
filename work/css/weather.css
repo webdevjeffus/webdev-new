@@ -6,7 +6,6 @@
 }
 
 .weather-header {
-  background-color: rgb(144,180,255);
   border-radius: 0.9rem 0.9rem 0 0;
   padding: 0.3rem 0.6rem;
   margin-bottom: 0.15rem;
@@ -24,7 +23,11 @@
 }
 
 .weather-body {
-  background-color: rgb(144,180,255);
+  border-radius: 0 0 0.9rem 0.9rem;
+  min-height: 10rem;
+}
+
+.weather-icon-temp {
   font-size: 3.5rem;
   font-weight: bold;
   padding: 0.6rem;
@@ -33,20 +36,10 @@
 
 .weather-detail,
 .weather-sun-moon {
-  background-color: rgb(144,180,255);
   padding: 0 0.6rem 0.6rem;
 }
 
-.weather-detail {
-  min-height: 3.25rem;
-}
-
 .weather-sun-moon {
-  min-height: 1.5rem;
-}
-
-.weather-sun-moon {
-  border-radius: 0 0 0.9rem 0.9rem;
   font-size: 0.75rem;
 }
 
@@ -70,3 +63,109 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Gradient backgrounds */
+
+.daytime-clear {
+  color: white;
+  text-shadow: 0 0 2px rgb(  0,180,255);
+  background: rgb(  0,180,255);
+  background: linear-gradient(to bottom, rgb(144,248,255), rgb(  0,180,255));
+}
+.daytime-clear.weather-header {
+  background: linear-gradient(to bottom, rgb(148,250,255), rgb(144,248,255));
+}
+
+.daytime-mostly-clear {
+  color: white;
+  background: rgb(140,240,255);
+  background: linear-gradient(to bottom, rgb(240,255,255), rgb(140,240,255));
+}
+.daytime-mostly-clear.weather-header {
+  color: rgb(140,240,255);
+  background: rgb(240,255,255);
+  background: linear-gradient(to bottom, rgb(244,255,255), rgb(240,255,255));
+}
+.daytime-mostly-clear.weather-body { text-shadow: 0 0 2px rgb(112,220,255); }
+
+.daytime-partly-cloudy {
+  color: white;
+  background: rgb(160,208,224);
+  background: linear-gradient(to bottom, rgb(248,252,255), rgb(160,208,224));
+}
+.daytime-partly-cloudy.weather-header {
+  color: rgb(160,208,224);
+  background: rgb(240,248,248);
+  background: linear-gradient(to bottom, rgb(250,254,255), rgb(248,252,255));
+}
+.daytime-partly-cloudy.weather-body { text-shadow: 0 0 2px rgb(128,172,212); }
+
+.daytime-mostly-cloudy {
+  color: white;
+  background: rgb(128,172,212);
+  background: linear-gradient(to bottom, rgb(240,248,248), rgb(128,172,212));
+}
+.daytime-mostly-cloudy.weather-header {
+  color: rgb(128,172,212);
+  background: rgb(240,248,248);
+  background: linear-gradient(to bottom, rgb(250,250,250), rgb(240,248,248));
+}
+.daytime-mostly-cloudy.weather-body { text-shadow: 0 0 2px rgb(128,172,212); }
+
+.daytime-overcast {
+  color: white;
+  background: rgb(172,172,172);
+  background: linear-gradient(to bottom, rgb(240,240,240), rgb(172,172,172));
+}
+.daytime-overcast.weather-header {
+  color: rgb(172,172,172);
+  background: rgb(240,240,240);
+  background: linear-gradient(to bottom, rgb(243,243,243), rgb(240,240,240));
+}
+.daytime-overcast.weather-body { text-shadow: 0 0 2px rgb(172,172,172); }
+
+.night-clear {
+  color: white;
+  background: rgb(  0,  0, 80);
+  background: linear-gradient(to bottom, rgb(  0,  0, 32), rgb(  0,  0, 96));
+}
+.night-clear.weather-header {
+  background: linear-gradient(to bottom, rgb(  0,  0, 28), rgb(  0,  0, 32));
+}
+
+.night-mostly-clear {
+  color: white;
+  background: rgb( 48, 48, 80);
+  background: linear-gradient(to bottom, rgb( 16, 16, 24), rgb( 48, 48, 80));
+}
+.night-mostly-clear.weather-header {
+  background: linear-gradient(to bottom, rgb( 14, 14, 20), rgb( 16, 16, 24));
+}
+
+.night-partly-cloudy {
+  color: white;
+  background: rgb( 20, 20, 24);
+  background: linear-gradient(to bottom, rgb( 72, 72, 96), rgb( 20, 20, 24));
+}
+.night-partly-cloudy.weather-header {
+  background: linear-gradient(to bottom, rgb( 74, 74, 98), rgb( 72, 72, 96));
+}
+
+.night-mostly-cloudy {
+  color: white;
+  background: rgb( 24, 24, 32);
+  background: linear-gradient(to bottom, rgb( 96, 96,104), rgb( 24, 24, 32));
+}
+.night-mostly-cloudy.weather-header {
+  background: linear-gradient(to bottom, rgb( 94, 94,102), rgb( 96, 96,104));
+}
+
+.night-overcast {
+  color: white;
+  background: rgb( 32, 32, 32);
+  background: linear-gradient(to bottom, rgb(112,112,112), rgb( 32, 32, 32));
+}
+.night-overcast.weather-header {
+  background: linear-gradient(to bottom, rgb(110,110,110), rgb(112,112,112));
+}
+
