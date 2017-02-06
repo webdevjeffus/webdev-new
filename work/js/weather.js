@@ -135,6 +135,38 @@ var Weather = ( function() {
     else                   { return "wi-moon"; }
   }
 
+  function selectWeatherBG(weatherJSON) {
+    var clouds = weatherJSON.clouds.all,
+        time = new Date(),
+        sunrise = new Date(weatherJSON.sys.sunrise * 1000),
+        sunset = new Date(weatherJSON.sys.sunset * 1000);
+
+    if (time > sunrise && time <= sunset) {
+      console.log ("It's daytime")
+      if (clouds <= 10) {
+        $(".weather-header").addClass(" daytime-clear");
+        $(".weather-body").addClass(" daytime-clear");
+      }
+      else if (clouds <= 30 ) {
+        $(".weather-header").addClass(" daytime-mostly-clear");
+        $(".weather-body").addClass(" daytime-mostly-clear");
+      }
+      else if (clouds <= 70 ) {
+        $(".weather-header").addClass(" daytime-partly-cloudy");
+        $(".weather-body").addClass(" daytime-partly-cloudy");
+      }
+      else if (clouds <= 90 ) {
+        $(".weather-header").addClass(" daytime-mostly-cloudy");
+        $(".weather-body").addClass(" daytime-mostly-cloudy");
+      }
+      else {
+        $(".weather-header").addClass(" daytime-overcast");
+        $(".weather-body").addClass(" daytime-overcast");
+      }
+    }
+
+  }
+
   function buildWeatherDataStrings(weatherJSON) {
     var result = {};
 
@@ -160,6 +192,8 @@ var Weather = ( function() {
     $("#sunriseSpan").text  ( weatherDataStrings.sunrise );
     $("#sunsetSpan").text   ( weatherDataStrings.sunset );
     $("#moonPhase").addClass( weatherDataStrings.phase );
+
+    selectWeatherBG(weatherJSON);
   }
 
   weatherObject.updateWeatherData = function() {
