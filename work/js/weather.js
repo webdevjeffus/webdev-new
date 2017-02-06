@@ -12,6 +12,7 @@ var Weather = ( function() {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
+
   function formatTime(time) {
     hours = time.getHours(),
     mins = time.getMinutes(),
@@ -25,9 +26,11 @@ var Weather = ( function() {
     return hours + ":" + mins + " " + ampm;
   }
 
+
   function currentTime() {
     return formatTime( new Date() );
   }
+
 
   function currentTemp(weatherJSON) {
     return {
@@ -35,6 +38,7 @@ var Weather = ( function() {
       "c": Math.round( weatherJSON.main.temp - 273.15 ) + "\xB0C",
     };
   }
+
 
   function currentWind(weatherJSON) {
     var wind = weatherJSON.wind,
@@ -69,9 +73,9 @@ var Weather = ( function() {
         result.string += ( ",<br>gusting to " + result.gustMPS + "m/s" );
       }
     }
-
     return result.string;
   }
+
 
   function currentCond(weatherJSON) {
     var result = weatherJSON.weather[0].description;
@@ -81,12 +85,14 @@ var Weather = ( function() {
     return result;
   }
 
+
   function getSun(weatherJSON) {
     return {
       rise: formatTime( new Date(weatherJSON.sys.sunrise * 1000) ),
       set: formatTime( new Date(weatherJSON.sys.sunset * 1000) ),
     }
   }
+
 
   function getMoonPhase() {
     var lunarCycle = 2551443;
@@ -95,6 +101,7 @@ var Weather = ( function() {
     var phase = ((now.getTime() - new_moon.getTime())/1000) % lunarCycle;
     return Math.floor(phase /(24*3600)) + 1;
   }
+
 
   function getMoonIcon() {
     var phase = getMoonPhase();
@@ -126,64 +133,34 @@ var Weather = ( function() {
     else                   { return "wi-moon"; }
   }
 
+
   function getDayNight(weatherJSON) {
     var result = "",
         time = new Date(),
         sunrise = new Date(weatherJSON.sys.sunrise * 1000),
         sunset = new Date(weatherJSON.sys.sunset * 1000);
 
-    if (time > sunrise && time <= sunset) { return "day"; }
+    if (time > sunrise && time <= sunset) { return "daytime"; }
     else { return "night"; }
   }
 
+
   function selectWeatherBG(weatherJSON) {
     var clouds = weatherJSON.clouds.all || 0,
-        time = getDayNight(weatherJSON);
+        time = getDayNight(weatherJSON),
+        skies = "",
+        bgClass = "";
 
-    if (time == "day") {
-      if (clouds <= 10) {
-        $(".weather-header").addClass(" daytime-clear");
-        $(".weather-body").addClass(" daytime-clear");
-      }
-      else if (clouds <= 30 ) {
-        $(".weather-header").addClass(" daytime-mostly-clear");
-        $(".weather-body").addClass(" daytime-mostly-clear");
-      }
-      else if (clouds <= 70 ) {
-        $(".weather-header").addClass(" daytime-partly-cloudy");
-        $(".weather-body").addClass(" daytime-partly-cloudy");
-      }
-      else if (clouds <= 90 ) {
-        $(".weather-header").addClass(" daytime-mostly-cloudy");
-        $(".weather-body").addClass(" daytime-mostly-cloudy");
-      }
-      else {
-        $(".weather-header").addClass(" daytime-overcast");
-        $(".weather-body").addClass(" daytime-overcast");
-      }
-    }
-    else {  /* night */
-      if (clouds <= 10) {
-        $(".weather-header").addClass(" night-clear");
-        $(".weather-body").addClass(" night-clear");
-      }
-      else if (clouds <= 30 ) {
-        $(".weather-header").addClass(" night-mostly-clear");
-        $(".weather-body").addClass(" night-mostly-clear");
-      }
-      else if (clouds <= 70 ) {
-        $(".weather-header").addClass(" night-partly-cloudy");
-        $(".weather-body").addClass(" night-partly-cloudy");
-      }
-      else if (clouds <= 90 ) {
-        $(".weather-header").addClass(" night-mostly-cloudy");
-        $(".weather-body").addClass(" night-mostly-cloudy");
-      }
-      else {
-        $(".weather-header").addClass(" night-overcast");
-        $(".weather-body").addClass(" night-overcast");
-      }
-    }
+    if      (clouds <= 10 ) { skies = "clear"; }
+    else if (clouds <= 30 ) { skies = "mostly-clear" }
+    else if (clouds <= 70 ) { skies = "partly-cloudy" }
+    else if (clouds <= 90 ) { skies = "mostly-cloudy" }
+    else                    { skies = "overcast" }
+
+    bgClass = " " + time + "-" + skies;
+
+    $(".weather-header").addClass( bgClass );
+    $(".weather-body").addClass( bgClass);
   }
 
 
