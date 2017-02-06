@@ -161,7 +161,7 @@ var Weather = ( function() {
         sunrise = new Date(weatherJSON.sys.sunrise * 1000),
         sunset = new Date(weatherJSON.sys.sunset * 1000);
 
-    if (time > sunrise && time <= sunset) { return "daytime"; }
+    if (time > sunrise && time <= sunset) { return "day"; }
     else { return "night"; }
   }
 
@@ -193,10 +193,10 @@ var Weather = ( function() {
   }
 
 
-  function buildWeatherDataStrings(weatherJSON) {
+  function buildWeatherDataStrings( weatherJSON ) {
     var result = {};
 
-    result.icon =       "wi-owm-" + weatherJSON.weather[0].id;
+    result.icon =       "wi-owm-" + getDayNight(weatherJSON) + "-" + weatherJSON.weather[0].id;
     result.temp =       currentTemp(weatherJSON)[tempScale];
     result.time =       formatTime( new Date() );
     result.conditions = capitalize( currentCond(weatherJSON) );
@@ -228,7 +228,9 @@ var Weather = ( function() {
             locationStr + "&APPID=" + weatherKey;
 
     $.getJSON( weatherAPICall ).done( function(response) {
+      /*
       console.log(response); // remove for production
+      // */
       displayWeatherData( response );
     }).fail( function(errors) {
       console.log("OpenWeather Errors:");
