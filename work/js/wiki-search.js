@@ -5,19 +5,28 @@ $(document).ready( function() {
     console.log("Search function begun");
     var searchObject = {};
 
-      searchObject.enableRandomBtn = function() {
-        $("#randomBtn").on("click", function(event) {
-          event.preventDefault();
-          console.log("Click!");
-  //*
-          var apiString = "https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=10"
+    searchObject.enableRandomBtn = function() {
+      $("#randomBtn").on("click", function(event) {
+        event.preventDefault();
+        console.log("Click! Random Button");
 
-          $.getJSON( apiString ).done( function( response ) {
-            console.log( response );
-          });
-  // */
+        /*
+        var apiString = "https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=10"
+
+        $.getJSON( apiString ).done( function( response ) {
+          console.log( response );
         });
-      }
+        // */
+      });
+    }
+
+    searchObject.enableSearchBtn = function() {
+      $("#searchBtn").on("click", function(event) {
+        event.preventDefault();
+        console.log("Click! Search Button!");
+
+      });
+    }
 
     return searchObject;
 
@@ -26,6 +35,7 @@ $(document).ready( function() {
 
 
   //*
+  Search.enableSearchBtn();
   Search.enableRandomBtn();
   // */
 
