@@ -3,11 +3,12 @@
   width: 16rem;
   margin: 1.2rem auto;
   border-radius: 0.9rem;
+  position: relative;
+  z-index: 9999;
+  cursor: move;
 }
 
-.weather-box>div{
-  box-shadow: 1px 1px 2px black;
-}
+.weather-box>div{ box-shadow: 1px 1px 2px black; }
 
 .weather-header {
   border-radius: 0.9rem 0.9rem 0 0;
@@ -17,14 +18,10 @@
 }
 
 .user-town,
-.sunrise {
-  float: left;
-}
+.sunrise { float: left; }
 
 .time-span,
-.sunset {
-  float: right;
-}
+.sunset { float: right; }
 
 .temp-span { cursor: pointer; }
 
@@ -41,28 +38,18 @@
 }
 
 .weather-detail,
-.weather-sun-moon {
-  padding: 0 0.6rem 0.6rem;
-}
+.weather-sun-moon { padding: 0 0.6rem 0.6rem; }
 
-.weather-sun-moon {
-  font-size: 0.75rem;
-}
+.weather-sun-moon { font-size: 0.85rem; }
 
 .weather-detail span,
 .sunrise,
-.sunset {
-  display: block;
-}
+.sunset { display: block; }
 
-.cond-span {
-  padding-bottom: 0.3rem;
-}
+.cond-span { padding-bottom: 0.3rem; }
 
 .sunrise.wi,
-.sunset.wi {
-  padding-right: 0.25rem;
-}
+.sunset.wi { padding-right: 0.25rem; }
 
 .moon-phase {
   width: 2rem;
@@ -72,63 +59,63 @@
 
 /* Gradient backgrounds */
 
-.daytime-clear {
+.day-clear {
   color: white;
   text-shadow: 0 0 2px rgb(  0,180,255);
   background: rgb(  0,180,255);
   background: linear-gradient(to bottom, rgb(144,248,255), rgb(  0,180,255));
 }
-.daytime-clear.weather-header {
+.day-clear.weather-header {
   background: linear-gradient(to bottom, rgb(148,250,255), rgb(144,248,255));
 }
 
-.daytime-mostly-clear {
+.day-mostly-clear {
   color: white;
   background: rgb(140,240,255);
   background: linear-gradient(to bottom, rgb(234,248,255), rgb(124,234,255));
 }
-.daytime-mostly-clear.weather-header {
+.day-mostly-clear.weather-header {
   color: rgb(124,234,255);
   background: rgb(240,255,255);
   background: linear-gradient(to bottom, rgb(248,255,255), rgb(234,248,255));
 }
-.daytime-mostly-clear.weather-body { text-shadow: 0 0 2px rgb(112,220,255); }
+.day-mostly-clear.weather-body { text-shadow: 0 0 2px rgb(112,220,255); }
 
-.daytime-partly-cloudy {
+.day-partly-cloudy {
   color: white;
   background: rgb(160,208,224);
   background: linear-gradient(to bottom, rgb(248,252,255), rgb(160,208,224));
 }
-.daytime-partly-cloudy.weather-header {
+.day-partly-cloudy.weather-header {
   color: rgb(160,208,224);
   background: rgb(240,248,248);
   background: linear-gradient(to bottom, rgb(250,254,255), rgb(248,252,255));
 }
-.daytime-partly-cloudy.weather-body { text-shadow: 0 0 2px rgb(128,172,212); }
+.day-partly-cloudy.weather-body { text-shadow: 0 0 2px rgb(128,172,212); }
 
-.daytime-mostly-cloudy {
+.day-mostly-cloudy {
   color: white;
   background: rgb(128,172,212);
   background: linear-gradient(to bottom, rgb(240,248,248), rgb(128,172,212));
 }
-.daytime-mostly-cloudy.weather-header {
+.day-mostly-cloudy.weather-header {
   color: rgb(128,172,212);
   background: rgb(240,248,248);
   background: linear-gradient(to bottom, rgb(250,250,250), rgb(240,248,248));
 }
-.daytime-mostly-cloudy.weather-body { text-shadow: 0 0 2px rgb(128,172,212); }
+.day-mostly-cloudy.weather-body { text-shadow: 0 0 2px rgb(128,172,212); }
 
-.daytime-overcast {
+.day-overcast {
   color: white;
   background: rgb(172,172,172);
   background: linear-gradient(to bottom, rgb(240,240,240), rgb(172,172,172));
 }
-.daytime-overcast.weather-header {
+.day-overcast.weather-header {
   color: rgb(172,172,172);
   background: rgb(240,240,240);
   background: linear-gradient(to bottom, rgb(243,243,243), rgb(240,240,240));
 }
-.daytime-overcast.weather-body { text-shadow: 0 0 2px rgb(172,172,172); }
+.day-overcast.weather-body { text-shadow: 0 0 2px rgb(172,172,172); }
 
 .night-clear {
   color: white;
@@ -174,4 +161,3 @@
 .night-overcast.weather-header {
   background: linear-gradient(to bottom, rgb(110,110,110), rgb(112,112,112));
 }
-

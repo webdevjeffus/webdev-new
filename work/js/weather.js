@@ -1,54 +1,78 @@
 var Weather = ( function() {
 
-  var tempScale = "f",
-      weatherKey = "d5751e1428d98c3e715937a745922aa3",
-      userIP,
-      userLoc,
-      userWeather,
-      weatherDataStrings = {},
-      weatherObject = {};
+  var tempScale = "f";
+  var weatherKey = "d5751e1428d98c3e715937a745922aa3";
+  var userIP;
+  var userLoc;
+  var weatherDataStrings = {};
+  var weatherObject = {};
+
 
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
+
   function formatTime(time) {
-    hours = time.getHours(),
-    mins = time.getMinutes(),
-    ampm = hours >= 12 ? 'pm' : 'am'
-    timeStr = "";
+    var hours = time.getHours();
+    var mins = time.getMinutes();
+    var ampm = hours >= 12 ? "pm" : "am";
 
     hours = hours % 12;
     hours = hours ? hours : 12;
-    mins = mins < 10 ? "0"+mins : mins;
+    mins = mins < 10 ? "0" + mins : mins;
 
     return hours + ":" + mins + " " + ampm;
   }
+
+
+  function dragElement(event) {
+    var dragData = {};
+    dragData.pageX = event.pageX;
+    dragData.pageY = event.pageY;
+    dragData.element = this;
+    dragData.offset = $(this).offset();
+
+    function onMousemove(event){
+      var left = dragData.offset.left + (event.pageX - dragData.pageX);
+      var top = dragData.offset.top + (event.pageY - dragData.pageY);
+      $(dragData.element).offset({top: top, left: left});
+    }
+
+    function onMouseup(event){
+      $("body").off("mousemove", onMousemove).off("mouseup", onMouseup);
+    }
+
+    $("body").on("mousemove", onMousemove).on("mouseup", onMouseup);
+  }
+
 
   function currentTime() {
     return formatTime( new Date() );
   }
 
+
   function currentTemp(weatherJSON) {
     return {
       "f": Math.round( 1.8 * (weatherJSON.main.temp - 273.15 ) + 32 ) + "\xB0F",
-      "c": Math.round( weatherJSON.main.temp - 273.15 ) + "\xB0C",
+      "c": Math.round( weatherJSON.main.temp - 273.15 ) + "\xB0C"
     };
   }
 
+
   function currentWind(weatherJSON) {
-    var wind = weatherJSON.wind,
-        result = {};
+    var wind = weatherJSON.wind;
+    var result = {};
 
     if      ( wind.deg >  335 ||
-              wind.deg <=  25 ) { result.direction = "north"}
-    else if ( wind.deg <=  65 ) { result.direction = "northeast" }
-    else if ( wind.deg <= 115 ) { result.direction = "east" }
-    else if ( wind.deg <= 155 ) { result.direction = "southeast" }
-    else if ( wind.deg <= 205 ) { result.direction = "south"}
-    else if ( wind.deg <= 245 ) { result.direction = "southwest" }
-    else if ( wind.deg <= 295 ) { result.direction = "west" }
-    else                        { result.direction = "northwest "}
+              wind.deg <=  25 ) { result.direction = "north"; }
+    else if ( wind.deg <=  65 ) { result.direction = "northeast"; }
+    else if ( wind.deg <= 115 ) { result.direction = "east"; }
+    else if ( wind.deg <= 155 ) { result.direction = "southeast"; }
+    else if ( wind.deg <= 205 ) { result.direction = "south"; }
+    else if ( wind.deg <= 245 ) { result.direction = "southwest"; }
+    else if ( wind.deg <= 295 ) { result.direction = "west"; }
+    else                        { result.direction = "northwest"; }
 
     result.speedMPH = Math.round( wind.speed * 2.25 );
     result.speedMPS = Math.round( wind.speed );
@@ -57,7 +81,7 @@ var Weather = ( function() {
       result.gustMPS  = Math.round( wind.gust );
     }
 
-    if ( tempScale == "f" ) {
+    if ( tempScale === "f" ) {
       result.string = result.direction + " wind at " + result.speedMPH + "mph";
       if ( wind.gust && wind.gust >= (wind.speed * 1.25) ) {
         result.string += ( ",<br>gusting to " + result.gustMPH + "mph" );
@@ -69,9 +93,9 @@ var Weather = ( function() {
         result.string += ( ",<br>gusting to " + result.gustMPS + "m/s" );
       }
     }
-
     return result.string;
   }
+
 
   function currentCond(weatherJSON) {
     var result = weatherJSON.weather[0].description;
@@ -81,12 +105,14 @@ var Weather = ( function() {
     return result;
   }
 
+
   function getSun(weatherJSON) {
     return {
       rise: formatTime( new Date(weatherJSON.sys.sunrise * 1000) ),
-      set: formatTime( new Date(weatherJSON.sys.sunset * 1000) ),
-    }
+      set: formatTime( new Date(weatherJSON.sys.sunset * 1000) )
+    };
   }
+
 
   function getMoonPhase() {
     var lunarCycle = 2551443;
@@ -95,6 +121,7 @@ var Weather = ( function() {
     var phase = ((now.getTime() - new_moon.getTime())/1000) % lunarCycle;
     return Math.floor(phase /(24*3600)) + 1;
   }
+
 
   function getMoonIcon() {
     var phase = getMoonPhase();
@@ -126,70 +153,39 @@ var Weather = ( function() {
     else                   { return "wi-moon"; }
   }
 
+
   function getDayNight(weatherJSON) {
-    var result = "",
-        time = new Date(),
-        sunrise = new Date(weatherJSON.sys.sunrise * 1000),
-        sunset = new Date(weatherJSON.sys.sunset * 1000);
+    var time = new Date();
+    var sunrise = new Date(weatherJSON.sys.sunrise * 1000);
+    var sunset = new Date(weatherJSON.sys.sunset * 1000);
 
     if (time > sunrise && time <= sunset) { return "day"; }
     else { return "night"; }
   }
 
-  function selectWeatherBG(weatherJSON) {
-    var clouds = weatherJSON.clouds.all || 0,
-        time = getDayNight(weatherJSON);
 
-    if (time == "day") {
-      if (clouds <= 10) {
-        $(".weather-header").addClass(" daytime-clear");
-        $(".weather-body").addClass(" daytime-clear");
-      }
-      else if (clouds <= 30 ) {
-        $(".weather-header").addClass(" daytime-mostly-clear");
-        $(".weather-body").addClass(" daytime-mostly-clear");
-      }
-      else if (clouds <= 70 ) {
-        $(".weather-header").addClass(" daytime-partly-cloudy");
-        $(".weather-body").addClass(" daytime-partly-cloudy");
-      }
-      else if (clouds <= 90 ) {
-        $(".weather-header").addClass(" daytime-mostly-cloudy");
-        $(".weather-body").addClass(" daytime-mostly-cloudy");
-      }
-      else {
-        $(".weather-header").addClass(" daytime-overcast");
-        $(".weather-body").addClass(" daytime-overcast");
-      }
-    }
-    else {  /* night */
-      if (clouds <= 10) {
-        $(".weather-header").addClass(" night-clear");
-        $(".weather-body").addClass(" night-clear");
-      }
-      else if (clouds <= 30 ) {
-        $(".weather-header").addClass(" night-mostly-clear");
-        $(".weather-body").addClass(" night-mostly-clear");
-      }
-      else if (clouds <= 70 ) {
-        $(".weather-header").addClass(" night-partly-cloudy");
-        $(".weather-body").addClass(" night-partly-cloudy");
-      }
-      else if (clouds <= 90 ) {
-        $(".weather-header").addClass(" night-mostly-cloudy");
-        $(".weather-body").addClass(" night-mostly-cloudy");
-      }
-      else {
-        $(".weather-header").addClass(" night-overcast");
-        $(".weather-body").addClass(" night-overcast");
-      }
-    }
+  function selectWeatherBG(weatherJSON) {
+    var clouds = weatherJSON.clouds.all || 0;
+    var time = getDayNight(weatherJSON);
+    var skies = "";
+    var bgClass = "";
+
+    if      (clouds <= 10 ) { skies = "clear"; }
+    else if (clouds <= 30 ) { skies = "mostly-clear"; }
+    else if (clouds <= 70 ) { skies = "partly-cloudy"; }
+    else if (clouds <= 90 ) { skies = "mostly-cloudy"; }
+    else                    { skies = "overcast"; }
+
+    bgClass = " " + time + "-" + skies;
+
+    $(".weather-header").addClass( bgClass );
+    $(".weather-body").addClass( bgClass);
   }
 
 
   function changeTempScale() {
-    if ( tempScale == "f") { tempScale = "c"; }
-    else { tempScale = "f"}
+    if ( tempScale === "f" ) { tempScale = "c"; }
+    else { tempScale = "f"; }
 
     Weather.updateWeatherData();
   }
@@ -198,20 +194,20 @@ var Weather = ( function() {
   function buildWeatherDataStrings(weatherJSON) {
     var result = {};
 
-    result.icon =       "wi-owm-" + weatherJSON.weather[0].id;
+    result.icon =       "wi-owm-" + getDayNight(weatherJSON) + "-" + weatherJSON.weather[0].id;
     result.temp =       currentTemp(weatherJSON)[tempScale];
     result.time =       formatTime( new Date() );
     result.conditions = capitalize( currentCond(weatherJSON) );
-    result.wind =       capitalize( currentWind( weatherJSON ) );
-    result.sunrise =    " " + getSun( weatherJSON ).rise;
-    result.sunset =     " " + getSun( weatherJSON ).set;
+    result.wind =       capitalize( currentWind(weatherJSON) );
+    result.sunrise =    " " + getSun(weatherJSON).rise;
+    result.sunset =     " " + getSun(weatherJSON).set;
     result.phase =      getMoonIcon();
 
     return result;
   }
 
-  function displayWeatherData( weatherJSON ) {
-    var weatherDataStrings = buildWeatherDataStrings( weatherJSON );
+  function displayWeatherData(weatherJSON) {
+    weatherDataStrings = buildWeatherDataStrings(weatherJSON);
 
     $("#iconSpan").addClass ( weatherDataStrings.icon );
     $("#tempSpan").text     ( weatherDataStrings.temp );
@@ -230,17 +226,19 @@ var Weather = ( function() {
             locationStr + "&APPID=" + weatherKey;
 
     $.getJSON( weatherAPICall ).done( function(response) {
+      /*
       console.log(response); // remove for production
+      // */
       displayWeatherData( response );
     }).fail( function(errors) {
       console.log("OpenWeather Errors:");
       console.log(errors);
     });
-  }
+  };
 
   weatherObject.updateTime = function() {
     $("#timeSpan").text( currentTime() );
-  }
+  };
 
 
   weatherObject.displayStartingWeatherData = function() {
@@ -264,10 +262,10 @@ var Weather = ( function() {
       });
 
     }).fail( function( errors ) {
-      console.log("jsonip.com API Errors:")
-      cosole.log(errors);
+      console.log("jsonip.com API Errors:");
+      console.log(errors);
     });
-  }
+  };
 
 
   weatherObject.startTempScaleChanger = function () {
@@ -276,7 +274,12 @@ var Weather = ( function() {
 
       changeTempScale();
     });
-  }
+  };
+
+
+  weatherObject.enableDraggableBox = function() {
+    $("#weatherBox").mousedown(dragElement);
+  };
 
 
   return weatherObject;
@@ -284,15 +287,14 @@ var Weather = ( function() {
 })();
 
 
-window.setInterval( function() {
+setInterval( function() {
   Weather.updateTime();
 }, 60000);
 
-window.setInterval( function() {
+setInterval( function() {
   Weather.updateWeatherData();
 }, 600000 );
 
 Weather.displayStartingWeatherData();
-
 Weather.startTempScaleChanger();
-
+Weather.enableDraggableBox();
