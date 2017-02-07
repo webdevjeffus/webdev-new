@@ -1,8 +1,8 @@
 ---
 layout: default
 section: work
-title: Weather Report
-subtitle: A weather app using the OpenWeatherMap API
+title: Weather Widget
+subtitle: A fake weather widget <span class="no-break">using a real weather API</span>
 created: February 2017
 published: true
 featured: true
@@ -20,7 +20,7 @@ alt: Go to Weather Report
   <article class="ph-col-12 tab-col-8  gtr">
     <header>
       <h1>{{page.title}}</h1>
-      <p>Work in Progress:<br>{{page.subtitle}}</p>
+      <p>{{page.subtitle}}</p>
     </header>
 
     <div id="weatherBox" class="weather-box hdrm-mar-2x ftrm-mar-2x txt-ctr">
@@ -47,12 +47,31 @@ alt: Go to Weather Report
         </div>
       </div>
     </div>
+
+    <div>
+      <p>This applet displays accurate weather conditions for the user's locale, provided by the OpenWeatherMap API. It does so by acquiring the user's IP, then his location, and then submitting an API request to OpenWeatherMap.org for that location. It's only "fake" in the sense that it's not an installable widget&mdash;it resides only on this page, and can't be installed elsewhere.</p>
+
+      <h3>Features</h3>
+      <ul class="bulleted">
+        <li>Displays accurate location and local time</li>
+        <li>Displays an icon depicting current weather conditions</li>
+        <li>Displays local temperature in degrees Fahrenheit or Celsius;<br>click on temperature to toggle scale</li>
+        <li>Displays text description of local weather and wind conditions</li>
+        <li>Displays today's sunrise and sunset times</li>
+        <li>Displays icon depicting current moon phase</li>
+        <li>Changes background to reflect current cloud cover and time of day</li>
+        <li>Draggable to any position on the current page</li>
+      </ul>
+    </div>
   </article>
 
   <aside class="ph-col-12 tab-col-4 box">
     <h3>About this app</h3>
-    <p>This app shows the local time and weather conditions. It updates the time every minute, and the weather every 10 minutes. Weather information comes from the OpenWeatherMap.org API.</p>
-    <p>This is a work in progress. It is currently retrieving and displaying all necessary data, but it has not yet been styled for looks. Check back for an updated version soon.</p>
+    <p>This app shows the local time and weather conditions. It updates the time every minute, and the weather every 10 minutes. Weather information comes from the <a href="http://openweathermap.org/" target="blank" title="Go to OpenWeatherMap.org">OpenWeatherMap.org</a> API.</p>
+    <p>The API request to OpenWeatherMap includes the user's geolocation, which is derived from his IP. The IP is retrieved using the free version of jsonip, offered through <a href="http://getjsonip.com/" target="_blank" title="Visit GetJSONIP.com">GetJSONIP.com</a>. The user's IP is then sent in an API request to <a href="http://freegeoip.net/" target="_blank" title="Read the docs for freegeoip.net">freegeoip.net</a>, which returns his geolocation, in latitude and longitude. This information is then sent with the API request to OpenWeatherMap.org.</p>
+    <p>The background is selected from a set of prepared CSS3 gradients, based on the time of day as well as current cloud cover information provided by OpenWeatherMap.org.</p>
+    <p>All icons used in Weather Widget are provided by <a href="https://erikflowers.github.io/weather-icons/" target="_blank" title="Go to Weather Icons">Weather Icons</a>, a free icon font library maintained by Eric Flowers as a repository on GitHub.</p>
+    <p>The widget's "draggable" feature is implemented with basic jQuery, without needing any additional libraries such as jQuery UI.</p>
   </aside>
 
 </main>
