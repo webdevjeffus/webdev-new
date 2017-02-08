@@ -55,7 +55,6 @@ $(document).ready( function() {
     }
 
     searchObject.enableRandomBtn = function() {
-      console.log("Random button enabled");
       $("#randomBtn").on("click", function(event) {
         event.preventDefault();
 
@@ -73,10 +72,8 @@ $(document).ready( function() {
     }
 
     searchObject.enableSearchBtn = function() {
-      console.log("Search button enabled");
       $("#searchBtn").on("click", function(event) {
         event.preventDefault();
-        console.log("Click! Search Button!");
 
         var searchStr = ( $("#searchWords").val() )
 
