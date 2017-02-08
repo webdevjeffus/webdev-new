@@ -1,6 +1,10 @@
 div.search-result {
   background-color: white;
   border: 1px solid rgb(64, 64, 64);
-  padding: 0.6rem 1.2rem;
-  margin-bottom: 1.2rem;
+  height: 15rem;
 }
+
+.searchmatch {
+  font-weight: bold;
+}
+
