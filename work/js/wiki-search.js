@@ -132,8 +132,6 @@ $(document).ready( function() {
         }
         else {
           $("#emptySearchWarning").removeClass("hidden");
-          $("#resultsHeading").empty().addClass("hidden");
-          $("div#results").empty();
         }
 
       });
