@@ -3,8 +3,28 @@ $(document).ready( function() {
   var Search = ( function() {
     var searchObject = {};
 
-    function parseStr(str) {
+    function prepSearchStr(str) {
       return str.toLowerCase().split(" ").join("%20");
+    }
+
+    function prepUrlTitle(str) {
+      return str.split(" ").join("_");
+    }
+
+    function formatListing( listing ) {
+      var result = "";
+      var url = "https://en.wikipedia.org/wiki/" + prepUrlTitle( listing.title );
+      result =
+        "<div class='search-result ph-col-12 tab-col-6 box'>" +
+          "<h4>" +
+            "<a href='" + url + "' target='_blank' title='See " + listing.title +
+            " on Wikipedia'>" +
+              listing.title +
+            "</a>" +
+          "</h4>" +
+          "<p>" + listing.snippet + "...</p>" +
+        "</div>";
+      return result;
     }
 
     searchObject.enableRandomBtn = function() {
@@ -35,7 +55,7 @@ $(document).ready( function() {
         event.preventDefault();
         console.log("Click! Search Button!");
 
-        var searchStr = parseStr( $("#searchWords").val() );
+        var searchStr = prepSearchStr( $("#searchWords").val() );
         var apiStr = "https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&srsearch=" + searchStr + "&srlimit=12&utf8&callback=?"
 
         $.getJSON( apiStr, function(data){
@@ -47,10 +67,14 @@ $(document).ready( function() {
           var resultCount = searchResults.length;
           for( var i = 0; i < resultCount; i++ ) {
             //var parsedTitle = parseStr(searchResults[i]);
-            resultsStr += "<div class='search-result'>" +
-              "<h4>" + searchResults[i].title + "</h4>" +
-              "<p>" + searchResults[i].snippet + "...</p>" +
-              "</div>";
+
+            // resultsStr += "<div class='search-result'>" +
+            //   "<h4>" + searchResults[i].title + "</h4>" +
+            //   "<p>" + searchResults[i].snippet + "...</p>" +
+            //   "</div>";
+
+            resultsStr += formatListing(searchResults[i]);
+
             // console.log( data.query.search[i].title );
             // console.log( data.query.search[i].snippet);
           }
