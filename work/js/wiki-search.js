@@ -3,7 +3,7 @@ $(document).ready( function() {
   var Search = ( function() {
     var searchObject = {};
 
-    function prepSearchStr(str) {
+    function prepQueryStr(str) {
       return str.toLowerCase().split(" ").join("%20");
     }
 
@@ -11,19 +11,49 @@ $(document).ready( function() {
       return str.split(" ").join("_");
     }
 
+    function prepResultsHeader(str) {
+      if (str) {
+        return "Search results for <em>" + str + "</em>";
+      }
+      else {
+        return "12 random topics on from Wikipedia";
+      }
+    }
+
+/* Next step; not included in this commit
+    function getSearchResults( apiStr ) {
+      $.getJSON( apiStr, function(data){
+        var searchResults = data.query.search;
+        console.log( searchResults );
+
+        $("div#results").empty();
+
+        var resultsStr = "";
+
+        var resultCount = searchResults.length;
+        for( var i = 0; i < resultCount; i++ ) {
+          resultsStr += formatListing(searchResults[i]);
+        }
+      $("div#results").append( resultsStr );
+      });
+    }
+// */
+
     function formatListing( listing ) {
       var result = "";
       var url = "https://en.wikipedia.org/wiki/" + prepUrlTitle( listing.title );
       result =
-        "<div class='search-result ph-col-12 tab-col-6 box'>" +
+        "<div class='search-result box'>" +
           "<h4>" +
             "<a href='" + url + "' target='_blank' title='See " + listing.title +
             " on Wikipedia'>" +
               listing.title +
             "</a>" +
-          "</h4>" +
-          "<p>" + listing.snippet + "...</p>" +
-        "</div>";
+          "</h4>";
+      if (listing.snippet) {
+        result += "<p>" + listing.snippet + "...</p>";
+      }
+      result += "</div>";
       return result;
     }
 
@@ -31,20 +61,33 @@ $(document).ready( function() {
       console.log("Random button enabled");
       $("#randomBtn").on("click", function(event) {
         event.preventDefault();
-        console.log("Click! Random Button");
 
-        /*
-        var apiString = "https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=10"
+        var apiString = "https://en.wikipedia.org/w/api.php?format=json&action=query&list=random&rnlimit=12&rnnamespace=0&utf8&callback=?"
 
-        $.getJSON( apiString ).done( function( response ) {
-          console.log( response );
+        $("#searchWords").val("");
+
+        $("#resultsHeading").
+            empty().
+            append(prepResultsHeader()).
+            removeClass("hidden");
+        $("#emptySearchWarning").addClass("hidden");
+
+        $.getJSON( apiString, function(data){
+          console.log( data );
+
+          var searchResults = data.query.random;
+          console.log( searchResults );
+
+          $("div#results").empty();
+
+          var resultsStr = "";
+
+          var resultCount = searchResults.length;
+          for( var i = 0; i < resultCount; i++ ) {
+            resultsStr += formatListing(searchResults[i]);
+          }
+          $("div#results").append( resultsStr );
         });
-        // */
-
-
-        $.getJSON('https://en.wikipedia.org/w/api.php?format=json&action=query&list=random&utf8&callback=?', function(data){
-            console.log( data );
-        })
 
       });
     }
@@ -55,31 +98,43 @@ $(document).ready( function() {
         event.preventDefault();
         console.log("Click! Search Button!");
 
-        var searchStr = prepSearchStr( $("#searchWords").val() );
-        var apiStr = "https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&srsearch=" + searchStr + "&srlimit=12&utf8&callback=?"
+        var searchStr = ( $("#searchWords").val() )
 
-        $.getJSON( apiStr, function(data){
-          var searchResults = data.query.search;
-          console.log( searchResults );
+        if ( searchStr ) {
+          $("#searchWords").val("");
 
-          var resultsStr = "";
+          $("#resultsHeading").
+            empty().
+            append(prepResultsHeader(searchStr)).
+            removeClass("hidden");
+          $("#emptySearchWarning").addClass("hidden");
 
-          var resultCount = searchResults.length;
-          for( var i = 0; i < resultCount; i++ ) {
-            //var parsedTitle = parseStr(searchResults[i]);
+          var queryStr = prepQueryStr( searchStr );
+          var apiStr = "https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&srsearch=" + queryStr + "&srlimit=12&srprop=snippet&utf8&callback=?"
 
-            // resultsStr += "<div class='search-result'>" +
-            //   "<h4>" + searchResults[i].title + "</h4>" +
-            //   "<p>" + searchResults[i].snippet + "...</p>" +
-            //   "</div>";
+/*  Next step, not included in this commit
+            getSearchResults( apiStr );
+// */
+          $.getJSON( apiStr, function(data){
+            var searchResults = data.query.search;
+            console.log( searchResults );
 
-            resultsStr += formatListing(searchResults[i]);
+            $("div#results").empty();
 
-            // console.log( data.query.search[i].title );
-            // console.log( data.query.search[i].snippet);
-          }
+            var resultsStr = "";
+
+            var resultCount = searchResults.length;
+            for( var i = 0; i < resultCount; i++ ) {
+              resultsStr += formatListing(searchResults[i]);
+            }
           $("div#results").append( resultsStr );
-        })
+          });
+        }
+        else {
+          $("#emptySearchWarning").removeClass("hidden");
+          $("#resultsHeading").empty().addClass("hidden");
+          $("div#results").empty();
+        }
 
       });
     }
@@ -95,5 +150,5 @@ $(document).ready( function() {
   Search.enableRandomBtn();
   // */
 
-
 });
+
