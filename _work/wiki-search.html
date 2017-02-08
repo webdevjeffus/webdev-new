@@ -27,11 +27,12 @@ alt: Go to Wiki Search
         <input type="text" id="searchWords" placeholder="Keywords">
         <button id="searchBtn" title="Search Wikipedia"><i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
         <button id="randomBtn" title="Random articles"><i class="fa fa-question fa-lg" aria-hidden="true">&thinsp;</i></button>
+        <p id="emptySearchWarning" class="hidden">Please enter a topic to be searched.</p>
       </form>
     </div>
 
-    <div class="listings gtr">
-      <h3 id="#resultsHeading" class="wiki-heading">Results for <em><span id="#resultsTitle">Banana</span></em></h3>
+    <div class="listings">
+      <h3 id="resultsHeading" class="wiki-heading gtr hidden"></h3>
       <div id="results">
       </div>
     </div>
