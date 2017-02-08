@@ -17,10 +17,8 @@ $(document).ready( function() {
     }
 
     function getSearchResults( apiStr ) {
-      $.getJSON( apiStr, function(data){
-        var searchResults;
-        if (data.query.search) { searchResults = data.query.search; }
-        else { searchResults = data.query.random; }
+      $.getJSON( apiStr, function(data) {
+        var searchResults = data.query.search ? data.query.search : data.query.random;
         var resultCount = searchResults.length;
         var resultsStr = "";
 
@@ -94,4 +92,3 @@ $(document).ready( function() {
   Search.enableRandomBtn();
 
 });
-
