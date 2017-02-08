@@ -32,6 +32,15 @@ $(document).ready( function() {
       });
     }
 
+    function updateTextElements( searchStr ) {
+      $("#searchWords").val("");
+      $("#resultsHeading").
+        empty().
+        append(prepResultsHeader(searchStr)).
+        removeClass("hidden");
+      $("#emptySearchWarning").addClass("hidden");
+    }
+
     function formatListing( listing ) {
       var result = "";
       var url = "https://en.wikipedia.org/wiki/" + prepUrlTitle( listing.title );
@@ -56,13 +65,7 @@ $(document).ready( function() {
 
         var apiStr = "https://en.wikipedia.org/w/api.php?format=json&action=query&list=random&rnlimit=12&rnnamespace=0&utf8&callback=?"
 
-        $("#searchWords").val("");
-        $("#resultsHeading").
-            empty().
-            append(prepResultsHeader()).
-            removeClass("hidden");
-        $("#emptySearchWarning").addClass("hidden");
-
+        updateTextElements();
         getSearchResults( apiStr );
       });
     }
@@ -74,16 +77,10 @@ $(document).ready( function() {
         var searchStr = ( $("#searchWords").val() )
 
         if ( searchStr ) {
-          $("#searchWords").val("");
-          $("#resultsHeading").
-            empty().
-            append(prepResultsHeader(searchStr)).
-            removeClass("hidden");
-          $("#emptySearchWarning").addClass("hidden");
-
           var queryStr = prepQueryStr( searchStr );
           var apiStr = "https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&srsearch=" + queryStr + "&srlimit=12&srprop=snippet&utf8&callback=?"
 
+          updateTextElements( searchStr );
           getSearchResults( apiStr );
         }
         else { $("#emptySearchWarning").removeClass("hidden"); }
