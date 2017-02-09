@@ -4,12 +4,12 @@ section: work
 title: Wiki Search
 subtitle: A search page using the Wikipedia API
 created: February 2017
-published: false
-featured: false
+published: true
+featured: true
 css: /work/css/wiki-search.css
 js: /work/js/wiki-search.js
-thumb: http://placehold.it/300x200/0000ff/ffffff?text=Work+in+Progress
-image: http://placehold.it/600x400/0000ff/ffffff?text=Work+in+Progress
+thumb: /work/img/wiki-search-300x200.jpg
+image: /img/wiki-search-600x400.jpg
 alt: Go to Wiki Search
 ---
 
@@ -39,9 +39,10 @@ alt: Go to Wiki Search
   </article>
 
   <aside class="ph-col-12 tab-col-12 cmp-col-4 box">
-    <h3>About this app</h3>
-    <p>Af knausgaard single-origin coffee, vexillologist vinyl freegan swag bushwick hammock iceland meh. 3 wolf moon pitchfork literally, mixtape messenger bag organic butcher wayfarers hexagon raw denim poutine seitan copper mug shoreditch. Fixie authentic humblebrag lyft DIY. Fap bespoke hell of readymade pug tumeric church-key.</p>
-    <p>Beard pop-up lo-fi, vice chillwave vinyl green juice lomo echo park godard subway tile four loko kogi kale chips cardigan. Offal subway tile single-origin coffee, locavore live-edge before they sold out pitchfork ugh squid PBR&B pickled woke. Godard kombucha tumblr, la croix williamsburg readymade lomo raw denim asymmetrical truffaut.</p>
+    <h3>About Wiki-Search</h3>
+    <p>There are basically two important things going on in this little app: two kinds of search requests are being prepared and sent to the Wikipedia API, and the results are being prepared and posted to the page without a page refresh. This is all going on with some pretty basic jQuery and AJAX.</p>
+    <p>The main challenge on this project was <a href="https://www.mediawiki.org/wiki/API:Main_page" target="_blank" title="Read the Wikipedia API docs">the documentation for the Wikipedia API</a>, which is not particularly dev-friendly. There is a <em>lot</em> that can be done with Wikipedia's API, but there are dozens and dozens of pages of very dense docs with very small type and hundreds of links to wade through to figure out how to do any of it. I managed to find what I needed for this project, but I've hardly scratched the surface of what could be done with the Wikipedia API.</p>
+    <p>I'm also continuing to work to improve my JavaScript code. Because there are two buttons with very similar functions in the app&mdash;one which retrieves articles relevant to the user's search input, and another which grabs twelve random articles&mdash;there were lots of opportunities to <a href="https://en.wikipedia.org/wiki/Don't_repeat_yourself" target="_blank" title="What does DRY stand for?">DRY up the code</a> by pulling code out of the button-click functions into helper functions. Doing so also improves the readability of the code a great deal.</p>
   </aside>
 
 </main>
