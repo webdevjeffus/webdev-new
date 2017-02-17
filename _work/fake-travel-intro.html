@@ -1,0 +1,71 @@
+---
+layout: default
+section: work
+title: Mock Travel Site
+subtitle: A single-page site created with Gulp, PostCSS, Webpack, and Babel
+created: February 2016
+published: true
+featured: false
+thumb: http://placehold.it/300x200?text=Work+In+Progress
+image: http://placehold.it/600x400?text=Work+In+Progress
+alt: Go to Mock Travel Sites
+---
+
+<main class="gtr">
+  <header class="gtr">
+    <h1>{{page.title}}</h1>
+    <p>{{page.subtitle}}</p>
+  </header>
+
+  <section class="row gtr">
+    <div class="ph-ins-50 tab-ins-50 cmp-ins-50">
+      <a href="https://webdevjeffus.github.io/fake-travel/" alt="Go to my mock travel website" title="Go to my mock travel website" target="_blank">
+        <img class="img-border img-link" src="{{site.baseurl}}/work/img/mock-travel-600x677.png" alt="Screenshot from my mock travel website" title="Go to my mock travel website">
+      </a>
+      <p class="txt-ctr"><em>Visit <a href="https://webdevjeffus.github.io/fake-travel/" alt="Go to my mock travel website" title="Go to my mock travel website" target="_blank">my mock travel website</a></em></p>
+    </div>
+    <p>Feeling like I had a pretty good handle on HTML, CSS, and JavaScript, as well as the general principles of responsive web design, I knew that it was time to level-up my front-end skills by adding optimization and automation tools to my toolbox. I also wanted to practice the skills that are necessary when working as part of a dev team: writing well-organized, maintainable, modularized CSS and JavaScript using current best-practices and conventions. In my search for resources to guide me on this next step, I found Brad Schiff's Udemy course, <a href="https://www.udemy.com/git-a-web-developer-job-mastering-the-modern-workflow/" target="_blank">Git a Web Developer Job: Mastering the Modern Workflow</a>, which put all these topics together in a logical sequence. The mock travel website shown here is the project I completed while working through that course.</p>
+
+    <h3>Automating the dev workflow</h3>
+    <p>Several tools were called for on this project. The foundation of development workflow is <a href="http://gulpjs.com/" target="_blank">Gulp.js</a>, a core toolkit with a vast ecosystem of plug-ins capable of automating almost every task necessary to optimize, build, and deploy a website. <a href="http://postcss.org/" target="_blank">PostCSS</a> is a CSS pre-processor with its own array of plug-ins, providing a menu of <em>a la carte</em> enhancements to CSS, many of which were used in the project. <a href="https://webpack.js.org/" target="_blank">Webpack</a> is a module bundler I used to combine all of the JavaScript modules into a single file served to the user's browser. <a href="https://www.browsersync.io/docs/gulp" target="_blank">Browsersync</a> can be set to synchronize several browser windows, and was used to automatically reload the page with every update to any file.</p>
+
+    <h4>CSS Pre-processing with PostCSS</h4>
+    <p>Better-known CSS pre-processors, like Sass and Less, are presented as monolithic packages of features. PostCSS, on the other hand, allows you to pick and choose the features you need, and incorporate them as plug-ins into Gulp tasks. Here is the list of plug-ins used in this project:</p>
+    <ul class="bulleted">
+      <li><a href="https://github.com/postcss/postcss-import" target="_blank">postcss-import</a>: imports many stylesheets into a single CSS file</li>
+      <li><a href="https://github.com/postcss/postcss-mixins" target="_blank">postcss-mixins</a>: enables use of mixins to DRY up CSS code</li>
+      <li><a href="https://github.com/postcss/postcss-simple-vars" target="_blank">postcss-simple-vars</a>: enables use of variables in CSS code, vastly improving consistency and maintainability</li>
+      <li><a href="https://github.com/postcss/postcss-nested" target="_blank">postcss-nested</a>: parses nested rules into standard CSS, making stylesheets read more like code</li>
+      <li><a href="https://github.com/seaneking/postcss-hexrgba" target="_blank">postcss-hexrgba</a>: automatically converts colors expressed as hex values into rgb values for inclusion in rgba declarations</li>
+      <li><a href="https://github.com/postcss/autoprefixer" target="_blank">autoprefixer</a>: automatically inserts necessary vendor prefixes into stylesheets, based on the Can I Use database</li>
+    </ul>
+
+    <h4>JavaScript bundling with Webpack</h4>
+    <p>On this project, Webpack was used to bundle the various JavaScript modules into a single script to be served with the website. In addition to the original JS code written specifically for this project, handful of open-source JavaScript modules were used to add UI features to this page. Here they are, along with how they were used:</p>
+    <ul class="bulleted">
+      <li><a href="https://modernizr.com/" target="_blank">modernizr</a>: detects support of modern CSS features in the user's browser, and sets classes to facilitate graceful fallbacks for missing features</li>
+      <li><a href="http://imakewebthings.com/waypoints/" target="_blank">waypoints</a>: triggers functions when the browser is scrolled to specified elements</li>
+      <li><a href="https://www.npmjs.com/package/picturefill" target="_blank">picturefill</a>: automatically provides necessary CSS code for responsive images in browsers that don't support the modern <code>&lt;picture&gt;</code> element</li>
+      <li><a href="https://www.npmjs.com/package/lazysizes" target="_blank">lazysizes</a>: provides lazy loading for images to reduce page-loading time</li>
+      <li><a href="https://babeljs.io/" target="_blank">babel</a>: a JavaScript compiler that allows the use of ES6 syntax and features in scripts to be interpreted by contemporary browsers</li>
+    </ul>
+
+    <h4>Site optimization through Gulp tasks</h4>
+    <p>Several Gulp tasks have been implemented to optimize the files which must be loaded to display the page. First of these is a Gulp "icons" task, which compiles a dozen .svg files into a single sprite. Incorporated into the "build" task are several Gulp plug-ins which optimize images and minify stylesheets and scripts in the course of compiling the distributable version of the site. Specific plug-ins used include:</p>
+    <ul class="bulleted">
+      <li><a href="https://www.npmjs.com/package/del" target="_blank">del</a>: deletes files and folders</li>
+      <li><a href="https://www.npmjs.com/package/gulp-svg-sprite/" target="_blank">gulp-svg-sprite</a>: wraps several .svg files into a single .svg sprite, with necessary CSS resources</li>
+      <li><a href="https://www.npmjs.com/package/gulp-svg2png/" target="_blank">gulp-svg2png</a>: coverts .svg files to .png, for older browsers that don't support the .svg format</li>
+      <li><a href="https://www.npmjs.com/package/gulp-imagemin/" target="_blank">gulp-imagemin</a>: minifies .png, .jpg, .gif and .svg files</li>
+      <li><a href="https://www.npmjs.com/package/gulp-usemin" target="_blank">gulp-usemin</a>: handles the compression of CSS and JS files, adding a revision number stamp to them, and copying them into the deployment folder</li>
+      <li><a href="https://www.npmjs.com/package/gulp-cssnano" target="_blank">gulp-cssnano</a>: used by usemin minifies CSS stylesheets</li>
+      <li><a href="https://www.npmjs.com/package/gulp-uglify" target="_blank">gulp-uglify</a>: used by usemin to minify JS scripts</li>
+      <li><a href="https://www.npmjs.com/package/gulp-rev" target="_blank">gulp-rev</a>: used by usemin to stamp files with a revision number</li>
+    </ul>
+
+    <h3>Next Steps</h3>
+    <p>I see myself having two follow-up tasks to expand my understanding of automation in the web dev workflow. First, I plan to go back through the repo for this project, and the course that guided its creation, and extract an automated boilerplate repo for use in future projects&mdash;<em>and</em> I need to create a completely original single-page website using that boilerplate. Second, I want to take what I've learned from these projects, and learn to apply them in other contexts, using them in conjunction with other tools and frameworks. Specifically, I want to work out how to apply more automation and optimization in a website created using <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>, such as this one!</p>
+
+  </section>
+
+</main>
