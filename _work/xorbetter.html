@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: work
 section: work
 title: X or Better!
 subtitle: Die roll percentage calculator
@@ -12,37 +12,31 @@ image: /img/x-or-better-600x400.png
 alt: Go to X or Better!
 ---
 
-<main class="gtr">
-  <header class="gtr">
-    <h1>{{page.title}}</h1>
-    <p>{{page.subtitle}}</p>
-  </header>
 
-  <div class="gtr">
-    <p>This web app will calculate the chance of rolling equal to or better than every possible result, when rolling from one to five dice with a given number of sides per die.</p>
+<div class="gtr">
+  <p>This web app will calculate the chance of rolling equal to or better than every possible result, when rolling from one to five dice with a given number of sides per die.</p>
 
-    <form>
+  <form>
 
-      <div class="div-input">
-        <label for="dice">Select a number of dice to roll:</label>
-        <input id="dice" class="input-number" type="number" min="1" max="5" value="2">
-      </div>
+    <div class="div-input">
+      <label for="dice">Select a number of dice to roll:</label>
+      <input id="dice" class="input-number" type="number" min="1" max="5" value="2">
+    </div>
 
-      <div class="div-input">
-        <label for="sides">Set the number of sides each die:</label>
-        <input id="sides" class="input-number" type="number" value="6">
-      </div>
+    <div class="div-input">
+      <label for="sides">Set the number of sides each die:</label>
+      <input id="sides" class="input-number" type="number" value="6">
+    </div>
 
-      <div class="div-btn">
-        <button id="calcBtn" class="calc-btn">Calculate percentages</button>
-      </div>
+    <div class="div-btn">
+      <button id="calcBtn" class="calc-btn">Calculate percentages</button>
+    </div>
 
-      <div id="textDisplay" class="text-display"></div>
+    <div id="textDisplay" class="text-display"></div>
 
-      <table id="resultsTable">
-        <tbody id="resultsTableBody" class="results-table"></tbody>
-      </table>
+    <table id="resultsTable">
+      <tbody id="resultsTableBody" class="results-table"></tbody>
+    </table>
 
-    </form>
-  </div>
-</main>
+  </form>
+</div>

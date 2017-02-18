@@ -13,12 +13,10 @@ image: /img/quote-monster-600x400.png
 alt: Go to QuoteMonster
 ---
 
-<main class="row gtr">
+<main class="gtr">
   <article class="ph-col-12 tab-col-8 gtr">
-    <header>
-      <h1>{{page.title}}</h1>
-      <p>{{page.subtitle}}</p>
-    </header>
+
+    {% include work-header.html %}
 
     <section>
       <div id="quoteBox" class="row quote-box btn">
@@ -43,5 +41,5 @@ alt: Go to QuoteMonster
     <p>I used the free <a href="http://quotes.stormconsultancy.co.uk/api" title="Read the docs for the Programming Quotes API" target="_blank">Programming Quotes API by Storm Consultancy</a> to provide the quotations for this app. Although the API serves up the quotes in several different ways, I chose to take single quotes at random for this app. Before displaying the quotes, I converted all quotation marks into single opening and closing quotes, so they would be correct inside the double-quotes built into the quote box.</p>
     <p>To build the Tweet window, I followed <a href="https://dev.twitter.com/web/tweet-button" title="Read the docs to make a Tweet button" target="_blank">Twitter's developer docs</a> to create a button that sends a request to Twitter.com to open a Tweet window pre-loaded with the quotation and its author. Due to Twitter's famous 140-character limit, the app checks the length of the quotation before attempting to tweet it. Also, because Twitter expects data to arrive in a query parameter, I had to replace certain special characters ("<strong>+</strong>" and "<strong>;</strong>", for example) with escape codes recognized by HTTP.</p>
   </aside>
-
 </main>
+
