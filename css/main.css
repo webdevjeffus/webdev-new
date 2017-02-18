@@ -95,14 +95,16 @@ main header p:last-of-type {
   padding-bottom: 0;
 }
 
+@media only screen and (min-width: 680px) {   /* Apply to rows containing all boxes */
+  .flex {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .box {
   background-color: rgb(204,204,204);   /* Lo Wht */
   border: 1px solid rgb( 64, 64, 64);   /* Hi Blk */
-}
-
-.flex {
-  display: flex;
-  justify-content: space-between;
 }
 
 .img-border {
