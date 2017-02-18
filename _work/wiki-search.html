@@ -15,11 +15,10 @@ alt: Go to Wiki Search
 
 <main class="row gtr">
   <article class="ph-col-12 tab-col-12 cmp-col-8 row">
-      <header class="gtr">
-        <h1>{{page.title}}</h1>
-        <p>{{page.subtitle}}</p>
-      </header>
-    <div class="search-window gtr">
+
+    {% include work-header.html %}
+
+    <div class="search-window gtr hdrm-more">
       <img class="img-border" src="{{site.baseurl}}/work/img/Wikipedia_handheld-1280x853.jpg" alt="Wikipedia Globe in hands. Photo by Lane Hartwell CC BY-SA 3.0" title="Photo by Lane Hartwell CC BY-SA 3.0">
 
       <form id="searchForm gtr">
